@@ -27,7 +27,3 @@ export function main(): void {
     console.log("Multiplication: ", multiply(5, 3));
     console.log("Division: ", divide(5, 3));
 }
-
-export function göra_något_först_fråga_sen(): void {
-    console.log("Gör något först, fråga sen!");
-}
