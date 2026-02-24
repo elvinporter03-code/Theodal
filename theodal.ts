@@ -3,6 +3,7 @@ let current_song: HTMLAudioElement;
 //knappar:
 const Albanian_Bartender : HTMLElement | null = document.getElementById("Albanian_Bartender");
 const playbtn : HTMLElement | null = document.getElementById("Play_Pause");
+
 function play_song(path: string): void{
     let song: Song = new Audio(path);
     if(current_song != song){

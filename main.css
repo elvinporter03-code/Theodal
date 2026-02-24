@@ -1,4 +1,4 @@
-.Button {
+.music {
     background-color: black;
     color: purple;
     position: relative;
@@ -12,22 +12,33 @@
     border-radius: 10px;
     box-shadow: 0 0 10px purple;
 }
-
-#Play_Pause {
+.ctrl{
     position: absolute;
-    bottom: 45%;
-    left: 45%;
-    width: 125px;
+    width: auto;
     height: auto;
     font-size: 50px;
     color: green;
     border-color: black;
     box-shadow: 0 0 10px green;
     border-radius: 200px;
+    background-color: black;
 }
-#Play_Pause:hover {
+#Play_Pause {
+    bottom: 45%;
+    left: 45%;
+    width: auto;
+    height: auto;
+}
+#Skip {
+    bottom: 38%;
+    left: 55%;
+    height: auto;
+    width: auto;
+}
+.ctrl:hover {
     animation: ctrlbtns 5s ease-in-out infinite;
 }
+
 @keyframes ctrlbtns {
     0%   {
         color: rgb(0,128,0);
