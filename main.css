@@ -1,3 +1,9 @@
+body{
+    background-color: rgb(20,0,20);
+}
+div{
+    text-align: center;
+}
 .music {
     background-color: black;
     color: purple;
@@ -17,23 +23,28 @@
     width: auto;
     height: auto;
     font-size: 50px;
-    color: green;
+    color: rgb(75,0,150);
     border-color: black;
-    box-shadow: 0 0 10px green;
+    box-shadow: 0 0 10px rgb(75,0,150);
     border-radius: 200px;
     background-color: black;
 }
-#Play_Pause {
-    bottom: 45%;
+.ctrlblock{
+    position: absolute;
+    bottom: 15%;
     left: 45%;
-    width: auto;
+    width: 175px;
     height: auto;
+    border: 10px red;
+}
+#Play_Pause {
+    position: relative;
 }
 #Skip {
-    bottom: 38%;
-    left: 55%;
-    height: auto;
-    width: auto;
+    right: 0%;
+}
+#Previous {
+    left: 0%;
 }
 .ctrl:hover {
     animation: ctrlbtns 5s ease-in-out infinite;
@@ -41,21 +52,20 @@
 
 @keyframes ctrlbtns {
     0%   {
-        color: rgb(0,128,0);
+        color: rgb(75,0,150);
         border-color: rgb(0,0,0);
         background-color: rgb(0,0,0);
         }
 
     50% {
-        color: rgb(0,255,0); 
-        border-color: rgb(0,128,0);
+        color: rgb(0,0,255); 
+        border-color: rgb(100,0,255);
         background-color: rgb(0,0,0);
-        transform: rotate(360deg);
-
+        box-shadow: 0 0 500px;
     }
 
     100% {
-        color: rgb(0,128,0);
+        color: rgb(75,0,150);
         border-color: rgb(0,0,0);
         background-color: rgb(0,0,0);
         }

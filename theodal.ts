@@ -27,9 +27,9 @@ if(Albanian_Bartender !== null) {
 if(playbtn !== null) {
     playbtn.addEventListener("click", () => 
         {Play_Pause();
-        if(current_song.paused){playbtn.textContent="PLAY";}
+        if(current_song.paused){playbtn.textContent="▶";}
         else{
-            playbtn.textContent="PAUSE";
+            playbtn.textContent="II";
         };
         });
 }
