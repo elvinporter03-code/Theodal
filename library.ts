@@ -1,29 +1,29 @@
-export function hello_world(): void {
-    console.log("HEJ VÄRLDEN");
+import * as q from '../lib/queue_array';
+
+export type Playlist = List<Song>;
+export type Song = string;
+
+
+export function play_song(song : Song): void{
+
+};
+
+export function add_to_playlist(song: Song, playlist: Playlist) : Playlist{
+    return playlist;
+};
+
+export function remove_from_playlist(song: Song, playlist: Playlist): Playlist{
+    return playlist;
 }
 
-export function add(a: number, b: number): number {
-    return a + b;
+export function make_playlist(name : string) : Playlist {
+    return null;
 }
 
-export function subtract(a: number, b: number): number {
-    return a - b;
+export function add_to_queue(song:Song, queue: q.Queue) : q.Queue {
+    return queue;
 }
 
-export function multiply(a: number, b: number): number {
-    return a * b;
-}
-export function divide(a: number, b: number): number {
-    if (b === 0) {
-        throw new Error("Division by zero is not allowed.");
-    }
-    return a / b;
-}
-
-export function main(): void {
-    hello_world();
-    console.log("Addition: ", add(5, 3));
-    console.log("Subtraction: ", subtract(5, 3));
-    console.log("Multiplication: ", multiply(5, 3));
-    console.log("Division: ", divide(5, 3));
+export function delete_playlist(playlist: Playlist) : void {
+    
 }
