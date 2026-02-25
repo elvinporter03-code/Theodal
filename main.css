@@ -86,6 +86,10 @@ div{
     border-radius: 10px;
     box-shadow: 0 0 10px rgb(75,0,150);
 }
+#albanian_pic{
+    background-image: ;
+
+}
 @keyframes ctrlbtns {
     0%   {
         color: rgb(150,0,150);

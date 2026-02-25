@@ -43,11 +43,11 @@ function play_song(path) {
 function Play_Pause() {
     if (current_song.paused) {
         current_song.play();
-        playbtn ? playbtn.textContent = "PLAY" : undefined;
+        playbtn ? playbtn.textContent = "PAUSE" : undefined;
     }
     else {
         current_song.pause();
-        playbtn ? playbtn.textContent = "PAUSE" : undefined;
+        playbtn ? playbtn.textContent = "PLAY" : undefined;
     }
 }
 function skip() {
