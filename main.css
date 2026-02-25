@@ -58,10 +58,12 @@ div{
 .progressbar{
     position: fixed;
     background-color: rgb(75,0,150);
-    width: 100%;
-    height: 10px;
-    bottom: 1%;
-    left:   0%;
+    width: 10px;
+    height: 100%;
+    left: 10%;
+    bottom:   0%;
+    z-index: 1;
+    animation: progressing 5s linear infinite;
 }
 #albanmusik {
     display: grid;
@@ -165,9 +167,9 @@ div{
 
 @keyframes progressing {
     0% {
-        width: 0%;
+        height: 0%;
     }
     100% {
-        width: 100%;
+        height: 100%;
     }
 }

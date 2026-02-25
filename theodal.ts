@@ -99,7 +99,7 @@ if(playbtn !== null) {
 }
 
 function add_to_queue(song_name : string) {
-    if(is_empty(q)){
+    if(is_empty(q) && current_song === temp){
         play_song(song_name);
     }
     enqueue(song_name, q);
