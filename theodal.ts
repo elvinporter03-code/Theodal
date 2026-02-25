@@ -1,3 +1,4 @@
+import {Queue, dequeue, enqueue, head} from '../../lib/queue_array';
 type Song = HTMLAudioElement;
 let current_song: Song;
 //knappar:
@@ -19,8 +20,7 @@ const SONGS : Record<string, string> = {
     delivery: './music/country/City Mail Special Delivery.mp3',
     gustavboyfriend: './music/country/Gustav Got a Boyfriend.mp3'
 };
-
-
+const q : Queue<string> = null;
 function play_song(path: string): void {
     const absolutePath = new URL(path, location.href).href;
 
@@ -31,6 +31,7 @@ function play_song(path: string): void {
         if(playbtn !== null){
             playbtn.textContent="PAUSE";
         }
+        progressbar();
         return;
     }
 
@@ -39,6 +40,7 @@ function play_song(path: string): void {
         current_song.pause();
         current_song = new Audio(absolutePath);
         current_song.play();
+        progressbar();
         return;
     }
 
@@ -62,7 +64,7 @@ function skip():void{
 function previous():void{
 
 }
-function expand_artist(artist : HTMLElement) : void{
+function toggle_hide(artist : HTMLElement) : void{
     if(artist.style.visibility === "visible"){
         artist.style.visibility = "hidden";
     }
@@ -71,8 +73,8 @@ function expand_artist(artist : HTMLElement) : void{
     }
 
 }
-function progressbar():void{
-    bar?bar.style.animation="animation: progressing " + current_song.duration + "linear infinite;" : undefined;
+function progressbar():void{ 
+    bar ? bar.style.animation="progressing ${current_song.duration}s linear infinite;" : undefined;
 }
 
 if(playbtn !== null) {
@@ -84,10 +86,16 @@ if(playbtn !== null) {
         };
     });
 }
+
+current_song.onended = () => {
+    play_song(head(q)); 
+    dequeue(q);
+}
+
 previousbtn ? previousbtn.addEventListener("click", () => {previous()}) : undefined;
 skipbtn ? skipbtn.addEventListener("click", () => {skip()}) : undefined;
 albantheobtn ? albanmusik ? albantheobtn.addEventListener("click", () => 
-    {expand_artist(albanmusik)}) : undefined : undefined;
+    {toggle_hide(albanmusik)}) : undefined : undefined;
 Albanian_Bartenderbtn ? Albanian_Bartenderbtn.addEventListener("click", () => 
         {play_song(SONGS.albanianBartender);}) : undefined;
 Omen_In_The_Lords_Church ? Omen_In_The_Lords_Church.addEventListener("click", () => 

@@ -28,6 +28,7 @@ function play_song(path) {
         if (playbtn !== null) {
             playbtn.textContent = "PAUSE";
         }
+        progressbar();
         return;
     }
     // Om det är en ny låt → byt
@@ -35,6 +36,7 @@ function play_song(path) {
         current_song.pause();
         current_song = new Audio(absolutePath);
         current_song.play();
+        progressbar();
         return;
     }
     // Annars toggla play/pause
@@ -63,7 +65,7 @@ function expand_artist(artist) {
     }
 }
 function progressbar() {
-    bar ? bar.style.animation = "animation: progressing " + current_song.duration + "linear infinite;" : undefined;
+    bar ? bar.style.animation = "progressing ${current_song.duration}s linear infinite;" : undefined;
 }
 if (playbtn !== null) {
     playbtn.addEventListener("click", function () {
