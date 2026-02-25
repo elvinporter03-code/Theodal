@@ -1,5 +1,8 @@
 "use strict";
-var current_song;
+Object.defineProperty(exports, "__esModule", { value: true });
+var queue_array_1 = require("../../lib/queue_array");
+var temp = new Audio();
+var current_song = temp;
 //knappar:
 var playbtn = document.getElementById("Play_Pause");
 var previousbtn = document.getElementById("Previous");
@@ -19,6 +22,7 @@ var SONGS = {
     delivery: './music/country/City Mail Special Delivery.mp3',
     gustavboyfriend: './music/country/Gustav Got a Boyfriend.mp3'
 };
+var q = (0, queue_array_1.empty)();
 function play_song(path) {
     var absolutePath = new URL(path, location.href).href;
     // Om ingen låt spelas → skapa och spela
@@ -56,7 +60,7 @@ function skip() {
 }
 function previous() {
 }
-function expand_artist(artist) {
+function toggle_hide(artist) {
     if (artist.style.visibility === "visible") {
         artist.style.visibility = "hidden";
     }
@@ -79,9 +83,13 @@ if (playbtn !== null) {
         ;
     });
 }
+current_song.onended = function () {
+    play_song((0, queue_array_1.head)(q));
+    (0, queue_array_1.dequeue)(q);
+};
 previousbtn ? previousbtn.addEventListener("click", function () { previous(); }) : undefined;
 skipbtn ? skipbtn.addEventListener("click", function () { skip(); }) : undefined;
-albantheobtn ? albanmusik ? albantheobtn.addEventListener("click", function () { expand_artist(albanmusik); }) : undefined : undefined;
+albantheobtn ? albanmusik ? albantheobtn.addEventListener("click", function () { toggle_hide(albanmusik); }) : undefined : undefined;
 Albanian_Bartenderbtn ? Albanian_Bartenderbtn.addEventListener("click", function () { play_song(SONGS.albanianBartender); }) : undefined;
 Omen_In_The_Lords_Church ? Omen_In_The_Lords_Church.addEventListener("click", function () { play_song(SONGS.omen); }) : undefined;
 City_Mail_Special_Delivery ? City_Mail_Special_Delivery.addEventListener("click", function () { play_song(SONGS.delivery); }) : undefined;

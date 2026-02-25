@@ -36,10 +36,11 @@ div{
     position: fixed;
     bottom: 15%;
     left: 45%;
-    width: 175px;
+    width: auto;
     height: auto;
     border: 10px red;
     margin: 0 auto;
+    
 
 }
 #Play_Pause {
@@ -63,6 +64,11 @@ div{
     left:   0%;
 }
 #albanmusik {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1px;
+}
+#countrymusik {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 1px;
@@ -93,6 +99,45 @@ div{
     width: 100%;
     height: 150px;
 }
+#Albanian_uncle {
+    background-image: url("./pictures/redeagle.png");
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 150px;
+}
+
+.alban_select{
+    visibility: hidden;
+}
+.qblock{
+    position: fixed;
+    right: 0%;
+    top: 0%;
+    height: 100%;
+    width: 15%;
+}
+#current{
+    position: relative;
+    font-size: 25px;
+
+}
+#Play{
+    position: relative;
+    font-size: 25px;
+}
+#Queue{
+    position: relative;
+    font-size: 25px;
+
+}
+#Activequeue{
+    position: relative;
+    border-radius: 0px;
+    width: 100%;
+    height: 100%;
+}
+
 @keyframes ctrlbtns {
     0%   {
         color: rgb(150,0,150);

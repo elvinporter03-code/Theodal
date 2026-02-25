@@ -1,6 +1,8 @@
-import {Queue, dequeue, enqueue, head} from '../../lib/queue_array';
+import {Queue, dequeue, enqueue, head, empty} from '../../lib/queue_array';
 type Song = HTMLAudioElement;
-let current_song: Song;
+let temp : HTMLAudioElement = new Audio();
+let current_song: Song = temp;
+let active_selection : string = " ";
 //knappar:
 const playbtn : HTMLElement | null = document.getElementById("Play_Pause");
 const previousbtn : HTMLElement | null = document.getElementById("Previous");
@@ -13,14 +15,17 @@ const Albanian_Bartenderbtn : HTMLElement | null = document.getElementById("Alba
 const Omen_In_The_Lords_Church : HTMLElement | null = document.getElementById("Omen");
 const City_Mail_Special_Delivery : HTMLElement | null = document.getElementById("Citymail");
 const Gustav_Got_A_Boyfriend : HTMLElement | null = document.getElementById("Gustav");
+const Red_Eagle_Gold_Chain : HTMLElement | null = document.getElementById("RedEagle");
 //låtar
 const SONGS : Record<string, string> = {
     albanianBartender: './music/albanian_music/Albanian Bartender.mp3',
     omen: './music/freaky_country/Omen In The Lords Church.mp3',
     delivery: './music/country/City Mail Special Delivery.mp3',
-    gustavboyfriend: './music/country/Gustav Got a Boyfriend.mp3'
+    gustavboyfriend: './music/country/Gustav Got a Boyfriend.mp3',
+    redeagle: './music/albanian_music/Gold Chain, Red Eagle.mp3',
+    sunnyalbania: './music/albanian_music/Sun-Drunk in Albania'
 };
-const q : Queue<string> = null;
+let q : Queue<string> = empty();
 function play_song(path: string): void {
     const absolutePath = new URL(path, location.href).href;
 
@@ -73,7 +78,7 @@ function toggle_hide(artist : HTMLElement) : void{
     }
 
 }
-function progressbar():void{ 
+function progressbar():void{  //funkar inte
     bar ? bar.style.animation="progressing ${current_song.duration}s linear infinite;" : undefined;
 }
 
@@ -87,10 +92,23 @@ if(playbtn !== null) {
     });
 }
 
+function add_to_queue(song_name : string) {
+    enqueue(SONGS.song_name, q)
+}
+
 current_song.onended = () => {
     play_song(head(q)); 
     dequeue(q);
 }
+
+document.querySelectorAll(".music").forEach(btn => { 
+    btn.addEventListener("click", () => {
+        const songName = btn.getAttribute("data-song")!;
+        active_selection = songName;
+    });
+});
+
+
 
 previousbtn ? previousbtn.addEventListener("click", () => {previous()}) : undefined;
 skipbtn ? skipbtn.addEventListener("click", () => {skip()}) : undefined;
@@ -104,3 +122,7 @@ City_Mail_Special_Delivery ? City_Mail_Special_Delivery.addEventListener("click"
         {play_song(SONGS.delivery);}) : undefined;
 Gustav_Got_A_Boyfriend ? Gustav_Got_A_Boyfriend.addEventListener("click", () => 
         {play_song(SONGS.gustavboyfriend);}) : undefined;
+Red_Eagle_Gold_Chain ? Red_Eagle_Gold_Chain.addEventListener("click", () => 
+        {play_song(SONGS.redeagle);}) : undefined;
+Sun_Drunk_In_Albania ? Sun_Drunk_In_Albania.addEventListener("click", () =>
+        {play_song(SONGS.sunnyalbania);}) : undefined;
