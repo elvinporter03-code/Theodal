@@ -7,7 +7,7 @@ div{
 }
 .music {
     background-color: black;
-    color: purple;
+    color: rgb(75,0,150);
     position: relative;
     width: auto;
     height: auto;
@@ -15,9 +15,9 @@ div{
     font-family: 'Arial', sans-serif;
     text-shadow: 2px 2px 4px #000000;
     padding: 20px;
-    border: 5px solid purple;
+    border: 5px solid rgb(0,0,0);
     border-radius: 10px;
-    box-shadow: 0 0 10px purple;
+    box-shadow: 0 0 10px rgb(75,0,150);
     position: relative;
     margin: 0;
 }
@@ -61,6 +61,7 @@ div{
     height: 10px;
     bottom: 1%;
     left:   0%;
+    animation: progressing 100s linear infinite;
 }
 #albanmusik {
     display: grid;
@@ -69,7 +70,7 @@ div{
 }
 .artist {
     background-color: black;
-    color: purple;
+    color: rgb(75,0,150);
     position: relative;
     width: 10%;
     height: auto;
@@ -77,13 +78,13 @@ div{
     font-family: 'Arial', sans-serif;
     text-shadow: 2px 2px 4px #000000;
     padding: 20px;
-    border: 5px solid purple;
+    border: 5px solid rgb(0,0,0);
     border-radius: 10px;
-    box-shadow: 0 0 10px purple;
+    box-shadow: 0 0 10px rgb(75,0,150);
 }
 @keyframes ctrlbtns {
     0%   {
-        color: rgb(75,0,150);
+        color: rgb(150,0,150);
         border-color: rgb(0,0,0);
         background-color: rgb(0,0,0);
         }
@@ -96,9 +97,17 @@ div{
     }
 
     100% {
-        color: rgb(75,0,150);
+        color: rgb(150,0,150);
         border-color: rgb(0,0,0);
         background-color: rgb(0,0,0);
         }
-  }
-  
+}
+
+@keyframes progressing {
+    0% {
+        width: 0%;
+    }
+    100% {
+        width: 100%;
+    }
+}
