@@ -86,9 +86,12 @@ div{
     border-radius: 10px;
     box-shadow: 0 0 10px rgb(75,0,150);
 }
-#albanian_pic{
-    background-image: ;
-
+#Albanian_pic {
+    background-image: url("./pictures/bartender.png");
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 150px;
 }
 @keyframes ctrlbtns {
     0%   {
