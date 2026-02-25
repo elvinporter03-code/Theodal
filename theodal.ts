@@ -1,4 +1,3 @@
-import {Queue, dequeue, enqueue, head, empty} from '../../lib/queue_array';
 type Song = HTMLAudioElement;
 let temp : HTMLAudioElement = new Audio();
 let current_song: Song = temp;
@@ -8,14 +7,10 @@ const playbtn : HTMLElement | null = document.getElementById("Play_Pause");
 const previousbtn : HTMLElement | null = document.getElementById("Previous");
 const skipbtn : HTMLElement | null = document.getElementById("Skip");
 const bar : HTMLElement | null = document.getElementById("progressbar");
+const play2 : HTMLElement | null = document.getElementById("Play");
 //Albanmusik
 const albantheobtn : HTMLElement | null = document.getElementById("albantheo"); //knappen för att visa albantheos musik
 const albanmusik :  HTMLElement | null = document.getElementById("albanmusik"); //containern för musiken som vi togglar synligheten på
-const Albanian_Bartenderbtn : HTMLElement | null = document.getElementById("Albanian_Bartender"); // knapp för att spela upp låt
-const Omen_In_The_Lords_Church : HTMLElement | null = document.getElementById("Omen");
-const City_Mail_Special_Delivery : HTMLElement | null = document.getElementById("Citymail");
-const Gustav_Got_A_Boyfriend : HTMLElement | null = document.getElementById("Gustav");
-const Red_Eagle_Gold_Chain : HTMLElement | null = document.getElementById("RedEagle");
 //låtar
 const SONGS : Record<string, string> = {
     albanianBartender: './music/albanian_music/Albanian Bartender.mp3',
@@ -114,15 +109,79 @@ previousbtn ? previousbtn.addEventListener("click", () => {previous()}) : undefi
 skipbtn ? skipbtn.addEventListener("click", () => {skip()}) : undefined;
 albantheobtn ? albanmusik ? albantheobtn.addEventListener("click", () => 
     {toggle_hide(albanmusik)}) : undefined : undefined;
-Albanian_Bartenderbtn ? Albanian_Bartenderbtn.addEventListener("click", () => 
-        {play_song(SONGS.albanianBartender);}) : undefined;
-Omen_In_The_Lords_Church ? Omen_In_The_Lords_Church.addEventListener("click", () => 
-        {play_song(SONGS.omen);}) : undefined;
-City_Mail_Special_Delivery ? City_Mail_Special_Delivery.addEventListener("click", () => 
-        {play_song(SONGS.delivery);}) : undefined;
-Gustav_Got_A_Boyfriend ? Gustav_Got_A_Boyfriend.addEventListener("click", () => 
-        {play_song(SONGS.gustavboyfriend);}) : undefined;
-Red_Eagle_Gold_Chain ? Red_Eagle_Gold_Chain.addEventListener("click", () => 
-        {play_song(SONGS.redeagle);}) : undefined;
-Sun_Drunk_In_Albania ? Sun_Drunk_In_Albania.addEventListener("click", () =>
-        {play_song(SONGS.sunnyalbania);}) : undefined;
+play2 ? play2.addEventListener("Play", () => {play_song(active_selection)}) : undefined;
+
+
+/**
+ * A homogeneous queue.
+ * The first entry points to the index of the queue's head element,
+ * the second entry points to the next empty index of the queue, and
+ * the last entry holds the values (contents) of the queue.
+ * @template T type of all queue elements
+ */
+ type Queue<T> = [number, number, Array<T>];
+
+/**
+ * Constructs a queue without any elements.
+ * @template T type of all queue elements
+ * @returns Returns an empty queue.
+ */
+ function empty<T>(): Queue<T> {
+    return [0, 0, []];
+}
+
+/**
+ * Checks whether a queue is empty.
+ * @template T type of all queue elements
+ * @param q queue to check for emptiness
+ * @returns Returns true, if the queue q has elements, false otherwise.
+ */
+ function is_empty<T>(q: Queue<T>): boolean {
+    return q[0] === q[1];
+}
+
+/**
+ * Adds an element to the queue.
+ * @template T type of all queue elements
+ * @param e element to add
+ * @param q queue to modify
+ * @modifies q by adding element e to the end
+ */
+ function enqueue<T>(e: T, q: Queue<T>): void {
+    const tail_index = q[1];
+    q[2][tail_index] = e;
+    q[1] = tail_index + 1;  // update tail index
+}
+
+/**
+ * Retrieves the first element of the queue.
+ * @precondition Assumes q to be non-empty
+ * @template T type of all queue elements
+ * @param q queue to get the first element of
+ * @returns Returns the element of the queue that was enqueued first.
+ */
+ function head<T>(q: Queue<T>): T {
+    const head_index = q[0];
+    return q[2][head_index];
+}
+
+/**
+ * Removes the first element of a queue.
+ * @precondition Assumes q to be non-empty
+ * @template T type of all queue elements
+ * @param q queue to remove the element from
+ * @modifies q such that the element that was enqueued first is removed
+ */
+ function dequeue<T>(q: Queue<T>): void {
+    const head_index = q[0];
+    q[0] = head_index + 1;
+}
+
+/**
+ * Pretty-prints the contents of a queue to standard output.
+ * @template T type of all queue elements
+ * @param q queue to pretty-print
+ */
+ function display_queue<T>(q: Queue<T>): void {
+    console.log(q[2].slice(q[0], q[1]));
+}

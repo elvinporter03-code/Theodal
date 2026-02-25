@@ -1,28 +1,26 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var queue_array_1 = require("../../lib/queue_array");
 var temp = new Audio();
 var current_song = temp;
+var active_selection = " ";
 //knappar:
 var playbtn = document.getElementById("Play_Pause");
 var previousbtn = document.getElementById("Previous");
 var skipbtn = document.getElementById("Skip");
 var bar = document.getElementById("progressbar");
+var play2 = document.getElementById("Play");
 //Albanmusik
 var albantheobtn = document.getElementById("albantheo"); //knappen för att visa albantheos musik
 var albanmusik = document.getElementById("albanmusik"); //containern för musiken som vi togglar synligheten på
-var Albanian_Bartenderbtn = document.getElementById("Albanian_Bartender"); // knapp för att spela upp låt
-var Omen_In_The_Lords_Church = document.getElementById("Omen");
-var City_Mail_Special_Delivery = document.getElementById("Citymail");
-var Gustav_Got_A_Boyfriend = document.getElementById("Gustav");
 //låtar
 var SONGS = {
     albanianBartender: './music/albanian_music/Albanian Bartender.mp3',
     omen: './music/freaky_country/Omen In The Lords Church.mp3',
     delivery: './music/country/City Mail Special Delivery.mp3',
-    gustavboyfriend: './music/country/Gustav Got a Boyfriend.mp3'
+    gustavboyfriend: './music/country/Gustav Got a Boyfriend.mp3',
+    redeagle: './music/albanian_music/Gold Chain, Red Eagle.mp3',
+    sunnyalbania: './music/albanian_music/Sun-Drunk in Albania'
 };
-var q = (0, queue_array_1.empty)();
+var q = empty();
 function play_song(path) {
     var absolutePath = new URL(path, location.href).href;
     // Om ingen låt spelas → skapa och spela
@@ -83,14 +81,79 @@ if (playbtn !== null) {
         ;
     });
 }
+function add_to_queue(song_name) {
+    enqueue(SONGS.song_name, q);
+}
 current_song.onended = function () {
-    play_song((0, queue_array_1.head)(q));
-    (0, queue_array_1.dequeue)(q);
+    play_song(head(q));
+    dequeue(q);
 };
+document.querySelectorAll(".music").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+        var songName = btn.getAttribute("data-song");
+        active_selection = songName;
+    });
+});
 previousbtn ? previousbtn.addEventListener("click", function () { previous(); }) : undefined;
 skipbtn ? skipbtn.addEventListener("click", function () { skip(); }) : undefined;
 albantheobtn ? albanmusik ? albantheobtn.addEventListener("click", function () { toggle_hide(albanmusik); }) : undefined : undefined;
-Albanian_Bartenderbtn ? Albanian_Bartenderbtn.addEventListener("click", function () { play_song(SONGS.albanianBartender); }) : undefined;
-Omen_In_The_Lords_Church ? Omen_In_The_Lords_Church.addEventListener("click", function () { play_song(SONGS.omen); }) : undefined;
-City_Mail_Special_Delivery ? City_Mail_Special_Delivery.addEventListener("click", function () { play_song(SONGS.delivery); }) : undefined;
-Gustav_Got_A_Boyfriend ? Gustav_Got_A_Boyfriend.addEventListener("click", function () { play_song(SONGS.gustavboyfriend); }) : undefined;
+play2 ? play2.addEventListener("Play", function () { play_song(active_selection); }) : undefined;
+/**
+ * Constructs a queue without any elements.
+ * @template T type of all queue elements
+ * @returns Returns an empty queue.
+ */
+function empty() {
+    return [0, 0, []];
+}
+/**
+ * Checks whether a queue is empty.
+ * @template T type of all queue elements
+ * @param q queue to check for emptiness
+ * @returns Returns true, if the queue q has elements, false otherwise.
+ */
+function is_empty(q) {
+    return q[0] === q[1];
+}
+/**
+ * Adds an element to the queue.
+ * @template T type of all queue elements
+ * @param e element to add
+ * @param q queue to modify
+ * @modifies q by adding element e to the end
+ */
+function enqueue(e, q) {
+    var tail_index = q[1];
+    q[2][tail_index] = e;
+    q[1] = tail_index + 1; // update tail index
+}
+/**
+ * Retrieves the first element of the queue.
+ * @precondition Assumes q to be non-empty
+ * @template T type of all queue elements
+ * @param q queue to get the first element of
+ * @returns Returns the element of the queue that was enqueued first.
+ */
+function head(q) {
+    var head_index = q[0];
+    return q[2][head_index];
+}
+/**
+ * Removes the first element of a queue.
+ * @precondition Assumes q to be non-empty
+ * @template T type of all queue elements
+ * @param q queue to remove the element from
+ * @modifies q such that the element that was enqueued first is removed
+ */
+function dequeue(q) {
+    var head_index = q[0];
+    q[0] = head_index + 1;
+}
+/**
+ * Pretty-prints the contents of a queue to standard output.
+ * @template T type of all queue elements
+ * @param q queue to pretty-print
+ */
+function display_queue(q) {
+    console.log(q[2].slice(q[0], q[1]));
+}
