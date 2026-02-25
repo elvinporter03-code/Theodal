@@ -1,18 +1,19 @@
 type Song = HTMLAudioElement;
-let current_song: HTMLAudioElement;
+let current_song: Song;
 //knappar:
 const playbtn : HTMLElement | null = document.getElementById("Play_Pause");
 const previousbtn : HTMLElement | null = document.getElementById("Previous");
 const skipbtn : HTMLElement | null = document.getElementById("Skip");
+const bar : HTMLElement | null = document.getElementById("progressbar");
 //Albanmusik
 const albantheobtn : HTMLElement | null = document.getElementById("albantheo"); //knappen för att visa albantheos musik
 const albanmusik :  HTMLElement | null = document.getElementById("albanmusik"); //containern för musiken som vi togglar synligheten på
 const Albanian_Bartenderbtn : HTMLElement | null = document.getElementById("Albanian_Bartender"); // knapp för att spela upp låt
-const Omen_In_The_Lords_Church : HTMLElement | null = document.getElementById("Omen_In_The_Lords_Church");
-const City_Mail_Special_Delivery : HTMLElement | null = document.getElementById("City_Mail_Special_Delivery");
-const Gustav_Got_A_Boyfriend : HTMLElement | null = document.getElementById("Gustav_Got_A_Boyfriend");
+const Omen_In_The_Lords_Church : HTMLElement | null = document.getElementById("Omen");
+const City_Mail_Special_Delivery : HTMLElement | null = document.getElementById("Citymail");
+const Gustav_Got_A_Boyfriend : HTMLElement | null = document.getElementById("Gustav");
 //låtar
-const SONGS = {
+const SONGS : Record<string, string> = {
     albanianBartender: './music/albanian_music/Albanian Bartender.mp3',
     omen: './music/freaky_country/Omen In The Lords Church.mp3',
     delivery: './music/country/City Mail Special Delivery.mp3',
@@ -27,6 +28,9 @@ function play_song(path: string): void {
     if (!current_song) {
         current_song = new Audio(absolutePath);
         current_song.play();
+        if(playbtn !== null){
+            playbtn.textContent="PAUSE";
+        }
         return;
     }
 
@@ -39,21 +43,18 @@ function play_song(path: string): void {
     }
 
     // Annars toggla play/pause
-    if(current_song.paused){
-        current_song.play();
-    } else{
-        current_song.pause();
-    } 
+    Play_Pause();
 }
 
 function Play_Pause():void{
     if(current_song.paused){
        current_song.play();
+       playbtn ? playbtn.textContent="PLAY" : undefined;
     } else{
        current_song.pause();
+       playbtn ? playbtn.textContent="PAUSE" : undefined;
     }
 }
-
 
 function skip():void{
 
@@ -70,11 +71,10 @@ function expand_artist(artist : HTMLElement) : void{
     }
 
 }
-
-if(Albanian_Bartenderbtn !== null) {
-    Albanian_Bartenderbtn.addEventListener("click", () => 
-        {play_song(Albanian_Bartender_Audio);});
+function progressbar():void{
+    bar?bar.style.animation="animation: progressing " + current_song.duration + "linear infinite;" : undefined;
 }
+
 if(playbtn !== null) {
     playbtn.addEventListener("click", () => 
         {Play_Pause();
@@ -84,15 +84,15 @@ if(playbtn !== null) {
         };
     });
 }
-if(previousbtn !== null) {
-    previousbtn.addEventListener("click", () => 
-        {previous()});
-}
-if(skipbtn !== null) {
-    skipbtn.addEventListener("click", () => 
-        {skip()});
-}
-if(albantheobtn !== null && albanmusik !== null){
-    albantheobtn.addEventListener("click", () => 
-    {expand_artist(albanmusik)})
-}
+previousbtn ? previousbtn.addEventListener("click", () => {previous()}) : undefined;
+skipbtn ? skipbtn.addEventListener("click", () => {skip()}) : undefined;
+albantheobtn ? albanmusik ? albantheobtn.addEventListener("click", () => 
+    {expand_artist(albanmusik)}) : undefined : undefined;
+Albanian_Bartenderbtn ? Albanian_Bartenderbtn.addEventListener("click", () => 
+        {play_song(SONGS.albanianBartender);}) : undefined;
+Omen_In_The_Lords_Church ? Omen_In_The_Lords_Church.addEventListener("click", () => 
+        {play_song(SONGS.omen);}) : undefined;
+City_Mail_Special_Delivery ? City_Mail_Special_Delivery.addEventListener("click", () => 
+        {play_song(SONGS.delivery);}) : undefined;
+Gustav_Got_A_Boyfriend ? Gustav_Got_A_Boyfriend.addEventListener("click", () => 
+        {play_song(SONGS.gustavboyfriend);}) : undefined;

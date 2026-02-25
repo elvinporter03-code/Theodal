@@ -61,9 +61,13 @@ div{
     height: 10px;
     bottom: 1%;
     left:   0%;
-    animation: progressing 100s linear infinite;
 }
 #albanmusik {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1px;
+}
+.musiccontainer{
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 1px;
