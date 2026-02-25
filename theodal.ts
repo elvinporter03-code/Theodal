@@ -12,7 +12,7 @@ const Omen_In_The_Lords_Church : HTMLElement | null = document.getElementById("O
 const City_Mail_Special_Delivery : HTMLElement | null = document.getElementById("City_Mail_Special_Delivery");
 const Gustav_Got_A_Boyfriend : HTMLElement | null = document.getElementById("Gustav_Got_A_Boyfriend");
 //låtar
-var SONGS = {
+const SONGS = {
     albanianBartender: './music/albanian_music/Albanian Bartender.mp3',
     omen: './music/freaky_country/Omen In The Lords Church.mp3',
     delivery: './music/country/City Mail Special Delivery.mp3',
