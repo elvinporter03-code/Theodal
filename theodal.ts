@@ -2,12 +2,16 @@ type Song = HTMLAudioElement;
 let temp : HTMLAudioElement = new Audio();
 let current_song: Song = temp;
 let active_selection : string = " ";
+let queuearray : Array<string> = [];
 //knappar:
 const playbtn : HTMLElement | null = document.getElementById("Play_Pause");
 const previousbtn : HTMLElement | null = document.getElementById("Previous");
 const skipbtn : HTMLElement | null = document.getElementById("Skip");
 const bar : HTMLElement | null = document.getElementById("progressbar");
 const play2 : HTMLElement | null = document.getElementById("Play");
+const current : HTMLElement | null = document.getElementById("current");
+const queuebtn : HTMLElement | null = document.getElementById("Queue");
+const activeq : HTMLElement | null = document.getElementById("q");
 //Albanmusik
 const albantheobtn : HTMLElement | null = document.getElementById("albantheo"); //knappen för att visa albantheos musik
 const albanmusik :  HTMLElement | null = document.getElementById("albanmusik"); //containern för musiken som vi togglar synligheten på
@@ -58,11 +62,18 @@ function Play_Pause():void{
     }
 }
 
-function skip():void{
-
+function skip(): void{
+    let tmp : string = " ";
+    play_song(head(q)); 
+    dequeue(q);
+    queuearray = rebuild_array(queuearray);
+    for(let i = 0; i <= queuearray.length - 1; i++){
+        tmp = tmp + queuearray[i] + '\n' ;
+    }
+    activeq ? activeq.textContent = tmp : undefined;
 }
 function previous():void{
-
+    current_song.currentTime = 0;
 }
 function toggle_hide(artist : HTMLElement) : void{
     if(artist.style.visibility === "visible"){
@@ -88,29 +99,45 @@ if(playbtn !== null) {
 }
 
 function add_to_queue(song_name : string) {
-    enqueue(SONGS.song_name, q)
+    if(is_empty(q)){
+        play_song(song_name);
+    }
+    enqueue(song_name, q);
+    if(current && activeq){
+        let tmp : string = " ";
+        queuearray.push(current.textContent);
+        for(let i = 0; i <= queuearray.length - 1; i++){
+            tmp = tmp + queuearray[i] + '\n' ;
+        }
+        activeq.textContent = tmp;
+    }
 }
-
+function rebuild_array(origin: Array<string>) : Array<string>{
+    let tmp : Array<string> = [];
+    for(let i = 1; i < origin.length; i++){
+        tmp[i-1] = origin [i];
+    }
+    return tmp;
+}
 current_song.onended = () => {
-    play_song(head(q)); 
-    dequeue(q);
+    skip();
 }
 
 document.querySelectorAll(".music").forEach(btn => { 
     btn.addEventListener("click", () => {
         const songName = btn.getAttribute("data-song")!;
         active_selection = songName;
+        current ? current.textContent= btn.textContent : undefined;
     });
 });
-
 
 
 previousbtn ? previousbtn.addEventListener("click", () => {previous()}) : undefined;
 skipbtn ? skipbtn.addEventListener("click", () => {skip()}) : undefined;
 albantheobtn ? albanmusik ? albantheobtn.addEventListener("click", () => 
     {toggle_hide(albanmusik)}) : undefined : undefined;
-play2 ? play2.addEventListener("Play", () => {play_song(active_selection)}) : undefined;
-
+play2 ? play2.addEventListener("click", () => {play_song(active_selection)}) : undefined;
+queuebtn ? queuebtn.addEventListener("click", () => {add_to_queue(active_selection)}): undefined;
 
 /**
  * A homogeneous queue.
