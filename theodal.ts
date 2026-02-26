@@ -7,44 +7,44 @@ let queuearray : Array<string> = [];
 const playbtn : HTMLElement | null = document.getElementById("Play_Pause");
 const previousbtn : HTMLElement | null = document.getElementById("Previous");
 const skipbtn : HTMLElement | null = document.getElementById("Skip");
-const bar : HTMLElement | null = document.getElementById("progressbar");
 const play2 : HTMLElement | null = document.getElementById("Play");
 const current : HTMLElement | null = document.getElementById("current");
 const queuebtn : HTMLElement | null = document.getElementById("Queue");
 const activeq : HTMLElement | null = document.getElementById("q");
-//Albanmusik
+// Artister och deras musikcontainers
 const albantheobtn : HTMLElement | null = document.getElementById("albantheo"); //knappen för att visa albantheos musik
 const albanmusik :  HTMLElement | null = document.getElementById("albanmusik"); //containern för musiken som vi togglar synligheten på
+const countrytheobtn : HTMLElement | null = document.getElementById("countrytheo"); // --||--
+const countrymusik : HTMLElement | null = document.getElementById("countrymusik"); 
+
 //låtar
-const SONGS : Record<string, string> = {
+const SONGS : Record<string, string> = { // används inte längre men står kvar utifall vi skulle göra om senare
     albanianBartender: './music/albanian_music/Albanian Bartender.mp3',
     omen: './music/freaky_country/Omen In The Lords Church.mp3',
     delivery: './music/country/City Mail Special Delivery.mp3',
     gustavboyfriend: './music/country/Gustav Got a Boyfriend.mp3',
     redeagle: './music/albanian_music/Gold Chain, Red Eagle.mp3',
-    sunnyalbania: './music/albanian_music/Sun-Drunk in Albania'
+    sunnyalbania: './music/albanian_music/Sun-Drunk in Albania.mp3'
 };
 let q : Queue<string> = empty();
 function play_song(path: string): void {
     const absolutePath = new URL(path, location.href).href;
 
-    // Om ingen låt spelas → skapa och spela
+    // Om ingen låt spelas -> skapa och spela
     if (!current_song) {
         current_song = new Audio(absolutePath);
         current_song.play();
         if(playbtn !== null){
             playbtn.textContent="PAUSE";
         }
-        progressbar();
         return;
     }
 
-    // Om det är en ny låt → byt
+    // Om det är en ny låt -> Byt
     if (current_song.src !== absolutePath) {
         current_song.pause();
         current_song = new Audio(absolutePath);
         current_song.play();
-        progressbar();
         return;
     }
 
@@ -52,7 +52,7 @@ function play_song(path: string): void {
     Play_Pause();
 }
 
-function Play_Pause():void{
+function Play_Pause():void{ // pause/play funktionen
     if(current_song.paused){
        current_song.play();
        playbtn ? playbtn.textContent="PAUSE" : undefined;
@@ -62,33 +62,33 @@ function Play_Pause():void{
     }
 }
 
-function skip(): void{
+function skip(): void{ // Avslutar nuvarande låt och spelar upp nästa ur kön
     let tmp : string = " ";
     play_song(head(q)); 
     dequeue(q);
     queuearray = rebuild_array(queuearray);
-    for(let i = 0; i <= queuearray.length - 1; i++){
+    for(let i = 0; i <= queuearray.length - 1; i++){ // uppdaterar den visuella kön
         tmp = tmp + queuearray[i] + '\n' ;
     }
     activeq ? activeq.textContent = tmp : undefined;
 }
-function previous():void{
+
+function previous() : void{ //starta om låten, kopplat till tillbakaknappen
     current_song.currentTime = 0;
 }
-function toggle_hide(artist : HTMLElement) : void{
+function toggle_hide(artist : HTMLElement) : void{ // gömmer/visar element, används för att dölja/visa artisters musik
     if(artist.style.visibility === "visible"){
         artist.style.visibility = "hidden";
+        artist.style.height = "1px";
     }
     else {
+        artist.style.height = "auto";
         artist.style.visibility = "visible";
     }
 
 }
-function progressbar():void{  //funkar inte
-    bar ? bar.style.animation="progressing ${current_song.duration}s linear infinite;" : undefined;
-}
 
-if(playbtn !== null) {
+if(playbtn !== null) { // playbuttons funktion
     playbtn.addEventListener("click", () => 
         {Play_Pause();
         if(current_song.paused){playbtn.textContent="PLAY";}
@@ -98,12 +98,12 @@ if(playbtn !== null) {
     });
 }
 
-function add_to_queue(song_name : string) {
-    if(is_empty(q) && current_song === temp){
+function add_to_queue(song_name : string) { // lägger till en låt i queuen
+    if(is_empty(q) && current_song === temp){ // kollar om det är den första låten som läggs till i queuen och spelar i sådana fall upp den.
         play_song(song_name);
     }
     enqueue(song_name, q);
-    if(current && activeq){
+    if(current && activeq){ // bygger upp den visuella queuen som egentligen är en array
         let tmp : string = " ";
         queuearray.push(current.textContent);
         for(let i = 0; i <= queuearray.length - 1; i++){
@@ -112,16 +112,19 @@ function add_to_queue(song_name : string) {
         activeq.textContent = tmp;
     }
 }
-function rebuild_array(origin: Array<string>) : Array<string>{
+
+function rebuild_array(origin: Array<string>) : Array<string>{ // hjälpfunktion för att ta bort första elementet i en array
     let tmp : Array<string> = [];
     for(let i = 1; i < origin.length; i++){
         tmp[i-1] = origin [i];
     }
     return tmp;
 }
-current_song.onended = () => {
+
+current_song.onended = () => { // Evenhandler för att spela upp en ny låt när den gamla är slut
     skip();
 }
+
 
 document.querySelectorAll(".music").forEach(btn => { 
     btn.addEventListener("click", () => {
@@ -134,11 +137,17 @@ document.querySelectorAll(".music").forEach(btn => {
 
 previousbtn ? previousbtn.addEventListener("click", () => {previous()}) : undefined;
 skipbtn ? skipbtn.addEventListener("click", () => {skip()}) : undefined;
-albantheobtn ? albanmusik ? albantheobtn.addEventListener("click", () => 
-    {toggle_hide(albanmusik)}) : undefined : undefined;
+if(albantheobtn !== null && albanmusik !== null){
+    albantheobtn.addEventListener("click", () => {toggle_hide(albanmusik)}) 
+}
+if(countrytheobtn !== null && countrymusik !== null){
+    countrytheobtn.addEventListener("click", () => {toggle_hide(countrymusik)}) 
+}
 play2 ? play2.addEventListener("click", () => {play_song(active_selection)}) : undefined;
 queuebtn ? queuebtn.addEventListener("click", () => {add_to_queue(active_selection)}): undefined;
 
+
+// Hela queuesystemet från /lib men copypasteat in här eftersom websidan inte låter oss använda imports/exports
 /**
  * A homogeneous queue.
  * The first entry points to the index of the queue's head element,

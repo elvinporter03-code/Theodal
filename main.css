@@ -55,16 +55,7 @@ div{
 .ctrl:hover {
     animation: ctrlbtns 5s ease-in-out infinite;
 }
-.progressbar{
-    position: fixed;
-    background-color: rgb(75,0,150);
-    width: 10px;
-    height: 100%;
-    left: 10%;
-    bottom:   0%;
-    z-index: 1;
-    animation: progressing 5s linear infinite;
-}
+
 #albanmusik {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -163,7 +154,9 @@ div{
     font-size: 20px;
     white-space: pre-line;
 }
-
+.music:hover{
+    animation: 5s songhover;
+}
 @keyframes ctrlbtns {
     0%   {
         color: rgb(150,0,150);
@@ -185,11 +178,14 @@ div{
         }
 }
 
-@keyframes progressing {
-    0% {
-        height: 0%;
+
+@keyframes songhover {
+    0%{
+        background-color: black;
+        color: rgb(75,0,150);
     }
-    100% {
-        height: 100%;
+    100%{
+        background-color: rgb(75,0,75);
+        color: rgb(255,255,255);
     }
 }

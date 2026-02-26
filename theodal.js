@@ -7,14 +7,15 @@ var queuearray = [];
 var playbtn = document.getElementById("Play_Pause");
 var previousbtn = document.getElementById("Previous");
 var skipbtn = document.getElementById("Skip");
-var bar = document.getElementById("progressbar");
 var play2 = document.getElementById("Play");
 var current = document.getElementById("current");
 var queuebtn = document.getElementById("Queue");
 var activeq = document.getElementById("q");
-//Albanmusik
+// Artister och deras musikcontainers
 var albantheobtn = document.getElementById("albantheo"); //knappen för att visa albantheos musik
 var albanmusik = document.getElementById("albanmusik"); //containern för musiken som vi togglar synligheten på
+var countrytheobtn = document.getElementById("countrytheo");
+var countrymusik = document.getElementById("countrymusik");
 //låtar
 var SONGS = {
     albanianBartender: './music/albanian_music/Albanian Bartender.mp3',
@@ -22,7 +23,7 @@ var SONGS = {
     delivery: './music/country/City Mail Special Delivery.mp3',
     gustavboyfriend: './music/country/Gustav Got a Boyfriend.mp3',
     redeagle: './music/albanian_music/Gold Chain, Red Eagle.mp3',
-    sunnyalbania: './music/albanian_music/Sun-Drunk in Albania'
+    sunnyalbania: './music/albanian_music/Sun-Drunk in Albania.mp3'
 };
 var q = empty();
 function play_song(path) {
@@ -34,7 +35,6 @@ function play_song(path) {
         if (playbtn !== null) {
             playbtn.textContent = "PAUSE";
         }
-        progressbar();
         return;
     }
     // Om det är en ny låt → byt
@@ -42,7 +42,6 @@ function play_song(path) {
         current_song.pause();
         current_song = new Audio(absolutePath);
         current_song.play();
-        progressbar();
         return;
     }
     // Annars toggla play/pause
@@ -74,13 +73,12 @@ function previous() {
 function toggle_hide(artist) {
     if (artist.style.visibility === "visible") {
         artist.style.visibility = "hidden";
+        artist.style.height = "1px";
     }
     else {
+        artist.style.height = "auto";
         artist.style.visibility = "visible";
     }
-}
-function progressbar() {
-    bar ? bar.style.animation = "progressing ${current_song.duration}s linear infinite;" : undefined;
 }
 if (playbtn !== null) {
     playbtn.addEventListener("click", function () {
@@ -127,7 +125,12 @@ document.querySelectorAll(".music").forEach(function (btn) {
 });
 previousbtn ? previousbtn.addEventListener("click", function () { previous(); }) : undefined;
 skipbtn ? skipbtn.addEventListener("click", function () { skip(); }) : undefined;
-albantheobtn ? albanmusik ? albantheobtn.addEventListener("click", function () { toggle_hide(albanmusik); }) : undefined : undefined;
+if (albantheobtn !== null && albanmusik !== null) {
+    albantheobtn.addEventListener("click", function () { toggle_hide(albanmusik); });
+}
+if (countrytheobtn !== null && countrymusik !== null) {
+    countrytheobtn.addEventListener("click", function () { toggle_hide(countrymusik); });
+}
 play2 ? play2.addEventListener("click", function () { play_song(active_selection); }) : undefined;
 queuebtn ? queuebtn.addEventListener("click", function () { add_to_queue(active_selection); }) : undefined;
 /**
