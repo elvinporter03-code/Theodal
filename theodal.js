@@ -18,6 +18,8 @@ var countrytheobtn = document.getElementById("countrytheo"); // --||--
 var countrymusik = document.getElementById("countrymusik");
 var rocktheobtn = document.getElementById("rocktheo"); // --||--
 var rockmusik = document.getElementById("rockmusik");
+var poptheobtn = document.getElementById("poptheo"); // --||--
+var popmusik = document.getElementById("popmusik");
 // Låtar
 var SONGS = {
     albanianBartender: './music/albanian_music/Albanian Bartender.mp3',
@@ -136,6 +138,9 @@ if (countrytheobtn !== null && countrymusik !== null) {
 }
 if (rocktheobtn !== null && rockmusik !== null) {
     rocktheobtn.addEventListener("click", function () { toggle_hide(rockmusik); });
+}
+if (poptheobtn !== null && popmusik !== null) {
+    poptheobtn.addEventListener("click", function () { toggle_hide(popmusik); });
 }
 play2 ? play2.addEventListener("click", function () { play_song(active_selection); }) : undefined;
 queuebtn ? queuebtn.addEventListener("click", function () { add_to_queue(active_selection); }) : undefined;
