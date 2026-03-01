@@ -3,7 +3,8 @@ let temp : HTMLAudioElement = new Audio();
 let current_song: Song = temp;
 let active_selection : string = " ";
 let queuearray : Array<string> = [];
-//knappar:
+
+// Knappar
 const playbtn : HTMLElement | null = document.getElementById("Play_Pause");
 const previousbtn : HTMLElement | null = document.getElementById("Previous");
 const skipbtn : HTMLElement | null = document.getElementById("Skip");
@@ -11,14 +12,15 @@ const play2 : HTMLElement | null = document.getElementById("Play");
 const current : HTMLElement | null = document.getElementById("current");
 const queuebtn : HTMLElement | null = document.getElementById("Queue");
 const activeq : HTMLElement | null = document.getElementById("q");
+
 // Artister och deras musikcontainers
 const albantheobtn : HTMLElement | null = document.getElementById("albantheo"); //knappen för att visa albantheos musik
 const albanmusik :  HTMLElement | null = document.getElementById("albanmusik"); //containern för musiken som vi togglar synligheten på
 const countrytheobtn : HTMLElement | null = document.getElementById("countrytheo"); // --||--
 const countrymusik : HTMLElement | null = document.getElementById("countrymusik"); 
 
-//låtar
-const SONGS : Record<string, string> = { // används inte längre men står kvar utifall vi skulle göra om senare
+// Låtar
+const SONGS : Record<string, string> = { // Avänds inte längre men står kvar utifall vi skulle göra om senare
     albanianBartender: './music/albanian_music/Albanian Bartender.mp3',
     omen: './music/freaky_country/Omen In The Lords Church.mp3',
     delivery: './music/country/City Mail Special Delivery.mp3',
@@ -26,6 +28,7 @@ const SONGS : Record<string, string> = { // används inte längre men står kvar
     redeagle: './music/albanian_music/Gold Chain, Red Eagle.mp3',
     sunnyalbania: './music/albanian_music/Sun-Drunk in Albania.mp3'
 };
+
 let q : Queue<string> = empty();
 function play_song(path: string): void {
     const absolutePath = new URL(path, location.href).href;
@@ -34,6 +37,7 @@ function play_song(path: string): void {
     if (!current_song) {
         current_song = new Audio(absolutePath);
         current_song.play();
+
         if(playbtn !== null){
             playbtn.textContent="PAUSE";
         }
@@ -52,11 +56,12 @@ function play_song(path: string): void {
     Play_Pause();
 }
 
-function Play_Pause():void{ // pause/play funktionen
-    if(current_song.paused){
+function Play_Pause():void{ // Pause/play funktionen
+    if(current_song.paused) {
        current_song.play();
        playbtn ? playbtn.textContent="PAUSE" : undefined;
-    } else{
+    } 
+    else {
        current_song.pause();
        playbtn ? playbtn.textContent="PLAY" : undefined;
     }
@@ -67,16 +72,19 @@ function skip(): void{ // Avslutar nuvarande låt och spelar upp nästa ur kön
     play_song(head(q)); 
     dequeue(q);
     queuearray = rebuild_array(queuearray);
-    for(let i = 0; i <= queuearray.length - 1; i++){ // uppdaterar den visuella kön
+
+    for(let i = 0; i <= queuearray.length - 1; i++) { // Uppdaterar den visuella kön
         tmp = tmp + queuearray[i] + '\n' ;
     }
+
     activeq ? activeq.textContent = tmp : undefined;
 }
 
-function previous() : void{ //starta om låten, kopplat till tillbakaknappen
+function previous() : void{ // Starta om låten, kopplat till tillbakaknappen
     current_song.currentTime = 0;
 }
-function toggle_hide(artist : HTMLElement) : void{ // gömmer/visar element, används för att dölja/visa artisters musik
+
+function toggle_hide(artist : HTMLElement) : void{ // Gömmer/visar element, används för att dölja/visa artisters musik
     if(artist.style.visibility === "visible"){
         artist.style.visibility = "hidden";
         artist.style.height = "1px";
@@ -85,65 +93,78 @@ function toggle_hide(artist : HTMLElement) : void{ // gömmer/visar element, anv
         artist.style.height = "auto";
         artist.style.visibility = "visible";
     }
-
 }
 
-if(playbtn !== null) { // playbuttons funktion
-    playbtn.addEventListener("click", () => 
-        {Play_Pause();
-        if(current_song.paused){playbtn.textContent="PLAY";}
-        else{
-            playbtn.textContent="PAUSE";
-        };
-    });
-}
-
-function add_to_queue(song_name : string) { // lägger till en låt i queuen
-    if(is_empty(q) && current_song === temp){ // kollar om det är den första låten som läggs till i queuen och spelar i sådana fall upp den.
+function add_to_queue(song_name : string) { // Lägger till en låt i queuen
+    if(is_empty(q) && current_song === temp) { // Kollar om det är den första låten som läggs till i queuen och spelar i sådana fall upp den.
         play_song(song_name);
     }
+
     enqueue(song_name, q);
-    if(current && activeq){ // bygger upp den visuella queuen som egentligen är en array
+    if(current && activeq) { // Bygger upp den visuella queuen som egentligen är en array
         let tmp : string = " ";
         queuearray.push(current.textContent);
-        for(let i = 0; i <= queuearray.length - 1; i++){
+
+        for(let i = 0; i <= queuearray.length - 1; i++) {
             tmp = tmp + queuearray[i] + '\n' ;
         }
+
         activeq.textContent = tmp;
     }
 }
 
-function rebuild_array(origin: Array<string>) : Array<string>{ // hjälpfunktion för att ta bort första elementet i en array
+function rebuild_array(origin: Array<string>) : Array<string> { // Hjälpfunktion för att ta bort första elementet i en array
     let tmp : Array<string> = [];
-    for(let i = 1; i < origin.length; i++){
+
+    for(let i = 1; i < origin.length; i++) {
         tmp[i-1] = origin [i];
     }
+
     return tmp;
 }
 
-current_song.onended = () => { // Evenhandler för att spela upp en ny låt när den gamla är slut
+current_song.onended = () => { // Eventhandler för att spela upp en ny låt när den gamla är slut
     skip();
 }
-
 
 document.querySelectorAll(".music").forEach(btn => { 
     btn.addEventListener("click", () => {
         const songName = btn.getAttribute("data-song")!;
         active_selection = songName;
-        current ? current.textContent= btn.textContent : undefined;
+        current ? current.textContent = btn.textContent : undefined;
     });
 });
 
+// Eventlisteners för knapparna
+
+if(playbtn !== null) { // Playbuttons funktion
+    playbtn.addEventListener("click", () => 
+        {Play_Pause();
+        
+        if(current_song.paused) {
+            playbtn.textContent="PLAY";
+        }
+        else {
+            playbtn.textContent="PAUSE";
+        };
+        }
+    );
+}
 
 previousbtn ? previousbtn.addEventListener("click", () => {previous()}) : undefined;
+
 skipbtn ? skipbtn.addEventListener("click", () => {skip()}) : undefined;
+
 if(albantheobtn !== null && albanmusik !== null){
     albantheobtn.addEventListener("click", () => {toggle_hide(albanmusik)}) 
 }
+
 if(countrytheobtn !== null && countrymusik !== null){
     countrytheobtn.addEventListener("click", () => {toggle_hide(countrymusik)}) 
 }
+
 play2 ? play2.addEventListener("click", () => {play_song(active_selection)}) : undefined;
+
 queuebtn ? queuebtn.addEventListener("click", () => {add_to_queue(active_selection)}): undefined;
 
 
