@@ -92,6 +92,13 @@ div{
     width: 100%;
     height: 150px;
 }
+#Omen_pic {
+    background-image: url("./pictures/omen.png");
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 150px;
+}
 #Albanian_uncle {
     background-image: url("./pictures/redeagle.png");
     background-size: cover;
@@ -115,6 +122,20 @@ div{
 }
 #Boyfriend_pic {
     background-image: url("./pictures/boyfriend.png");
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 150px;
+}
+#Bathhouse_pic {
+    background-image: url("./pictures/Bathhouse.png");
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 150px;
+}
+#Filthy_pic {
+    background-image: url("./pictures/filthyhalo.png");
     background-size: cover;
     background-position: center;
     width: 100%;
