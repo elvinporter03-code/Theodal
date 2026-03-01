@@ -71,6 +71,11 @@ div{
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 1px;
 }
+#popmusik {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1px;
+}
 .musiccontainer{
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));

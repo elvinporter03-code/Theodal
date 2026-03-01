@@ -20,6 +20,8 @@ const countrytheobtn : HTMLElement | null = document.getElementById("countrytheo
 const countrymusik : HTMLElement | null = document.getElementById("countrymusik"); 
 const rocktheobtn : HTMLElement | null = document.getElementById("rocktheo"); // --||--
 const rockmusik : HTMLElement | null = document.getElementById("rockmusik");
+const poptheobtn : HTMLElement | null = document.getElementById("poptheo"); // --||--
+const popmusik : HTMLElement | null = document.getElementById("popmusik");
 // Låtar
 const SONGS : Record<string, string> = { // Avänds inte längre men står kvar utifall vi skulle göra om senare
     albanianBartender: './music/albanian_music/Albanian Bartender.mp3',
@@ -166,6 +168,10 @@ if(countrytheobtn !== null && countrymusik !== null){
 
 if(rocktheobtn !== null && rockmusik !== null){
     rocktheobtn.addEventListener("click", () => {toggle_hide(rockmusik)}) 
+}
+
+if(poptheobtn !== null && popmusik !== null){
+    poptheobtn.addEventListener("click", () => {toggle_hide(popmusik)}) 
 }
 
 play2 ? play2.addEventListener("click", () => {play_song(active_selection)}) : undefined;
