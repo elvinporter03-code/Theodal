@@ -51,6 +51,7 @@ div{
     background: rgb(8, 0, 0);
     box-shadow: 0 0 10px rgb(75,0,150);
     color: white;
+    visibility: hidden;
     font-size: 10px;
 }
 
@@ -153,6 +154,20 @@ div{
 }
 #Omen_pic {
     background-image: url("./pictures/omen.png");
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 150px;
+}
+#Emil_pic {
+    background-image: url("./pictures/johanoemil.webp");
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 150px;
+}
+#Alfred_pic {
+    background-image: url("./pictures/alfred.webp");
     background-size: cover;
     background-position: center;
     width: 100%;

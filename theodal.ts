@@ -800,7 +800,85 @@ const lyrics : Record<string, string> = {
                         "Anton\n" +
                         "Alex\n" +
                         "Lucas\n" +
-                        "Världens äldsta gäng (åh yeah)"
+                        "Världens äldsta gäng (åh yeah)",
+    'Mustaschen och Koden' : "[Verse 1]\n" +
+                        "Emil jobbar kväll på Koop\n" +
+                        "Blippar varje grönsak snabbt\n" +
+                        "Skärm och scanner\n" +
+                        "Fokus topp\n" +
+                        "Kod i huv'et\n" +
+                        "Allt går knappt\n" +
+                        "Johan glider in så stolt\n" +
+                        "Skjorta uppknäppt\n" +
+                        "Leendet brett\n" +
+                        "Mustaschen ligger helt i volt\n" +
+                        "Bror\n" +
+                        "Jag ska laga värsta rätten (hey!)\n\n" +
+                        "[Chorus]\n" +
+                        "Dom två träffas på Koop idag\n" +
+                        "Hyllorna fulla\n" +
+                        "Plånbok och ett skratt så vag\n" +
+                        "Emil räknar varor\n" +
+                        "Johan drömmer sås\n" +
+                        "Mustaschen och koden\n" +
+                        "Samma kaos\n" +
+                        "Dom två träffas på Koop ikväll\n" +
+                        "Mitt bland mjölk och pasta känns allt helt speciellt\n" +
+                        "En som hackar grönsaker\n" +
+                        "En som hackar kod\n" +
+                        "Samma gata\n" +
+                        "Samma glada mod\n\n" +
+                        "[Verse 2]\n" +
+                        "Vad ska du laga? Emil ler\n" +
+                        "Johan svarar: Nå't med vitlök\n" +
+                        "Mycket mer\n" +
+                        "Plockar tomat\n" +
+                        "Plockar färsk basilika\n" +
+                        "den här blir magi\n" +
+                        "Jag bara vet\n" +
+                        "Jag bara kan\n" +
+                        "Emil tipsar tyst om en ny kryddhylla\n" +
+                        "testa den där\n" +
+                        "Den får grytan att gunga till\n" +
+                        "Kön står still men tiden går fort\n" +
+                        "I kassans ljus känns vardagen stort (oh yeah)\n\n" +
+                        "[Chorus]\n" +
+                        "Dom två träffas på Koop idag\n" +
+                        "Hyllorna fulla\n" +
+                        "Plånbok och ett skratt så vag\n" +
+                        "Emil räknar varor\n" +
+                        "Johan drömmer sås\n" +
+                        "Mustaschen och koden\n" +
+                        "Samma kaos\n" +
+                        "Dom två träffas på Koop ikväll\n" +
+                        "Mitt bland mjölk och pasta känns allt helt speciellt\n" +
+                        "En som hackar grönsaker\n" +
+                        "En som hackar kod\n" +
+                        "Samma gata\n" +
+                        "Samma glada mod\n\n" +
+                        "[Bridge]\n" +
+                        "beat droppar mjukt\n" +
+                        "Handklappar in\n" +
+                        "Sen kanske dom ses efter stängning en gång\n" +
+                        "Johan tar med mat\n" +
+                        "Emil bjuder på sitt kodspråk\n" +
+                        "Två världar blandas runt köksbordets kant\n" +
+                        "Mat och logik\n" +
+                        "Samma långa band\n\n" +
+                        "[Chorus]\n" +
+                        "Dom två träffas på Koop idag\n" +
+                        "Hyllorna fulla\n" +
+                        "Plånbok och ett skratt så vag\n" +
+                        "Emil räknar varor\n" +
+                        "Johan drömmer sås\n" +
+                        "Mustaschen och koden\n" +
+                        "Samma kaos\n" +
+                        "Dom två träffas på Koop ikväll\n" +
+                        "Mitt bland mjölk och pasta känns allt helt speciellt\n" +
+                        "En som hackar grönsaker\n" +
+                        "En som hackar kod\n" +
+                        "Samma gata\n" +
+                        "Samma glada mod"
 };
 
 // Knappar
@@ -928,7 +1006,7 @@ function add_to_queue(song_path: string, title : string) {
 
     if (!current_song) {    // Om ingen låt finns alls
         play_song(song_path, title);
-    } else if (!current_song.paused && current) { //queuea om låten spelas
+    } else if (current) { //queuea om låten spelas
         enqueue(song_path, q);
         queuearray.push(current?.textContent!.trim());
         display_queue();
