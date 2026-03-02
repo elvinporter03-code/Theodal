@@ -612,7 +612,7 @@ const lyrics : Record<string, string> = {
                         "Vår skrik-sång\n" +
                         "Neo\n" +
                         "Adam\n" +
-                        "Lilla Louwe i ledet\n" +
+                        "Lilla Lowe i ledet\n" +
                         "Nacka i blodet\n" +
                         "Du vet det\n" +
                         "Nackas starkaste krigare\n" +
@@ -636,13 +636,13 @@ const lyrics : Record<string, string> = {
                         "Vår skrik-sång\n" +
                         "Neo\n" +
                         "Adam\n" +
-                        "Lilla Louwe i ledet\n" +
+                        "Lilla Lowe i ledet\n" +
                         "Nacka i blodet\n" +
                         "Du vet det\n" +
                         "Nackas starkaste krigare\n" +
                         "Tills sista tåget går hem\n\n" +
                         "[Bridge]\n" +
-                        "Louwe är nollsexa\n" +
+                        "Lowe är nollsexa\n" +
                         "Liten men han står som sten\n" +
                         "jag tar hela jävla Nacka\n" +
                         "Ge mig bara en scen! (ey!)\n" +
@@ -658,11 +658,83 @@ const lyrics : Record<string, string> = {
                         "Vår skrik-sång\n" +
                         "Neo\n" +
                         "Adam\n" +
-                        "Lilla Louwe i ledet\n" +
+                        "Lilla Lowe i ledet\n" +
                         "Nacka i blodet\n" +
                         "Du vet det\n" +
                         "Nackas starkaste krigare\n" +
-                        "Tills sista tåget går hem"
+                        "Tills sista tåget går hem",
+    'Alfred, Bubblor och Ballader' : "[Vers 1]\n" +
+                        "Alfred vaknar sent\n" +
+                        "Men han är klar\n" +
+                        "Korkar upp en flaska\n" +
+                        "Det är lördag kvar\n" +
+                        "Snuset under läppen\n" +
+                        "Världen känns mjuk\n" +
+                        "Han nynnar på en gammal låt\n" +
+                        "Tar ännu ett sug\n\n" +
+                        "[Pre-Chorus]\n" +
+                        "Han säger \"en kväll till\n" +
+                        "Sen blir jag snäll\"\n" +
+                        "Men alla vet hur det där brukar gå\n\n" +
+                        "[Chorus]\n" +
+                        "Alfred\n" +
+                        "Bubblor och ballader\n" +
+                        "Skål för alla dina vanor\n" +
+                        "Alla små laster\n" +
+                        "Från vin i köket till Guinness på baren\n" +
+                        "Du skrattar högst åt den sämsta idén\n" +
+                        "Alfred\n" +
+                        "Alltid i finalen\n" +
+                        "Med sång i huvudet och skratt i lokalen\n" +
+                        "Du höjer glaset\n" +
+                        "Livet i kanalen\n" +
+                        "(vilken show igen)\n\n" +
+                        "[Vers 2]\n" +
+                        "Musikaler på hög volym i hans rum\n" +
+                        "Sjunger alla roller\n" +
+                        "Tappar nästan rum\n" +
+                        "Skivor som har snurrat sen han var barn\n" +
+                        "Låter som ett hjärta som aldrig blir kargt\n\n" +
+                        "[Pre-Chorus]\n" +
+                        "Han säger \"en låt till\n" +
+                        "Sen ska jag sova\"\n" +
+                        "Men alla vet hur det där brukar gå\n\n" +
+                        "[Chorus]\n" +
+                        "Alfred\n" +
+                        "Bubblor och ballader\n" +
+                        "Skål för alla dina vanor\n" +
+                        "Alla små laster\n" +
+                        "Från vin i köket till Guinness på baren\n" +
+                        "Du skrattar högst åt den sämsta idén\n" +
+                        "Alfred\n" +
+                        "Alltid i finalen\n" +
+                        "Med sång i huvudet och skratt i lokalen\n" +
+                        "Du höjer glaset\n" +
+                        "Livet i kanalen\n" +
+                        "(vilken show igen)\n\n" +
+                        "[Bridge]\n" +
+                        "Theodor klickar bort sin lön på en skärm\n" +
+                        "Alfred sitter bredvid\n" +
+                        "Det är deras term\n" +
+                        "\"tryck en gång till\" och skrattet tar slut\n" +
+                        "När siffrorna sjunker\n" +
+                        "Men kvällen tar spjut\n\n" +
+                        "[Chorus]\n" +
+                        "Alfred\n" +
+                        "Bubblor och ballader\n" +
+                        "Skål för alla dina vanor\n" +
+                        "Alla små laster\n" +
+                        "Från vin i köket till Guinness på baren\n" +
+                        "Du skrattar högst åt den sämsta idén\n" +
+                        "Alfred\n" +
+                        "Alltid i finalen\n" +
+                        "Med sång i huvudet och skratt i lokalen\n" +
+                        "Du höjer glaset\n" +
+                        "Livet i kanalen\n" +
+                        "(det blir bra igen, oh)\n" +
+                        "Alfred\n" +
+                        "Bubblor och ballader\n" +
+                        "Sjung din roll igen"
 };
 
 // Knappar
