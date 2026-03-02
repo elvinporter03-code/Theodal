@@ -20,6 +20,8 @@ var rocktheobtn = document.getElementById("rocktheo"); // --||--
 var rockmusik = document.getElementById("rockmusik");
 var poptheobtn = document.getElementById("poptheo"); // --||--
 var popmusik = document.getElementById("popmusik");
+var stockholmstheobtn = document.getElementById("stockholmstheo");
+var stockholmsmusik = document.getElementById("stockholmsmusik");
 // Låtar
 var SONGS = {
     albanianBartender: './music/albanian_music/Albanian Bartender.mp3',
@@ -106,7 +108,7 @@ function add_to_queue(song_name) {
         canqueue = true;
         return;
     }
-    if (canqueue) {
+    else {
         enqueue(song_name, q);
         if (current && activeq) { // Bygger upp den visuella queuen som egentligen är en array
             var tmp = " ";
@@ -149,15 +151,23 @@ previousbtn ? previousbtn.addEventListener("click", function () { previous(); })
 skipbtn ? skipbtn.addEventListener("click", function () { skip(); }) : undefined;
 if (albantheobtn !== null && albanmusik !== null) {
     albantheobtn.addEventListener("click", function () { toggle_hide(albanmusik); });
+    toggle_hide(albanmusik);
 }
 if (countrytheobtn !== null && countrymusik !== null) {
     countrytheobtn.addEventListener("click", function () { toggle_hide(countrymusik); });
+    toggle_hide(countrymusik);
 }
 if (rocktheobtn !== null && rockmusik !== null) {
     rocktheobtn.addEventListener("click", function () { toggle_hide(rockmusik); });
+    toggle_hide(rockmusik);
 }
 if (poptheobtn !== null && popmusik !== null) {
     poptheobtn.addEventListener("click", function () { toggle_hide(popmusik); });
+    toggle_hide(popmusik);
+}
+if (stockholmstheobtn !== null && stockholmsmusik !== null) {
+    stockholmstheobtn.addEventListener("click", function () { toggle_hide(stockholmsmusik); });
+    toggle_hide(stockholmsmusik);
 }
 play2 ? play2.addEventListener("click", function () { play_song(active_selection); }) : undefined;
 queuebtn ? queuebtn.addEventListener("click", function () { add_to_queue(active_selection); }) : undefined;

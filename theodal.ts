@@ -22,6 +22,8 @@ const rocktheobtn : HTMLElement | null = document.getElementById("rocktheo"); //
 const rockmusik : HTMLElement | null = document.getElementById("rockmusik");
 const poptheobtn : HTMLElement | null = document.getElementById("poptheo"); // --||--
 const popmusik : HTMLElement | null = document.getElementById("popmusik");
+const stockholmstheobtn : HTMLElement | null = document.getElementById("stockholmstheo");
+const stockholmsmusik : HTMLElement | null = document.getElementById("stockholmsmusik");
 // Låtar
 const SONGS : Record<string, string> = { // Avänds inte längre men står kvar utifall vi skulle göra om senare
     albanianBartender: './music/albanian_music/Albanian Bartender.mp3',
@@ -121,9 +123,7 @@ function add_to_queue(song_name : string) { // Lägger till en låt i queuen
             play_song(song_name);
             canqueue = true;
             return;
-    }
-    
-    if(canqueue) {
+    } else {
         enqueue(song_name, q); 
         if(current && activeq) { // Bygger upp den visuella queuen som egentligen är en array
             let tmp : string = " ";
@@ -176,19 +176,28 @@ previousbtn ? previousbtn.addEventListener("click", () => {previous()}) : undefi
 skipbtn ? skipbtn.addEventListener("click", () => {skip()}) : undefined;
 
 if(albantheobtn !== null && albanmusik !== null){
-    albantheobtn.addEventListener("click", () => {toggle_hide(albanmusik)}) 
+    albantheobtn.addEventListener("click", () => {toggle_hide(albanmusik)});
+    toggle_hide(albanmusik);
 }
 
 if(countrytheobtn !== null && countrymusik !== null){
-    countrytheobtn.addEventListener("click", () => {toggle_hide(countrymusik)}) 
+    countrytheobtn.addEventListener("click", () => {toggle_hide(countrymusik)}); 
+    toggle_hide(countrymusik);
 }
 
 if(rocktheobtn !== null && rockmusik !== null){
-    rocktheobtn.addEventListener("click", () => {toggle_hide(rockmusik)}) 
+    rocktheobtn.addEventListener("click", () => {toggle_hide(rockmusik)});
+    toggle_hide(rockmusik);
 }
 
 if(poptheobtn !== null && popmusik !== null){
-    poptheobtn.addEventListener("click", () => {toggle_hide(popmusik)}) 
+    poptheobtn.addEventListener("click", () => {toggle_hide(popmusik)});
+    toggle_hide(popmusik);
+}
+
+if(stockholmstheobtn !== null && stockholmsmusik !== null){
+    stockholmstheobtn.addEventListener("click", () => {toggle_hide(stockholmsmusik)});
+    toggle_hide(stockholmsmusik);
 }
 
 play2 ? play2.addEventListener("click", () => {play_song(active_selection)}) : undefined;
