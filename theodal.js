@@ -1,6 +1,5 @@
 "use strict";
-var temp = new Audio();
-var current_song = temp;
+var current_song;
 var active_selection = " ";
 var queuearray = [];
 // Knappar
@@ -35,6 +34,9 @@ function play_song(path) {
     // Om ingen låt spelas -> skapa och spela
     if (!current_song) {
         current_song = new Audio(absolutePath);
+        current_song.onended = function () {
+            skip();
+        };
         current_song.play();
         if (playbtn !== null) {
             playbtn.textContent = "PAUSE";
@@ -45,6 +47,9 @@ function play_song(path) {
     if (current_song.src !== absolutePath) {
         current_song.pause();
         current_song = new Audio(absolutePath);
+        current_song.onended = function () {
+            skip();
+        };
         current_song.play();
         return;
     }
@@ -63,6 +68,9 @@ function Play_Pause() {
 }
 function skip() {
     var tmp = " ";
+    if (q === empty()) {
+        playbtn ? playbtn.textContent = "PLAY" : undefined;
+    }
     play_song(head(q));
     dequeue(q);
     queuearray = rebuild_array(queuearray);
@@ -85,7 +93,7 @@ function toggle_hide(artist) {
     }
 }
 function add_to_queue(song_name) {
-    if (is_empty(q) && current_song === temp) { // Kollar om det är den första låten som läggs till i queuen och spelar i sådana fall upp den.
+    if (is_empty(q)) { // Kollar om det är den första låten som läggs till i queuen och spelar i sådana fall upp den.
         play_song(song_name);
     }
     enqueue(song_name, q);
@@ -105,9 +113,6 @@ function rebuild_array(origin) {
     }
     return tmp;
 }
-current_song.onended = function () {
-    skip();
-};
 document.querySelectorAll(".music").forEach(function (btn) {
     btn.addEventListener("click", function () {
         var songName = btn.getAttribute("data-song");
@@ -118,7 +123,7 @@ document.querySelectorAll(".music").forEach(function (btn) {
 // Eventlisteners för knapparna
 if (playbtn !== null) { // Playbuttons funktion
     playbtn.addEventListener("click", function () {
-        Play_Pause();
+        play_song(active_selection);
         if (current_song.paused) {
             playbtn.textContent = "PLAY";
         }
