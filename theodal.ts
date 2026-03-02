@@ -739,7 +739,7 @@ const lyrics : Record<string, string> = {
                         "Anton\n" +
                         "Alex\n" +
                         "Lucas\n" +
-                        "Alla är auncs\n" +
+                        "Alla är uncs\n" +
                         "Sitter där och pustar som tre gamla punks\n" +
                         "Alex upp i skogen\n" +
                         "Tappar bort sin sko\n" +
@@ -747,7 +747,7 @@ const lyrics : Record<string, string> = {
                         "[Chorus]\n" +
                         "Gamla\n" +
                         "Gamla\n" +
-                        "Gamla auncs på G\n" +
+                        "Gamla uncs på G\n" +
                         "Klagar på sin rygg men ska alltid med\n" +
                         "Dom är supergamla\n" +
                         "Det är deras grej\n" +
@@ -768,7 +768,7 @@ const lyrics : Record<string, string> = {
                         "[Chorus]\n" +
                         "Gamla\n" +
                         "Gamla\n" +
-                        "Gamla auncs på G\n" +
+                        "Gamla uncs på G\n" +
                         "Klagar på sin rygg men ska alltid med\n" +
                         "Dom är supergamla\n" +
                         "Det är deras grej\n" +
@@ -789,7 +789,7 @@ const lyrics : Record<string, string> = {
                         "[Chorus]\n" +
                         "Gamla\n" +
                         "Gamla\n" +
-                        "Gamla auncs på G\n" +
+                        "Gamla uncs på G\n" +
                         "Klagar på sin rygg men ska alltid med\n" +
                         "Dom är supergamla\n" +
                         "Det är deras grej\n" +
