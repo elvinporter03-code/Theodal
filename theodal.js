@@ -34,15 +34,15 @@ var stockholmstheobtn = document.getElementById("stockholmstheo");
 var stockholmsmusik = document.getElementById("stockholmsmusik");
 // Låtar
 var SONGS = {
-    'Albanian_Bartender': './music/albanian_music/Albanian Bartender.mp3',
-    'Omen': './music/freaky_country/Omen In The Lords Church.mp3',
-    'Citymail': './music/country/City Mail Special Delivery.mp3',
-    'Gustav': './music/country/Gustav Got a Boyfriend.mp3',
-    'RedEagle': './music/albanian_music/Gold Chain, Red Eagle.mp3',
-    'SunnyAlbania': './music/albanian_music/Sun-Drunk in Albania.mp3',
-    'Henke': './music/stockholm/Bror Henke.mp3',
-    'Halo': './music/Rock/Filthy Halo.mp3',
-    'Bathhouse': './music/Rock/Russian Bathhouse.mp3'
+    'Albanian Bartender': './music/albanian_music/Albanian Bartender.mp3',
+    'Omen in The Lords church': './music/freaky_country/Omen In The Lords Church.mp3',
+    'City Mail Special Delivery': './music/country/City Mail Special Delivery.mp3',
+    'Gustav Got a boyfriend': './music/country/Gustav Got a Boyfriend.mp3',
+    'Red Eagle, Gold Chain': './music/albanian_music/Gold Chain, Red Eagle.mp3',
+    'Sun-Kissed in Albania': './music/albanian_music/Sun-Drunk in Albania.mp3',
+    'Bror Henke': './music/stockholm/Bror Henke.mp3',
+    'Filthy Halo': './music/Rock/Filthy Halo.mp3',
+    'Russian Bathhouse': './music/Rock/Russian Bathhouse.mp3'
 };
 var q = empty();
 function play_song(path) {
@@ -155,7 +155,7 @@ function shuffle_queue() {
     // se till att queuen matchar
     var tmp = empty();
     for (var i = 0; i < queuearray.length; i++) {
-        enqueue(queuearray[i], tmp);
+        enqueue(SONGS[queuearray[i]], tmp);
     }
     q = tmp;
     display_queue();
