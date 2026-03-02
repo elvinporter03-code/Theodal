@@ -55,7 +55,10 @@ div{
 .ctrl:hover {
     animation: ctrlbtns 5s ease-in-out infinite;
 }
-
+.music_container{
+    width: 50%;
+    
+}
 #albanmusik {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -188,6 +191,14 @@ div{
 }
 .music:hover{
     animation: 5s songhover;
+}
+
+#lyric{
+    position: absolute;
+    left: 0%;
+    width: 25%;
+    background-color: green;
+    z-index: 5;
 }
 @keyframes ctrlbtns {
     0%   {

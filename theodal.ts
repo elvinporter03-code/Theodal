@@ -41,11 +41,13 @@ function play_song(path: string): void {
         current_song.onended = () => { // Eventhandler för att spela upp en ny låt när den gamla är slut
             skip();
         }
+
         current_song.play();
 
         if(playbtn !== null){
             playbtn.textContent="PAUSE";
         }
+
         return;
     }
 
@@ -55,8 +57,8 @@ function play_song(path: string): void {
         current_song = new Audio(absolutePath);
         current_song.onended = () => { // Eventhandler för att spela upp en ny låt när den gamla är slut
             skip();
-            
         }
+
         current_song.play();
         return;
     }
@@ -149,8 +151,9 @@ document.querySelectorAll(".music").forEach(btn => {
 
 if(playbtn !== null) { // Playbuttons funktion
     playbtn.addEventListener("click", () => 
-        {play_song(active_selection);
-        
+        {if (active_selection === "") {
+        play_song(active_selection);
+        }
         if(current_song.paused) {
             playbtn.textContent="PLAY";
         }
