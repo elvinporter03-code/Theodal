@@ -121,7 +121,7 @@ function rebuild_array(origin: Array<string>) : Array<string>{ // hjälpfunktion
     return tmp;
 }
 
-current_song.onended = () => { // Evenhandler för att spela upp en ny låt när den gamla är slut
+current_song.onended = () => { // Eventhandler för att spela upp en ny låt när den gamla är slut
     skip();
 }
 
