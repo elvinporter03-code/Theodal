@@ -3,7 +3,7 @@ var temp = new Audio();
 var current_song = temp;
 var active_selection = " ";
 var queuearray = [];
-//knappar:
+// Knappar
 var playbtn = document.getElementById("Play_Pause");
 var previousbtn = document.getElementById("Previous");
 var skipbtn = document.getElementById("Skip");
@@ -14,9 +14,13 @@ var activeq = document.getElementById("q");
 // Artister och deras musikcontainers
 var albantheobtn = document.getElementById("albantheo"); //knappen för att visa albantheos musik
 var albanmusik = document.getElementById("albanmusik"); //containern för musiken som vi togglar synligheten på
-var countrytheobtn = document.getElementById("countrytheo");
+var countrytheobtn = document.getElementById("countrytheo"); // --||--
 var countrymusik = document.getElementById("countrymusik");
-//låtar
+var rocktheobtn = document.getElementById("rocktheo"); // --||--
+var rockmusik = document.getElementById("rockmusik");
+var poptheobtn = document.getElementById("poptheo"); // --||--
+var popmusik = document.getElementById("popmusik");
+// Låtar
 var SONGS = {
     albanianBartender: './music/albanian_music/Albanian Bartender.mp3',
     omen: './music/freaky_country/Omen In The Lords Church.mp3',
@@ -28,7 +32,7 @@ var SONGS = {
 var q = empty();
 function play_song(path) {
     var absolutePath = new URL(path, location.href).href;
-    // Om ingen låt spelas → skapa och spela
+    // Om ingen låt spelas -> skapa och spela
     if (!current_song) {
         current_song = new Audio(absolutePath);
         current_song.play();
@@ -37,7 +41,7 @@ function play_song(path) {
         }
         return;
     }
-    // Om det är en ny låt → byt
+    // Om det är en ny låt -> Byt
     if (current_song.src !== absolutePath) {
         current_song.pause();
         current_song = new Audio(absolutePath);
@@ -62,7 +66,7 @@ function skip() {
     play_song(head(q));
     dequeue(q);
     queuearray = rebuild_array(queuearray);
-    for (var i = 0; i <= queuearray.length - 1; i++) {
+    for (var i = 0; i <= queuearray.length - 1; i++) { // Uppdaterar den visuella kön
         tmp = tmp + queuearray[i] + '\n';
     }
     activeq ? activeq.textContent = tmp : undefined;
@@ -80,24 +84,12 @@ function toggle_hide(artist) {
         artist.style.visibility = "visible";
     }
 }
-if (playbtn !== null) {
-    playbtn.addEventListener("click", function () {
-        Play_Pause();
-        if (current_song.paused) {
-            playbtn.textContent = "PLAY";
-        }
-        else {
-            playbtn.textContent = "PAUSE";
-        }
-        ;
-    });
-}
 function add_to_queue(song_name) {
-    if (is_empty(q) && current_song === temp) {
+    if (is_empty(q) && current_song === temp) { // Kollar om det är den första låten som läggs till i queuen och spelar i sådana fall upp den.
         play_song(song_name);
     }
     enqueue(song_name, q);
-    if (current && activeq) {
+    if (current && activeq) { // Bygger upp den visuella queuen som egentligen är en array
         var tmp = " ";
         queuearray.push(current.textContent);
         for (var i = 0; i <= queuearray.length - 1; i++) {
@@ -123,6 +115,19 @@ document.querySelectorAll(".music").forEach(function (btn) {
         current ? current.textContent = btn.textContent : undefined;
     });
 });
+// Eventlisteners för knapparna
+if (playbtn !== null) { // Playbuttons funktion
+    playbtn.addEventListener("click", function () {
+        Play_Pause();
+        if (current_song.paused) {
+            playbtn.textContent = "PLAY";
+        }
+        else {
+            playbtn.textContent = "PAUSE";
+        }
+        ;
+    });
+}
 previousbtn ? previousbtn.addEventListener("click", function () { previous(); }) : undefined;
 skipbtn ? skipbtn.addEventListener("click", function () { skip(); }) : undefined;
 if (albantheobtn !== null && albanmusik !== null) {
@@ -130,6 +135,12 @@ if (albantheobtn !== null && albanmusik !== null) {
 }
 if (countrytheobtn !== null && countrymusik !== null) {
     countrytheobtn.addEventListener("click", function () { toggle_hide(countrymusik); });
+}
+if (rocktheobtn !== null && rockmusik !== null) {
+    rocktheobtn.addEventListener("click", function () { toggle_hide(rockmusik); });
+}
+if (poptheobtn !== null && popmusik !== null) {
+    poptheobtn.addEventListener("click", function () { toggle_hide(popmusik); });
 }
 play2 ? play2.addEventListener("click", function () { play_song(active_selection); }) : undefined;
 queuebtn ? queuebtn.addEventListener("click", function () { add_to_queue(active_selection); }) : undefined;
