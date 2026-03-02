@@ -1,5 +1,6 @@
 type Song = HTMLAudioElement;
 let current_song : Song;
+let current_title : string;
 let active_selection : string = " ";
 let queuearray : Array<string> = [];
 let canqueue : boolean = false;
@@ -13,6 +14,7 @@ const current : HTMLElement | null = document.getElementById("current");
 const queuebtn : HTMLElement | null = document.getElementById("Queue");
 const activeq : HTMLElement | null = document.getElementById("q");
 const shufflebtn : HTMLElement | null = document.getElementById("Shuffle");
+const playing : HTMLElement | null = document.getElementById("playing");
 
 // Artister och deras musikcontainers
 const albantheobtn : HTMLElement | null = document.getElementById("albantheo"); //knappen för att visa albantheos musik
@@ -40,8 +42,9 @@ const SONGS : Record<string, string> = { // Avänds inte längre men står kvar 
 };
 
 let q : Queue<string> = empty();
-function play_song(path: string): void {
+function play_song(path: string, name : string): void {
     const absolutePath = new URL(path, location.href).href;
+    playing ? playing.textContent = name : undefined;
     // Om ingen låt spelas -> skapa och spela
     if (!current_song) {
         current_song = new Audio(absolutePath);
@@ -50,6 +53,9 @@ function play_song(path: string): void {
         }
 
         current_song.play();
+        const lyricsId = name.replace(/\s+/g, "_");
+        showLyricsFor(lyricsId);
+
 
         if(playbtn !== null){
             playbtn.textContent="PAUSE";
@@ -67,6 +73,9 @@ function play_song(path: string): void {
         }
 
         current_song.play();
+        const lyricsId = name.replace(/\s+/g, "_");
+        showLyricsFor(lyricsId);
+
         return;
     } else{
         current_song.currentTime = 0;
@@ -76,9 +85,11 @@ function play_song(path: string): void {
 
 }
 
-function Play_Pause():void{ // Pause/play funktionen
+function Play_Pause(): void{ // Pause/play funktionen
     if(current_song.paused) {
-       current_song.play();
+        current_song.play();
+        
+
        playbtn ? playbtn.textContent="PAUSE" : undefined;
     } 
     else {
@@ -91,7 +102,7 @@ function skip(): void{ // Avslutar nuvarande låt och spelar upp nästa ur kön
     if(is_empty(q)){
         playbtn ? playbtn.textContent="PLAY": undefined;
     }
-    play_song(head(q)); 
+    play_song(head(q), queuearray[0]); 
     dequeue(q);
     queuearray = rebuild_array(queuearray);
     display_queue();
@@ -115,16 +126,17 @@ function toggle_hide(artist : HTMLElement) : void{ // Gömmer/visar element, anv
     }
 }
 
-function add_to_queue(song_path: string) { 
+function add_to_queue(song_path: string, title : string) { 
 
     if (!current_song) {    // Om ingen låt finns alls
-        play_song(song_path);
+        play_song(song_path, title);
     } else if (!current_song.paused && current) { //queuea om låten spelas
         enqueue(song_path, q);
         queuearray.push(current?.textContent!.trim());
         display_queue();
     } 
 }
+
 function display_queue(){
     let tmp : string = " ";
     for(let i = 0; i <= queuearray.length - 1; i++) {
@@ -132,6 +144,7 @@ function display_queue(){
     }
     activeq ? activeq.textContent = tmp : undefined;
 }
+
 function rebuild_array(origin: Array<string>) : Array<string> { // Hjälpfunktion för att ta bort första elementet i en array
     let tmp : Array<string> = [];
 
@@ -218,14 +231,21 @@ if(stockholmstheobtn !== null && stockholmsmusik !== null){
 shufflebtn?.addEventListener("click", () => { shuffle_queue();});
 
 play2 ? play2.addEventListener("click", () => {
-    play_song(active_selection);
+    play_song(active_selection, current ? current.textContent : "error");
     canqueue = true;
 }) : undefined;
 
-queuebtn ? queuebtn.addEventListener("click", () => {add_to_queue(active_selection)}): undefined;
+queuebtn ? queuebtn.addEventListener("click", () => {add_to_queue(active_selection, current_title)}): undefined;
+
+function showLyricsFor(songId: string) {
+    const box = document.getElementById("lyrics-box");
+    if (!box) return;
+
+    box.textContent = lyrics[songId] || "No lyrics available.";
+}
 
 const lyrics : Record<string, string> = {
-    albanianBartender: "Verse 1 Felix missed his train again\n" +
+    Albanian_bartender : "Verse 1 Felix missed his train again\n" +
                         "Wet cuff\n" +
                         "Cold hands\n" +
                         "Stumbled through a red door glow\n" +
@@ -291,78 +311,78 @@ const lyrics : Record<string, string> = {
                         "Till you answered me in a whisper\n" +
                         "Felix walked out in the morning\n" +
                         "But his heart stayed with the bartender",
-    redEagle : "[Verse 1]\n" +
-                "Uncle drives up from Tirana\n" +
-                "Trunk full of bags and plans\n" +
-                "Kisses both my cheeks\n" +
-                "He’s laughing\n" +
-                "Come here\n" +
-                "Light me one\n" +
-                "My man\n" +
-                "\n" +
-                "Silver ash on kitchen tiles\n" +
-                "Rakia in a coffee cup\n" +
-                "Gold chain shining on his chest\n" +
-                "Says for us\n" +
-                "It’s always up\n" +
-                "\n" +
-                "[Chorus]\n" +
-                "For my Albanians (hey!)\n" +
-                "Raise that glass and sing\n" +
-                "Gold chain on my neck\n" +
-                "Red eagle in my skin\n" +
-                "All my uncles at the table\n" +
-                "Stories loud as war\n" +
-                "We got love for Albania\n" +
-                "And we always want some more\n" +
-                "\n" +
-                "[Verse 2]\n" +
-                "Auntie says he drinks too early\n" +
-                "He just winks\n" +
-                "it’s never late\n" +
-                "Passes me the homemade bottle\n" +
-                "Says remember where you’re made\n" +
-                "\n" +
-                "Balcony full of blue-grey circles\n" +
-                "Laughter floating in the air\n" +
-                "Every cousin\n" +
-                "Every neighbor\n" +
-                "Feels like I got family everywhere\n" +
-                "\n" +
-                "[Chorus]\n" +
-                "For my Albanians (hey!)\n" +
-                "Raise that glass and sing\n" +
-                "Gold chain on my neck\n" +
-                "Red eagle in my skin\n" +
-                "All my uncles at the table\n" +
-                "Stories loud as war\n" +
-                "We got love for Albania\n" +
-                "And we always want some more\n" +
-                "\n" +
-                "[Bridge]\n" +
-                "From the village to the city (ah!)\n" +
-                "Same toast\n" +
-                "Same flame\n" +
-                "We argue\n" +
-                "Hug\n" +
-                "Get dizzy\n" +
-                "Still proud of our name\n" +
-                "Rakia burns\n" +
-                "Heart burns brighter\n" +
-                "Every sip\n" +
-                "We swear it’s true\n" +
-                "If there’s smoke and if there’s laughter\n" +
-                "Know an Albanian loves you\n" +
-                "\n" +
-                "[Chorus]\n" +
-                "For my Albanians (hey!)\n" +
-                "Raise that glass and sing\n" +
-                "Gold chain on my neck\n" +
-                "Red eagle in my skin\n" +
-                "All my uncles at the table\n" +
-                "Stories loud as war\n" +
-                "We got love for Albania\n" +
-                "And we always want some more\n",
+            RedEagle : "[Verse 1]\n" +
+                        "Uncle drives up from Tirana\n" +
+                        "Trunk full of bags and plans\n" +
+                        "Kisses both my cheeks\n" +
+                        "He’s laughing\n" +
+                        "Come here\n" +
+                        "Light me one\n" +
+                        "My man\n" +
+                        "\n" +
+                        "Silver ash on kitchen tiles\n" +
+                        "Rakia in a coffee cup\n" +
+                        "Gold chain shining on his chest\n" +
+                        "Says for us\n" +
+                        "It’s always up\n" +
+                        "\n" +
+                        "[Chorus]\n" +
+                        "For my Albanians (hey!)\n" +
+                        "Raise that glass and sing\n" +
+                        "Gold chain on my neck\n" +
+                        "Red eagle in my skin\n" +
+                        "All my uncles at the table\n" +
+                        "Stories loud as war\n" +
+                        "We got love for Albania\n" +
+                        "And we always want some more\n" +
+                        "\n" +
+                        "[Verse 2]\n" +
+                        "Auntie says he drinks too early\n" +
+                        "He just winks\n" +
+                        "it’s never late\n" +
+                        "Passes me the homemade bottle\n" +
+                        "Says remember where you’re made\n" +
+                        "\n" +
+                        "Balcony full of blue-grey circles\n" +
+                        "Laughter floating in the air\n" +
+                        "Every cousin\n" +
+                        "Every neighbor\n" +
+                        "Feels like I got family everywhere\n" +
+                        "\n" +
+                        "[Chorus]\n" +
+                        "For my Albanians (hey!)\n" +
+                        "Raise that glass and sing\n" +
+                        "Gold chain on my neck\n" +
+                        "Red eagle in my skin\n" +
+                        "All my uncles at the table\n" +
+                        "Stories loud as war\n" +
+                        "We got love for Albania\n" +
+                        "And we always want some more\n" +
+                        "\n" +
+                        "[Bridge]\n" +
+                        "From the village to the city (ah!)\n" +
+                        "Same toast\n" +
+                        "Same flame\n" +
+                        "We argue\n" +
+                        "Hug\n" +
+                        "Get dizzy\n" +
+                        "Still proud of our name\n" +
+                        "Rakia burns\n" +
+                        "Heart burns brighter\n" +
+                        "Every sip\n" +
+                        "We swear it’s true\n" +
+                        "If there’s smoke and if there’s laughter\n" +
+                        "Know an Albanian loves you\n" +
+                        "\n" +
+                        "[Chorus]\n" +
+                        "For my Albanians (hey!)\n" +
+                        "Raise that glass and sing\n" +
+                        "Gold chain on my neck\n" +
+                        "Red eagle in my skin\n" +
+                        "All my uncles at the table\n" +
+                        "Stories loud as war\n" +
+                        "We got love for Albania\n" +
+                        "And we always want some more\n",
 }
 
 

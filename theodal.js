@@ -9,6 +9,7 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     return to.concat(ar || Array.prototype.slice.call(from));
 };
 var current_song;
+var current_title;
 var active_selection = " ";
 var queuearray = [];
 var canqueue = false;
@@ -21,6 +22,7 @@ var current = document.getElementById("current");
 var queuebtn = document.getElementById("Queue");
 var activeq = document.getElementById("q");
 var shufflebtn = document.getElementById("Shuffle");
+var playing = document.getElementById("playing");
 // Artister och deras musikcontainers
 var albantheobtn = document.getElementById("albantheo"); //knappen för att visa albantheos musik
 var albanmusik = document.getElementById("albanmusik"); //containern för musiken som vi togglar synligheten på
@@ -45,8 +47,9 @@ var SONGS = {
     'Russian Bathhouse': './music/Rock/Russian Bathhouse.mp3'
 };
 var q = empty();
-function play_song(path) {
+function play_song(path, name) {
     var absolutePath = new URL(path, location.href).href;
+    playing ? playing.textContent = name : undefined;
     // Om ingen låt spelas -> skapa och spela
     if (!current_song) {
         current_song = new Audio(absolutePath);
@@ -54,6 +57,8 @@ function play_song(path) {
             skip();
         };
         current_song.play();
+        var lyricsId = name.replace(/\s+/g, "_");
+        showLyricsFor(lyricsId);
         if (playbtn !== null) {
             playbtn.textContent = "PAUSE";
         }
@@ -67,6 +72,8 @@ function play_song(path) {
             skip();
         };
         current_song.play();
+        var lyricsId = name.replace(/\s+/g, "_");
+        showLyricsFor(lyricsId);
         return;
     }
     else {
@@ -88,7 +95,7 @@ function skip() {
     if (is_empty(q)) {
         playbtn ? playbtn.textContent = "PLAY" : undefined;
     }
-    play_song(head(q));
+    play_song(head(q), queuearray[0]);
     dequeue(q);
     queuearray = rebuild_array(queuearray);
     display_queue();
@@ -109,9 +116,9 @@ function toggle_hide(artist) {
         artist.style.visibility = "visible";
     }
 }
-function add_to_queue(song_path) {
+function add_to_queue(song_path, title) {
     if (!current_song) { // Om ingen låt finns alls
-        play_song(song_path);
+        play_song(song_path, title);
     }
     else if (!current_song.paused && current) { //queuea om låten spelas
         enqueue(song_path, q);
@@ -198,12 +205,18 @@ if (stockholmstheobtn !== null && stockholmsmusik !== null) {
 }
 shufflebtn === null || shufflebtn === void 0 ? void 0 : shufflebtn.addEventListener("click", function () { shuffle_queue(); });
 play2 ? play2.addEventListener("click", function () {
-    play_song(active_selection);
+    play_song(active_selection, current ? current.textContent : "error");
     canqueue = true;
 }) : undefined;
-queuebtn ? queuebtn.addEventListener("click", function () { add_to_queue(active_selection); }) : undefined;
+queuebtn ? queuebtn.addEventListener("click", function () { add_to_queue(active_selection, current_title); }) : undefined;
+function showLyricsFor(songId) {
+    var box = document.getElementById("lyrics-box");
+    if (!box)
+        return;
+    box.textContent = lyrics[songId] || "No lyrics available.";
+}
 var lyrics = {
-    albanianBartender: "Verse 1 Felix missed his train again\n" +
+    Albanian_bartender: "Verse 1 Felix missed his train again\n" +
         "Wet cuff\n" +
         "Cold hands\n" +
         "Stumbled through a red door glow\n" +
@@ -269,7 +282,7 @@ var lyrics = {
         "Till you answered me in a whisper\n" +
         "Felix walked out in the morning\n" +
         "But his heart stayed with the bartender",
-    redEagle: "[Verse 1]\n" +
+    RedEagle: "[Verse 1]\n" +
         "Uncle drives up from Tirana\n" +
         "Trunk full of bags and plans\n" +
         "Kisses both my cheeks\n" +
