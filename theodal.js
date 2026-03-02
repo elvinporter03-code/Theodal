@@ -671,7 +671,7 @@ var lyrics = {
         "Du vet det\n" +
         "Nackas starkaste krigare\n" +
         "Tills sista tåget går hem",
-    'Alfred, Bubblor och Ballader': "[Vers 1]\n" +
+    'Bubblor och Ballader': "[Vers 1]\n" +
         "Alfred vaknar sent\n" +
         "Men han är klar\n" +
         "Korkar upp en flaska\n" +
@@ -886,7 +886,189 @@ var lyrics = {
         "En som hackar grönsaker\n" +
         "En som hackar kod\n" +
         "Samma gata\n" +
-        "Samma glada mod"
+        "Samma glada mod",
+    'Hetast i Spelet': "[Verse 1]\n" +
+        "Max i loggen\n" +
+        "Han är inne igen\n" +
+        "Dubblar marker\n" +
+        "Han är kall i sitt game\n" +
+        "Snus under läppen\n" +
+        "Öl på bordet bredvid\n" +
+        "Skrattar åt förlust\n" +
+        "Han jagar nästa liv\n\n" +
+        "Skjorta uppknäppt\n" +
+        "Kedja tung över bröst\n" +
+        "Klickar på insats\n" +
+        "Känner brännan i röst\n" +
+        "Alla vill va med\n" +
+        "Men få tål hans fart\n" +
+        "Han leker med marginaler som om allt är klart\n\n" +
+        "[Chorus]\n" +
+        "Max är het\n" +
+        "Hetast i spelet (ey)\n" +
+        "Flippade noll till hundra på en kväll\n" +
+        "Skum i glaset\n" +
+        "Snus under läppen (yeah)\n" +
+        "Sitter vid bordet som om det här är hans hotell\n\n" +
+        "Max är het\n" +
+        "Hetast i spelet (aa)\n" +
+        "Skratt när siffrorna snurrar runt igen\n" +
+        "Öl efter öl\n" +
+        "Festen i steget\n" +
+        "Alla vet\n" +
+        "Alla vet – Max är renodlat problem\n\n" +
+        "[Verse 2]\n" +
+        "Solbrillor inne\n" +
+        "Blick som säger \"mer\"\n" +
+        "Ingen ser hans nerver\n" +
+        "Bara hur han ler\n" +
+        "Klirr i fickan\n" +
+        "Sedlar vikt i hans hand\n" +
+        "Samma jacka varje natt\n" +
+        "Den luktar vinst och brand\n\n" +
+        "Knappen lyser rött\n" +
+        "Ändå trycker han grön\n" +
+        "Spelar sista kronan som om allt är lön\n" +
+        "Kompisar runt bordet skriker ut hans namn (Max!)\n" +
+        "När han plockar hem potten med den sjukaste hand\n\n" +
+        "[Chorus]\n" +
+        "Max är het\n" +
+        "Hetast i spelet (ey)\n" +
+        "Flippade noll till hundra på en kväll\n" +
+        "Skum i glaset\n" +
+        "Snus under läppen (woah)\n" +
+        "Sitter vid bordet som om det här är hans hotell\n\n" +
+        "Max är het\n" +
+        "Hetast i spelet (aa)\n" +
+        "Skratt när siffrorna snurrar runt igen\n" +
+        "Öl efter öl\n" +
+        "Festen i steget\n" +
+        "Alla vet\n" +
+        "Alla vet – Max är renodlat problem\n\n" +
+        "[Bridge]\n" +
+        "Beatet droppar ner\n" +
+        "Bara bas och klapp\n" +
+        "Max i baren\n" +
+        "Skakar hand med turen (ey)\n" +
+        "Slår en bärs i ett\n" +
+        "Sen till bordet med djuren\n" +
+        "Munnen full av snus\n" +
+        "Men han snackar cash\n" +
+        "Ögonen är röda\n" +
+        "Men hans fokus är bransch\n\n" +
+        "[Chorus]\n" +
+        "Max är het\n" +
+        "Hetast i spelet (ey)\n" +
+        "Flippade noll till hundra på en kväll\n" +
+        "Skum i glaset\n" +
+        "Snus under läppen (yeah)\n" +
+        "Sitter vid bordet som om det här är hans hotell\n\n" +
+        "Max är het\n" +
+        "Hetast i spelet (aa)\n" +
+        "Skratt när siffrorna snurrar runt igen\n" +
+        "Öl efter öl\n" +
+        "Festen i steget\n" +
+        "Alla vet\n" +
+        "Alla vet – Max är renodlat problem",
+    'Dalahästarna': "[Verse 1]\n" +
+        "Edvin vaknar sent i Fagersta\n" +
+        "Föreläsning klockan nio\n" +
+        "Han ba: \"nä\"\n" +
+        "Tröjan röd\n" +
+        "Nummer tio på ryggen\n" +
+        "Han snackar mer om bänken än om pluggen\n\n" +
+        "Han tar tåget in men hoppar av för tidigt\n" +
+        "\"en öl på vägen hem\n" +
+        "Det är rimligt\"\n" +
+        "På bordet står det redan en armé\n" +
+        "Små röda hästar som glor och ler\n\n" +
+        "[Chorus]\n" +
+        "Edvin och dalahästarna\n" +
+        "Rad efter rad på hans fönsterbräda\n" +
+        "Han skålar mot tv:n när United spelar bra\n" +
+        "\"en till\n" +
+        "En till\" ropar dalahästarna\n" +
+        "Edvin och dalahästarna\n" +
+        "Vaktar hans drömmar när han borde plugga klart\n" +
+        "Han skrattar\n" +
+        "\"jag tar det sen\n" +
+        "Jag svär\"\n" +
+        "Med dalahästar överallt där han är\n\n" +
+        "[Verse 2]\n" +
+        "Föreläsern skriver \"var är du idag?\"\n" +
+        "Edvin skriver \"ute och jagar vardagslag\"\n" +
+        "Fast han jagar bara kvitton från puben\n" +
+        "Och glömda jackor som hänger kvar på klubben\n\n" +
+        "I hallen står en häst med halsduk knuten\n" +
+        "I lagets färger\n" +
+        "Han kallar den kapten\n" +
+        "I köket stegrar femton till mot ljuset\n" +
+        "Som om de ropar: \"vi tar dig hem igen\"\n\n" +
+        "[Chorus]\n" +
+        "Edvin och dalahästarna\n" +
+        "Rad efter rad på hans fönsterbräda\n" +
+        "Han skålar mot tv:n när United spelar bra\n" +
+        "\"en till\n" +
+        "En till\" ropar dalahästarna\n" +
+        "Edvin och dalahästarna\n" +
+        "Vaktar hans drömmar när han borde plugga klart\n" +
+        "Han skrattar\n" +
+        "\"jag tar det sen\n" +
+        "Jag svär\"\n" +
+        "Med dalahästar överallt där han är\n\n" +
+        "[Bridge]\n" +
+        "En dag kanske han går på allt han missat\n" +
+        "Föreläsning\n" +
+        "Seminarium\n" +
+        "Hela listan\n" +
+        "Men ikväll fyller han köksbordet igen\n" +
+        "Med fler små hästar och en sista vän\n\n" +
+        "[Chorus]\n" +
+        "Edvin och dalahästarna\n" +
+        "Rad efter rad på hans fönsterbräda\n" +
+        "Han skålar mot tv:n när United spelar bra\n" +
+        "\"en till\n" +
+        "En till\" ropar dalahästarna\n" +
+        "Edvin och dalahästarna\n" +
+        "Vaktar hans drömmar när han borde plugga klart\n" +
+        "Han tänker: \"livet är väl till för sånt här\"\n" +
+        "Med dalahästar överallt där han är",
+    'Hyllning till Bridgens': "Vi satt där sent med skratt i varje rad\n" +
+        "En öl i handen, och hjärtat lite glad\n" +
+        "Sångboken öppen, vi sjöng fast vi var skeva\n" +
+        "Det var kvällar man aldrig ville leva utan leva\n\n" +
+        "Ljuset varmt, och bordet fullt av folk\n" +
+        "Skål för vänskap, skål för varje tolk\n" +
+        "Gamla visor, nya minnen som vi spar\n" +
+        "Under taket där tiden stannar kvar\n\n" +
+        "[Chorus]\n" +
+        "Åh Bridgens Hus, jag vill tillbaka dit\n" +
+        "Där natten var ung och livet var fritt\n" +
+        "Vi sjöng tills rösten brann i varje vers\n" +
+        "Med öl i handen och hjärtat i en fest\n\n" +
+        "Åh Bridgens Hus, där skrattet aldrig tog slut\n" +
+        "Vi lovade vi skulle komma hit igen nån minut\n" +
+        "När världen känns grå och dagen känns för lång\n" +
+        "Vill jag tillbaka till vår sång\n\n" +
+        "[Vers]\n" +
+        "Sittningens bord, blev till vin\n" +
+        "Gamla skämt som aldrig riktigt gick i försvinn\n" +
+        "Vi slog i glasen, någon tappade sin plan\n" +
+        "Men där och då var livet bara fan så skönt ändå ibland\n\n" +
+        "[Bridge]\n" +
+        "Ta mig tillbaka till kvällen som var vår\n" +
+        "När tiden stod still och sorgen gick att spå\n" +
+        "För mellan sångerna och skrattens brus\n" +
+        "Finns alltid platsen som vi kallar Bridgens Hus\n\n" +
+        "[Chorus]\n" +
+        "Åh Bridgens Hus, jag vill tillbaka dit\n" +
+        "Där natten var ung och livet var fritt\n" +
+        "Vi sjöng tills rösten brann i varje vers\n" +
+        "Med öl i handen och hjärtat i en fest\n\n" +
+        "Åh Bridgens Hus, där skrattet aldrig tog slut\n" +
+        "Vi lovade vi skulle komma hit igen nån minut\n" +
+        "När världen känns grå och dagen känns för lång\n" +
+        "Vill jag tillbaka till vår sång"
 };
 // Knappar
 var playbtn = document.getElementById("Play_Pause");

@@ -147,101 +147,45 @@ div{
 
 #Albanian_pic {
     background-image: url("./pictures/bartender.png");
-    background-size: cover;
-    background-position: center;
-    width: 100%;
-    height: 150px;
 }
 #Omen_pic {
     background-image: url("./pictures/omen.png");
-    background-size: cover;
-    background-position: center;
-    width: 100%;
-    height: 150px;
 }
 #Emil_pic {
     background-image: url("./pictures/johanoemil.webp");
-    background-size: cover;
-    background-position: center;
-    width: 100%;
-    height: 150px;
 }
 #Alfred_pic {
     background-image: url("./pictures/alfred.webp");
-    background-size: cover;
-    background-position: center;
-    width: 100%;
-    height: 150px;
 }
 #Parker_pic {
     background-image: url("./pictures/parker_demarcus.png");
-    background-size: cover;
-    background-position: center;
-    width: 100%;
-    height: 150px;
 }
 #Uncs_pic {
     background-image: url("./pictures/uncs.png");
-    background-size: cover;
-    background-position: center;
-    width: 100%;
-    height: 150px;
 }
 #Nacka_pic {
     background-image: url("./pictures/nackas_krigare.jpg");
-    background-size: cover;
-    background-position: center;
-    width: 100%;
-    height: 150px;
 }
 #Albanian_uncle {
     background-image: url("./pictures/redeagle.png");
-    background-size: cover;
-    background-position: center;
-    width: 100%;
-    height: 150px;
 }
 #Albanian_beach {
     background-image: url("./pictures/balkanbeach.png");
-    background-size: cover;
-    background-position: center;
-    width: 100%;
-    height: 150px;
 }
 #Citymail_pic {
     background-image: url("./pictures/image.png");
-    background-size: cover;
-    background-position: center;
-    width: 100%;
-    height: 150px;
 }
 #Boyfriend_pic {
     background-image: url("./pictures/boyfriend.png");
-    background-size: cover;
-    background-position: center;
-    width: 100%;
-    height: 150px;
 }
 #Bathhouse_pic {
     background-image: url("./pictures/Bathhouse.png");
-    background-size: cover;
-    background-position: center;
-    width: 100%;
-    height: 150px;
 }
 #Filthy_pic {
     background-image: url("./pictures/content.png");
-    background-size: cover;
-    background-position: center;
-    width: 100%;
-    height: 150px;
 }
 #Henke_pic {
     background-image: url("./pictures/henke.jpg");
-    background-size: cover;
-    background-position: center;
-    width: 100%;
-    height: 150px;
 }
 .alban_select{
     visibility: hidden;
@@ -299,6 +243,21 @@ div{
     background-color: black;
     z-index: 10;
     height: auto;
+}
+#Edvin_pic{
+    background-image: url("./pictures/edvin.webp");
+}
+#Max_pic{
+    background-image: url("./pictures/max.webp");
+}
+#Bridgens_pic{
+    background-image: url("./pictures/bridgens.webp");
+}
+.pics{
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 150px;
 }
 @keyframes ctrlbtns {
     0%   {
