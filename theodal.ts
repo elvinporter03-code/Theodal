@@ -1,8 +1,8 @@
 type Song = HTMLAudioElement;
-let current_song: Song;
+let current_song : Song;
 let active_selection : string = " ";
 let queuearray : Array<string> = [];
-let canqueue: boolean = false;
+let canqueue : boolean = false;
 
 // Knappar
 const playbtn : HTMLElement | null = document.getElementById("Play_Pause");
@@ -12,6 +12,7 @@ const play2 : HTMLElement | null = document.getElementById("Play");
 const current : HTMLElement | null = document.getElementById("current");
 const queuebtn : HTMLElement | null = document.getElementById("Queue");
 const activeq : HTMLElement | null = document.getElementById("q");
+const shufflebtn : HTMLElement | null = document.getElementById("Shuffle");
 
 // Artister och deras musikcontainers
 const albantheobtn : HTMLElement | null = document.getElementById("albantheo"); //knappen för att visa albantheos musik
@@ -26,12 +27,15 @@ const stockholmstheobtn : HTMLElement | null = document.getElementById("stockhol
 const stockholmsmusik : HTMLElement | null = document.getElementById("stockholmsmusik");
 // Låtar
 const SONGS : Record<string, string> = { // Avänds inte längre men står kvar utifall vi skulle göra om senare
-    albanianBartender: './music/albanian_music/Albanian Bartender.mp3',
-    omen: './music/freaky_country/Omen In The Lords Church.mp3',
-    delivery: './music/country/City Mail Special Delivery.mp3',
-    gustavboyfriend: './music/country/Gustav Got a Boyfriend.mp3',
-    redeagle: './music/albanian_music/Gold Chain, Red Eagle.mp3',
-    sunnyalbania: './music/albanian_music/Sun-Drunk in Albania.mp3'
+    'Albanian_Bartender': './music/albanian_music/Albanian Bartender.mp3',
+    'Omen': './music/freaky_country/Omen In The Lords Church.mp3',
+    'Citymail': './music/country/City Mail Special Delivery.mp3',
+    'Gustav': './music/country/Gustav Got a Boyfriend.mp3',
+    'RedEagle': './music/albanian_music/Gold Chain, Red Eagle.mp3',
+    'SunnyAlbania': './music/albanian_music/Sun-Drunk in Albania.mp3',
+    'Henke' : './music/stockholm/Bror Henke.mp3', 
+    'Halo' : './music/Rock/Filthy Halo.mp3',
+    'Bathhouse' : './music/Rock/Russian Bathhouse.mp3'
 };
 
 let q : Queue<string> = empty();
@@ -132,7 +136,6 @@ function add_to_queue(song_name : string) { // Lägger till en låt i queuen
             for(let i = 0; i <= queuearray.length - 1; i++) {
                 tmp = tmp + queuearray[i] + '\n' ;
             }
-
             activeq.textContent = tmp;
         }   
     }
@@ -146,6 +149,27 @@ function rebuild_array(origin: Array<string>) : Array<string> { // Hjälpfunktio
     }
 
     return tmp;
+}
+// Fisher–Yates‑shuffle
+function shuffle_array<T>(arr: Array<T>): Array<T> {
+    let a = [...arr]; // kopia
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+}
+
+function shuffle_queue() : void{
+    // shuffla arrayen
+    queuearray = shuffle_array(queuearray);
+    // se till att queuen matchar
+    let tmp: Queue<string> = empty();
+    for( let i = 0; i < queuearray.length; i++){
+        enqueue(SONGS.queuearray[i], q);
+        dequeue(q);
+    }
+    
 }
 
 document.querySelectorAll(".music").forEach(btn => { 
@@ -199,6 +223,10 @@ if(stockholmstheobtn !== null && stockholmsmusik !== null){
     stockholmstheobtn.addEventListener("click", () => {toggle_hide(stockholmsmusik)});
     toggle_hide(stockholmsmusik);
 }
+
+shufflebtn?.addEventListener("click", () => {
+    shuffle_queue();
+});
 
 play2 ? play2.addEventListener("click", () => {play_song(active_selection)}) : undefined;
 

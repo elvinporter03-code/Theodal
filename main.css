@@ -88,6 +88,12 @@ div{
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 1px;
 }
+#Shuffle{
+    position: relative;
+    height: auto;
+    font-size: 20px;
+    background-color: white;
+}
 .artist {
     background-color: black;
     color: rgb(75,0,150);
