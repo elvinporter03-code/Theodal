@@ -120,7 +120,7 @@ function add_to_queue(song_name) {
     else {
         enqueue(song_name, q);
         if (current && activeq) { // Bygger upp den visuella queuen som egentligen är en array
-            queuearray.push(current.textContent);
+            queuearray.push(current.textContent.trim());
             display_queue();
         }
     }
