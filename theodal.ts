@@ -89,19 +89,13 @@ function Play_Pause():void{ // Pause/play funktionen
 }
 
 function skip(): void{ // Avslutar nuvarande låt och spelar upp nästa ur kön
-    let tmp : string = " ";
     if(is_empty(q)){
         playbtn ? playbtn.textContent="PLAY": undefined;
     }
     play_song(head(q)); 
     dequeue(q);
     queuearray = rebuild_array(queuearray);
-
-    for(let i = 0; i <= queuearray.length - 1; i++) { // Uppdaterar den visuella kön
-        tmp = tmp + queuearray[i] + '\n' ;
-    }
-
-    activeq ? activeq.textContent = tmp : undefined;
+    display_queue();
     if(is_empty(q)) {
         canqueue = false;
     }
@@ -130,17 +124,18 @@ function add_to_queue(song_name : string) { // Lägger till en låt i queuen
     } else {
         enqueue(song_name, q); 
         if(current && activeq) { // Bygger upp den visuella queuen som egentligen är en array
-            let tmp : string = " ";
             queuearray.push(current.textContent);
-
-            for(let i = 0; i <= queuearray.length - 1; i++) {
-                tmp = tmp + queuearray[i] + '\n' ;
-            }
-            activeq.textContent = tmp;
+            display_queue();
         }   
     }
 }
-
+function display_queue(){
+    let tmp : string = " ";
+    for(let i = 0; i <= queuearray.length - 1; i++) {
+        tmp = tmp + queuearray[i] + '\n' ;
+    }
+    activeq ? activeq.textContent = tmp : undefined;
+}
 function rebuild_array(origin: Array<string>) : Array<string> { // Hjälpfunktion för att ta bort första elementet i en array
     let tmp : Array<string> = [];
 
@@ -152,7 +147,7 @@ function rebuild_array(origin: Array<string>) : Array<string> { // Hjälpfunktio
 }
 // Fisher–Yates‑shuffle
 function shuffle_array<T>(arr: Array<T>): Array<T> {
-    let a = [...arr]; // kopia
+    let a = [...arr];
     for (let i = a.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [a[i], a[j]] = [a[j], a[i]];
@@ -160,16 +155,16 @@ function shuffle_array<T>(arr: Array<T>): Array<T> {
     return a;
 }
 
-function shuffle_queue() : void{
+function shuffle_queue() : void{    
     // shuffla arrayen
     queuearray = shuffle_array(queuearray);
     // se till att queuen matchar
     let tmp: Queue<string> = empty();
     for( let i = 0; i < queuearray.length; i++){
-        enqueue(SONGS.queuearray[i], q);
-        dequeue(q);
+        enqueue(SONGS[queuearray[i]], tmp);
     }
-    
+    q = tmp;
+    display_queue();
 }
 
 document.querySelectorAll(".music").forEach(btn => { 
@@ -224,9 +219,7 @@ if(stockholmstheobtn !== null && stockholmsmusik !== null){
     toggle_hide(stockholmsmusik);
 }
 
-shufflebtn?.addEventListener("click", () => {
-    shuffle_queue();
-});
+shufflebtn?.addEventListener("click", () => { shuffle_queue();});
 
 play2 ? play2.addEventListener("click", () => {play_song(active_selection)}) : undefined;
 
@@ -298,7 +291,79 @@ const lyrics : Record<string, string> = {
                         "Didn't know love spoke in your language\n" +
                         "Till you answered me in a whisper\n" +
                         "Felix walked out in the morning\n" +
-                        "But his heart stayed with the bartender"
+                        "But his heart stayed with the bartender",
+    redEagle : "[Verse 1]\n" +
+                "Uncle drives up from Tirana\n" +
+                "Trunk full of bags and plans\n" +
+                "Kisses both my cheeks\n" +
+                "He’s laughing\n" +
+                "Come here\n" +
+                "Light me one\n" +
+                "My man\n" +
+                "\n" +
+                "Silver ash on kitchen tiles\n" +
+                "Rakia in a coffee cup\n" +
+                "Gold chain shining on his chest\n" +
+                "Says for us\n" +
+                "It’s always up\n" +
+                "\n" +
+                "[Chorus]\n" +
+                "For my Albanians (hey!)\n" +
+                "Raise that glass and sing\n" +
+                "Gold chain on my neck\n" +
+                "Red eagle in my skin\n" +
+                "All my uncles at the table\n" +
+                "Stories loud as war\n" +
+                "We got love for Albania\n" +
+                "And we always want some more\n" +
+                "\n" +
+                "[Verse 2]\n" +
+                "Auntie says he drinks too early\n" +
+                "He just winks\n" +
+                "it’s never late\n" +
+                "Passes me the homemade bottle\n" +
+                "Says remember where you’re made\n" +
+                "\n" +
+                "Balcony full of blue-grey circles\n" +
+                "Laughter floating in the air\n" +
+                "Every cousin\n" +
+                "Every neighbor\n" +
+                "Feels like I got family everywhere\n" +
+                "\n" +
+                "[Chorus]\n" +
+                "For my Albanians (hey!)\n" +
+                "Raise that glass and sing\n" +
+                "Gold chain on my neck\n" +
+                "Red eagle in my skin\n" +
+                "All my uncles at the table\n" +
+                "Stories loud as war\n" +
+                "We got love for Albania\n" +
+                "And we always want some more\n" +
+                "\n" +
+                "[Bridge]\n" +
+                "From the village to the city (ah!)\n" +
+                "Same toast\n" +
+                "Same flame\n" +
+                "We argue\n" +
+                "Hug\n" +
+                "Get dizzy\n" +
+                "Still proud of our name\n" +
+                "Rakia burns\n" +
+                "Heart burns brighter\n" +
+                "Every sip\n" +
+                "We swear it’s true\n" +
+                "If there’s smoke and if there’s laughter\n" +
+                "Know an Albanian loves you\n" +
+                "\n" +
+                "[Chorus]\n" +
+                "For my Albanians (hey!)\n" +
+                "Raise that glass and sing\n" +
+                "Gold chain on my neck\n" +
+                "Red eagle in my skin\n" +
+                "All my uncles at the table\n" +
+                "Stories loud as war\n" +
+                "We got love for Albania\n" +
+                "And we always want some more\n",
 }
 
 
@@ -368,11 +433,4 @@ const lyrics : Record<string, string> = {
     q[0] = head_index + 1;
 }
 
-/**
- * Pretty-prints the contents of a queue to standard output.
- * @template T type of all queue elements
- * @param q queue to pretty-print
- */
- function display_queue<T>(q: Queue<T>): void {
-    console.log(q[2].slice(q[0], q[1]));
-}
+

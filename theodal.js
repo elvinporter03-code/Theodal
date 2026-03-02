@@ -1,4 +1,13 @@
 "use strict";
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+};
 var current_song;
 var active_selection = " ";
 var queuearray = [];
@@ -11,6 +20,7 @@ var play2 = document.getElementById("Play");
 var current = document.getElementById("current");
 var queuebtn = document.getElementById("Queue");
 var activeq = document.getElementById("q");
+var shufflebtn = document.getElementById("Shuffle");
 // Artister och deras musikcontainers
 var albantheobtn = document.getElementById("albantheo"); //knappen för att visa albantheos musik
 var albanmusik = document.getElementById("albanmusik"); //containern för musiken som vi togglar synligheten på
@@ -24,12 +34,15 @@ var stockholmstheobtn = document.getElementById("stockholmstheo");
 var stockholmsmusik = document.getElementById("stockholmsmusik");
 // Låtar
 var SONGS = {
-    albanianBartender: './music/albanian_music/Albanian Bartender.mp3',
-    omen: './music/freaky_country/Omen In The Lords Church.mp3',
-    delivery: './music/country/City Mail Special Delivery.mp3',
-    gustavboyfriend: './music/country/Gustav Got a Boyfriend.mp3',
-    redeagle: './music/albanian_music/Gold Chain, Red Eagle.mp3',
-    sunnyalbania: './music/albanian_music/Sun-Drunk in Albania.mp3'
+    'Albanian_Bartender': './music/albanian_music/Albanian Bartender.mp3',
+    'Omen': './music/freaky_country/Omen In The Lords Church.mp3',
+    'Citymail': './music/country/City Mail Special Delivery.mp3',
+    'Gustav': './music/country/Gustav Got a Boyfriend.mp3',
+    'RedEagle': './music/albanian_music/Gold Chain, Red Eagle.mp3',
+    'SunnyAlbania': './music/albanian_music/Sun-Drunk in Albania.mp3',
+    'Henke': './music/stockholm/Bror Henke.mp3',
+    'Halo': './music/Rock/Filthy Halo.mp3',
+    'Bathhouse': './music/Rock/Russian Bathhouse.mp3'
 };
 var q = empty();
 function play_song(path) {
@@ -74,17 +87,13 @@ function Play_Pause() {
     }
 }
 function skip() {
-    var tmp = " ";
     if (is_empty(q)) {
         playbtn ? playbtn.textContent = "PLAY" : undefined;
     }
     play_song(head(q));
     dequeue(q);
     queuearray = rebuild_array(queuearray);
-    for (var i = 0; i <= queuearray.length - 1; i++) { // Uppdaterar den visuella kön
-        tmp = tmp + queuearray[i] + '\n';
-    }
-    activeq ? activeq.textContent = tmp : undefined;
+    display_queue();
     if (is_empty(q)) {
         canqueue = false;
     }
@@ -111,14 +120,17 @@ function add_to_queue(song_name) {
     else {
         enqueue(song_name, q);
         if (current && activeq) { // Bygger upp den visuella queuen som egentligen är en array
-            var tmp = " ";
             queuearray.push(current.textContent);
-            for (var i = 0; i <= queuearray.length - 1; i++) {
-                tmp = tmp + queuearray[i] + '\n';
-            }
-            activeq.textContent = tmp;
+            display_queue();
         }
     }
+}
+function display_queue() {
+    var tmp = " ";
+    for (var i = 0; i <= queuearray.length - 1; i++) {
+        tmp = tmp + queuearray[i] + '\n';
+    }
+    activeq ? activeq.textContent = tmp : undefined;
 }
 function rebuild_array(origin) {
     var tmp = [];
@@ -126,6 +138,27 @@ function rebuild_array(origin) {
         tmp[i - 1] = origin[i];
     }
     return tmp;
+}
+// Fisher–Yates‑shuffle
+function shuffle_array(arr) {
+    var _a;
+    var a = __spreadArray([], arr, true);
+    for (var i = a.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        _a = [a[j], a[i]], a[i] = _a[0], a[j] = _a[1];
+    }
+    return a;
+}
+function shuffle_queue() {
+    // shuffla arrayen
+    queuearray = shuffle_array(queuearray);
+    // se till att queuen matchar
+    var tmp = empty();
+    for (var i = 0; i < queuearray.length; i++) {
+        enqueue(queuearray[i], tmp);
+    }
+    q = tmp;
+    display_queue();
 }
 document.querySelectorAll(".music").forEach(function (btn) {
     btn.addEventListener("click", function () {
@@ -169,6 +202,7 @@ if (stockholmstheobtn !== null && stockholmsmusik !== null) {
     stockholmstheobtn.addEventListener("click", function () { toggle_hide(stockholmsmusik); });
     toggle_hide(stockholmsmusik);
 }
+shufflebtn === null || shufflebtn === void 0 ? void 0 : shufflebtn.addEventListener("click", function () { shuffle_queue(); });
 play2 ? play2.addEventListener("click", function () { play_song(active_selection); }) : undefined;
 queuebtn ? queuebtn.addEventListener("click", function () { add_to_queue(active_selection); }) : undefined;
 var lyrics = {
@@ -237,7 +271,79 @@ var lyrics = {
         "Didn't know love spoke in your language\n" +
         "Till you answered me in a whisper\n" +
         "Felix walked out in the morning\n" +
-        "But his heart stayed with the bartender"
+        "But his heart stayed with the bartender",
+    redEagle: "[Verse 1]\n" +
+        "Uncle drives up from Tirana\n" +
+        "Trunk full of bags and plans\n" +
+        "Kisses both my cheeks\n" +
+        "He’s laughing\n" +
+        "Come here\n" +
+        "Light me one\n" +
+        "My man\n" +
+        "\n" +
+        "Silver ash on kitchen tiles\n" +
+        "Rakia in a coffee cup\n" +
+        "Gold chain shining on his chest\n" +
+        "Says for us\n" +
+        "It’s always up\n" +
+        "\n" +
+        "[Chorus]\n" +
+        "For my Albanians (hey!)\n" +
+        "Raise that glass and sing\n" +
+        "Gold chain on my neck\n" +
+        "Red eagle in my skin\n" +
+        "All my uncles at the table\n" +
+        "Stories loud as war\n" +
+        "We got love for Albania\n" +
+        "And we always want some more\n" +
+        "\n" +
+        "[Verse 2]\n" +
+        "Auntie says he drinks too early\n" +
+        "He just winks\n" +
+        "it’s never late\n" +
+        "Passes me the homemade bottle\n" +
+        "Says remember where you’re made\n" +
+        "\n" +
+        "Balcony full of blue-grey circles\n" +
+        "Laughter floating in the air\n" +
+        "Every cousin\n" +
+        "Every neighbor\n" +
+        "Feels like I got family everywhere\n" +
+        "\n" +
+        "[Chorus]\n" +
+        "For my Albanians (hey!)\n" +
+        "Raise that glass and sing\n" +
+        "Gold chain on my neck\n" +
+        "Red eagle in my skin\n" +
+        "All my uncles at the table\n" +
+        "Stories loud as war\n" +
+        "We got love for Albania\n" +
+        "And we always want some more\n" +
+        "\n" +
+        "[Bridge]\n" +
+        "From the village to the city (ah!)\n" +
+        "Same toast\n" +
+        "Same flame\n" +
+        "We argue\n" +
+        "Hug\n" +
+        "Get dizzy\n" +
+        "Still proud of our name\n" +
+        "Rakia burns\n" +
+        "Heart burns brighter\n" +
+        "Every sip\n" +
+        "We swear it’s true\n" +
+        "If there’s smoke and if there’s laughter\n" +
+        "Know an Albanian loves you\n" +
+        "\n" +
+        "[Chorus]\n" +
+        "For my Albanians (hey!)\n" +
+        "Raise that glass and sing\n" +
+        "Gold chain on my neck\n" +
+        "Red eagle in my skin\n" +
+        "All my uncles at the table\n" +
+        "Stories loud as war\n" +
+        "We got love for Albania\n" +
+        "And we always want some more\n",
 };
 /**
  * Constructs a queue without any elements.
@@ -289,12 +395,4 @@ function head(q) {
 function dequeue(q) {
     var head_index = q[0];
     q[0] = head_index + 1;
-}
-/**
- * Pretty-prints the contents of a queue to standard output.
- * @template T type of all queue elements
- * @param q queue to pretty-print
- */
-function display_queue(q) {
-    console.log(q[2].slice(q[0], q[1]));
 }
