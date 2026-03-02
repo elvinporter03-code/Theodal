@@ -48,10 +48,7 @@ div{
     left: 0;
     width: auto;
     height: auto;
-    background: rgb(8, 0, 0);
-    box-shadow: 0 0 10px rgb(75,0,150);
     color: white;
-    visibility: hidden;
     font-size: 10px;
 }
 
