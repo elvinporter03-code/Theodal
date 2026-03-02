@@ -742,7 +742,73 @@ var lyrics = {
         "(det blir bra igen, oh)\n" +
         "Alfred\n" +
         "Bubblor och ballader\n" +
-        "Sjung din roll igen"
+        "Sjung din roll igen",
+    'Gamla Uncs på G': "[Verse 1]\n" +
+        "Anton\n" +
+        "Alex\n" +
+        "Lucas\n" +
+        "Alla är auncs\n" +
+        "Sitter där och pustar som tre gamla punks\n" +
+        "Alex upp i skogen\n" +
+        "Tappar bort sin sko\n" +
+        "Tar en liten paus med sin Pripps blå och ro\n\n" +
+        "[Chorus]\n" +
+        "Gamla\n" +
+        "Gamla\n" +
+        "Gamla auncs på G\n" +
+        "Klagar på sin rygg men ska alltid med\n" +
+        "Dom är supergamla\n" +
+        "Det är deras grej\n" +
+        "Anton\n" +
+        "Alex\n" +
+        "Lucas\n" +
+        "Åh vad gamla ni blev (ey!)\n\n" +
+        "[Verse 2]\n" +
+        "Lucas sprayar parfym\n" +
+        "Känner sig så fin\n" +
+        "Snackar om Wild north\n" +
+        "Dricker kallt till sin rutin\n" +
+        "Anton tar siesta\n" +
+        "Mitt på ljusa dan\n" +
+        "Går runt med liten käpp\n" +
+        "Född nollsexa\n" +
+        "Fattar han?\n\n" +
+        "[Chorus]\n" +
+        "Gamla\n" +
+        "Gamla\n" +
+        "Gamla auncs på G\n" +
+        "Klagar på sin rygg men ska alltid med\n" +
+        "Dom är supergamla\n" +
+        "Det är deras grej\n" +
+        "Anton\n" +
+        "Alex\n" +
+        "Lucas\n" +
+        "Åh vad gamla ni blev (så gamla)\n\n" +
+        "[Bridge]\n" +
+        "Fika klockan fyra\n" +
+        "Samma bord\n" +
+        "Same plats\n" +
+        "Kex\n" +
+        "Kakor\n" +
+        "Kaffe\n" +
+        "Lite magkatarr i sats\n" +
+        "Dom säger \"vi är unga\" men alla bara ler\n" +
+        "För varje litet steg låter som ett helt gevär (aj)\n\n" +
+        "[Chorus]\n" +
+        "Gamla\n" +
+        "Gamla\n" +
+        "Gamla auncs på G\n" +
+        "Klagar på sin rygg men ska alltid med\n" +
+        "Dom är supergamla\n" +
+        "Det är deras grej\n" +
+        "Anton\n" +
+        "Alex\n" +
+        "Lucas\n" +
+        "Åh vad gamla ni blev (ey!)\n" +
+        "Anton\n" +
+        "Alex\n" +
+        "Lucas\n" +
+        "Världens äldsta gäng (åh yeah)"
 };
 // Knappar
 var playbtn = document.getElementById("Play_Pause");
