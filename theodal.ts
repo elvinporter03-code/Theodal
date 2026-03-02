@@ -42,7 +42,6 @@ const SONGS : Record<string, string> = { // Avänds inte längre men står kvar 
 let q : Queue<string> = empty();
 function play_song(path: string): void {
     const absolutePath = new URL(path, location.href).href;
-
     // Om ingen låt spelas -> skapa och spela
     if (!current_song) {
         current_song = new Audio(absolutePath);
@@ -74,8 +73,7 @@ function play_song(path: string): void {
         return;
     }
     
-    // Annars toggla play/pause
-    Play_Pause();
+
 }
 
 function Play_Pause():void{ // Pause/play funktionen
@@ -117,18 +115,15 @@ function toggle_hide(artist : HTMLElement) : void{ // Gömmer/visar element, anv
     }
 }
 
-function add_to_queue(song_name : string) { // Lägger till en låt i queuen
-    if(!canqueue) { // Kollar om det är den första låten som läggs till i queuen och spelar i sådana fall upp den.
-            play_song(song_name);
-            canqueue = true;
-            return;
-    } else {
-        enqueue(song_name, q); 
-        if(current && activeq) { // Bygger upp den visuella queuen som egentligen är en array
-            queuearray.push(current.textContent!.trim());
-            display_queue();
-        }   
-    }
+function add_to_queue(song_path: string) { 
+
+    if (!current_song) {    // Om ingen låt finns alls
+        play_song(song_path);
+    } else if (!current_song.paused && current) { //queuea om låten spelas
+        enqueue(song_path, q);
+        queuearray.push(current?.textContent!.trim());
+        display_queue();
+    } 
 }
 function display_queue(){
     let tmp : string = " ";
@@ -222,7 +217,10 @@ if(stockholmstheobtn !== null && stockholmsmusik !== null){
 
 shufflebtn?.addEventListener("click", () => { shuffle_queue();});
 
-play2 ? play2.addEventListener("click", () => {play_song(active_selection)}) : undefined;
+play2 ? play2.addEventListener("click", () => {
+    play_song(active_selection);
+    canqueue = true;
+}) : undefined;
 
 queuebtn ? queuebtn.addEventListener("click", () => {add_to_queue(active_selection)}): undefined;
 

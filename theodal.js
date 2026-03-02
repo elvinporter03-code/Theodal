@@ -73,8 +73,6 @@ function play_song(path) {
         current_song.currentTime = 0;
         return;
     }
-    // Annars toggla play/pause
-    Play_Pause();
 }
 function Play_Pause() {
     if (current_song.paused) {
@@ -111,18 +109,14 @@ function toggle_hide(artist) {
         artist.style.visibility = "visible";
     }
 }
-function add_to_queue(song_name) {
-    if (!canqueue) { // Kollar om det är den första låten som läggs till i queuen och spelar i sådana fall upp den.
-        play_song(song_name);
-        canqueue = true;
-        return;
+function add_to_queue(song_path) {
+    if (!current_song) { // Om ingen låt finns alls
+        play_song(song_path);
     }
-    else {
-        enqueue(song_name, q);
-        if (current && activeq) { // Bygger upp den visuella queuen som egentligen är en array
-            queuearray.push(current.textContent.trim());
-            display_queue();
-        }
+    else if (!current_song.paused && current) { //queuea om låten spelas
+        enqueue(song_path, q);
+        queuearray.push(current === null || current === void 0 ? void 0 : current.textContent.trim());
+        display_queue();
     }
 }
 function display_queue() {
@@ -203,7 +197,10 @@ if (stockholmstheobtn !== null && stockholmsmusik !== null) {
     toggle_hide(stockholmsmusik);
 }
 shufflebtn === null || shufflebtn === void 0 ? void 0 : shufflebtn.addEventListener("click", function () { shuffle_queue(); });
-play2 ? play2.addEventListener("click", function () { play_song(active_selection); }) : undefined;
+play2 ? play2.addEventListener("click", function () {
+    play_song(active_selection);
+    canqueue = true;
+}) : undefined;
 queuebtn ? queuebtn.addEventListener("click", function () { add_to_queue(active_selection); }) : undefined;
 var lyrics = {
     albanianBartender: "Verse 1 Felix missed his train again\n" +
