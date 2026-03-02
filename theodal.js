@@ -13,6 +13,7 @@ var current_title;
 var active_selection = " ";
 var queuearray = [];
 var canqueue = false;
+// Alla lyrics i ett record
 var lyrics = {
     'Albanian Bartender': "Verse 1 Felix missed his train again\n" +
         "Wet cuff\n" +
@@ -1082,17 +1083,17 @@ var shufflebtn = document.getElementById("Shuffle");
 var playing = document.getElementById("playing");
 var box = document.getElementById("lyrics-box");
 // Artister och deras musikcontainers
-var albantheobtn = document.getElementById("albantheo"); //knappen för att visa albantheos musik
-var albanmusik = document.getElementById("albanmusik"); //containern för musiken som vi togglar synligheten på
-var countrytheobtn = document.getElementById("countrytheo"); // --||--
-var countrymusik = document.getElementById("countrymusik");
-var rocktheobtn = document.getElementById("rocktheo"); // --||--
-var rockmusik = document.getElementById("rockmusik");
-var poptheobtn = document.getElementById("poptheo"); // --||--
-var popmusik = document.getElementById("popmusik");
-var stockholmstheobtn = document.getElementById("stockholmstheo");
-var stockholmsmusik = document.getElementById("stockholmsmusik");
-// Låtar
+var albantheobtn = document.getElementById("albantheo"); // Knappen för att visa albantheos musik
+var albanmusik = document.getElementById("albanmusik"); // Containern för musiken som vi togglar synligheten på
+var countrytheobtn = document.getElementById("countrytheo"); // Knappen för att visa countrytheos musik
+var countrymusik = document.getElementById("countrymusik"); // Containern för musiken som vi togglar synligheten på
+var rocktheobtn = document.getElementById("rocktheo"); // Knappen för att visa rocktheos musik
+var rockmusik = document.getElementById("rockmusik"); // Containern för musiken som vi togglar synligheten på
+var poptheobtn = document.getElementById("poptheo"); // Knappen för att visa poptheos musik
+var popmusik = document.getElementById("popmusik"); // Containern för musiken som vi togglar synligheten på
+var stockholmstheobtn = document.getElementById("stockholmstheo"); // Knappen för att visa stockholms musik
+var stockholmsmusik = document.getElementById("stockholmsmusik"); // Containern för musiken som vi togglar synligheten på
+// Låtar i musikbiblioteket, används för att hitta rätt sökväg
 var SONGS = {
     'Albanian Bartender': './music/albanian_music/Albanian Bartender.mp3',
     'Omen in The Lords church': './music/freaky_country/Omen In The Lords Church.mp3',
@@ -1104,7 +1105,10 @@ var SONGS = {
     'Filthy Halo': './music/Rock/Filthy Halo.mp3',
     'Russian Bathhouse': './music/Rock/Russian Bathhouse.mp3'
 };
+// Samtliga funktioner som används i logiken
+//___________________________________________
 var q = empty();
+//Spela låt, kopplad till alla låtknappar och global logik
 function play_song(path, name) {
     var absolutePath = new URL(path, location.href).href;
     playing ? playing.textContent = name : undefined;
@@ -1121,7 +1125,7 @@ function play_song(path, name) {
         }
         return;
     }
-    // Om det är en ny låt -> Byt
+    // Om det är en ny låt -> byt
     if (current_song.src !== absolutePath) {
         current_song.pause();
         current_song = new Audio(absolutePath);
@@ -1133,10 +1137,11 @@ function play_song(path, name) {
         return;
     }
     else {
-        current_song.currentTime = 0;
+        current_song.currentTime = 0; // Om det är samma låt -> starta om
         return;
     }
 }
+// Pausa/play funktion, kopplad till play/pause-knappen
 function Play_Pause() {
     if (current_song.paused) {
         current_song.play();
@@ -1147,21 +1152,24 @@ function Play_Pause() {
         playbtn ? playbtn.textContent = "PLAY" : undefined;
     }
 }
+// Avslutar nuvarande låt och spelar upp nästa ur kön, kopplad till skip-knappen
 function skip() {
     if (is_empty(q)) {
         playbtn ? playbtn.textContent = "PLAY" : undefined;
     }
-    play_song(head(q), queuearray[0]);
-    dequeue(q);
-    queuearray = rebuild_array(queuearray);
-    display_queue();
+    play_song(head(q), queuearray[0]); // Spela nästa låt i kön
+    dequeue(q); // Ta bort låten som precis började spela från kön
+    queuearray = rebuild_array(queuearray); // Ta bort första elementet i arrayen som håller låtnamnen i kön
+    display_queue(); // Uppdatera kön som visas på sidan
     if (is_empty(q)) {
         canqueue = false;
     }
 }
+// Starta om låten, kopplat till tillbakaknappen
 function previous() {
     current_song.currentTime = 0;
 }
+// Gömmer/visar element, används för att dölja/visa artisters musik
 function toggle_hide(artist) {
     if (artist.style.visibility === "visible") {
         artist.style.visibility = "hidden";
@@ -1172,23 +1180,26 @@ function toggle_hide(artist) {
         artist.style.visibility = "visible";
     }
 }
+// Lägger till låt i kön, kopplat till queue-knappen
 function add_to_queue(song_path, title) {
-    if (!current_song) { // Om ingen låt finns alls
+    if (!current_song) { // Om ingen låt finns alls -> spela direkt
         play_song(song_path, title);
     }
-    else if (current) { //queuea om låten spelas
+    else if (current) { // Queuea om låten spelas 
         enqueue(song_path, q);
         queuearray.push(current === null || current === void 0 ? void 0 : current.textContent.trim());
         display_queue();
     }
 }
+// Visar kön på sidan, används varje gång kön ändras
 function display_queue() {
     var tmp = " ";
     for (var i = 0; i <= queuearray.length - 1; i++) {
-        tmp = tmp + queuearray[i] + '\n';
+        tmp = tmp + queuearray[i] + '\n'; // Bygger en sträng av låtarna i kön, separerade med rad
     }
     activeq ? activeq.textContent = tmp : undefined;
 }
+// Hjälpfunktion för att ta bort första elementet i en array
 function rebuild_array(origin) {
     var tmp = [];
     for (var i = 1; i < origin.length; i++) {
@@ -1201,22 +1212,24 @@ function shuffle_array(arr) {
     var _a;
     var a = __spreadArray([], arr, true);
     for (var i = a.length - 1; i > 0; i--) {
-        var j = Math.floor(Math.random() * (i + 1));
-        _a = [a[j], a[i]], a[i] = _a[0], a[j] = _a[1];
+        var j = Math.floor(Math.random() * (i + 1)); // Välj en slumpmässig index från 0 till i
+        _a = [a[j], a[i]], a[i] = _a[0], a[j] = _a[1]; // Byt plats på elementen på index i och j
     }
     return a;
 }
+// Shufflar kön, kopplat till shuffle-knappen
 function shuffle_queue() {
-    // shuffla arrayen
-    queuearray = shuffle_array(queuearray);
-    // se till att queuen matchar
+    queuearray = shuffle_array(queuearray); // Shufflar arrayen som håller låtnamnen i kön
     var tmp = empty();
-    for (var i = 0; i < queuearray.length; i++) {
+    for (var i = 0; i < queuearray.length; i++) { // Ser till att kön matchar
         enqueue(SONGS[queuearray[i]], tmp);
     }
     q = tmp;
     display_queue();
 }
+// Eventlisteners för låtval, kopplade till alla låtknappar och global logik
+//__________________________________________________________________________
+// För varje låtknapp, sätt active_selection till låtens namn och ändra texten i "current" till låtens namn
 document.querySelectorAll(".music").forEach(function (btn) {
     btn.addEventListener("click", function () {
         var songName = btn.getAttribute("data-song");
@@ -1225,7 +1238,8 @@ document.querySelectorAll(".music").forEach(function (btn) {
     });
 });
 // Eventlisteners för knapparna
-if (playbtn !== null) { // Playbuttons funktion
+// Plat/pause funktion
+if (playbtn !== null) {
     playbtn.addEventListener("click", function () {
         Play_Pause();
         if (current_song.paused) {
