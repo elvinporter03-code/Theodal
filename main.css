@@ -193,12 +193,13 @@ div{
     animation: 5s songhover;
 }
 
-#lyric{
+#lyrics{
     position: absolute;
     left: 0%;
     width: 25%;
-    background-color: green;
-    z-index: 5;
+    background-color: black;
+    z-index: 10;
+    height: auto;
 }
 @keyframes ctrlbtns {
     0%   {

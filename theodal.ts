@@ -2,6 +2,7 @@ type Song = HTMLAudioElement;
 let current_song: Song;
 let active_selection : string = " ";
 let queuearray : Array<string> = [];
+let canqueue: boolean = false;
 
 // Knappar
 const playbtn : HTMLElement | null = document.getElementById("Play_Pause");
@@ -61,6 +62,9 @@ function play_song(path: string): void {
 
         current_song.play();
         return;
+    } else{
+        current_song.currentTime = 0;
+        return;
     }
     
     // Annars toggla play/pause
@@ -80,11 +84,9 @@ function Play_Pause():void{ // Pause/play funktionen
 
 function skip(): void{ // Avslutar nuvarande låt och spelar upp nästa ur kön
     let tmp : string = " ";
-    
-    if(q === empty()) {
+    if(is_empty(q)){
         playbtn ? playbtn.textContent="PLAY": undefined;
     }
-    
     play_song(head(q)); 
     dequeue(q);
     queuearray = rebuild_array(queuearray);
@@ -92,8 +94,11 @@ function skip(): void{ // Avslutar nuvarande låt och spelar upp nästa ur kön
     for(let i = 0; i <= queuearray.length - 1; i++) { // Uppdaterar den visuella kön
         tmp = tmp + queuearray[i] + '\n' ;
     }
-    
+
     activeq ? activeq.textContent = tmp : undefined;
+    if(is_empty(q)) {
+        canqueue = false;
+    }
 }
 
 function previous() : void{ // Starta om låten, kopplat till tillbakaknappen
@@ -112,20 +117,24 @@ function toggle_hide(artist : HTMLElement) : void{ // Gömmer/visar element, anv
 }
 
 function add_to_queue(song_name : string) { // Lägger till en låt i queuen
-    if(is_empty(q)) { // Kollar om det är den första låten som läggs till i queuen och spelar i sådana fall upp den.
-        play_song(song_name);
+    if(!canqueue) { // Kollar om det är den första låten som läggs till i queuen och spelar i sådana fall upp den.
+            play_song(song_name);
+            canqueue = true;
+            return;
     }
+    
+    if(canqueue) {
+        enqueue(song_name, q); 
+        if(current && activeq) { // Bygger upp den visuella queuen som egentligen är en array
+            let tmp : string = " ";
+            queuearray.push(current.textContent);
 
-    enqueue(song_name, q);
-    if(current && activeq) { // Bygger upp den visuella queuen som egentligen är en array
-        let tmp : string = " ";
-        queuearray.push(current.textContent);
+            for(let i = 0; i <= queuearray.length - 1; i++) {
+                tmp = tmp + queuearray[i] + '\n' ;
+            }
 
-        for(let i = 0; i <= queuearray.length - 1; i++) {
-            tmp = tmp + queuearray[i] + '\n' ;
-        }
-
-        activeq.textContent = tmp;
+            activeq.textContent = tmp;
+        }   
     }
 }
 
@@ -151,9 +160,7 @@ document.querySelectorAll(".music").forEach(btn => {
 
 if(playbtn !== null) { // Playbuttons funktion
     playbtn.addEventListener("click", () => 
-        {if (active_selection === "") {
-        play_song(active_selection);
-        }
+        { Play_Pause();
         if(current_song.paused) {
             playbtn.textContent="PLAY";
         }
@@ -187,6 +194,75 @@ if(poptheobtn !== null && popmusik !== null){
 play2 ? play2.addEventListener("click", () => {play_song(active_selection)}) : undefined;
 
 queuebtn ? queuebtn.addEventListener("click", () => {add_to_queue(active_selection)}): undefined;
+
+const lyrics : Record<string, string> = {
+    albanianBartender: "Verse 1 Felix missed his train again\n" +
+                        "Wet cuff\n" +
+                        "Cold hands\n" +
+                        "Stumbled through a red door glow\n" +
+                        "Half past ten\n\n" +
+                        "He ordered in a quiet voice\n" +
+                        "Didn't look up first\n" +
+                        "Till he heard a low laugh say\n" +
+                        "I'll fix the thirst\n\n" +
+                        "Dark hair tied back\n" +
+                        "Name tag slightly bent\n" +
+                        "Accent like a slow song\n" +
+                        "Soft and confident\n\n" +
+                        "[Chorus]\n" +
+                        "Oh my Albanian bartender\n" +
+                        "Say my name like you remember\n" +
+                        "Every pour, every grin\n" +
+                        "Makes me wanna taste your skin\n" +
+                        "Didn't plan to stay till dawn\n" +
+                        "But your touch keeps pulling me on\n" +
+                        "Felix laughing, saying one more round\n" +
+                        "While the whole damn room spins upside down\n\n" +
+                        "[Verse 2]\n" +
+                        "You're new here? he asked\n" +
+                        "Soap on his hands\n" +
+                        "Felix traced the pattern\n" +
+                        "Of a ringless tan\n\n" +
+                        "Shared a pack of stories\n" +
+                        "By the dish room light\n" +
+                        "How he crossed an ocean\n" +
+                        "Chasing something bright\n\n" +
+                        "Felix watched his mouth move\n" +
+                        "Forgot about the rain\n" +
+                        "How a stranger wiping counters\n" +
+                        "Could make him feel this way\n\n" +
+                        "[Chorus]\n" +
+                        "Oh my Albanian bartender\n" +
+                        "Say my name like you remember\n" +
+                        "Every pour, every grin\n" +
+                        "Makes me wanna taste your skin\n" +
+                        "Didn't plan to stay till dawn\n" +
+                        "But your touch keeps pulling me on\n" +
+                        "Felix laughing, saying one more round\n" +
+                        "While the whole damn room spins upside down\n\n" +
+                        "[Bridge]\n" +
+                        "Last call\n" +
+                        "Chairs on tables\n" +
+                        "Keys around his wrist (hey)\n" +
+                        "Stay a while\n" +
+                        "he murmurs\n" +
+                        "Place is ours like this\n\n" +
+                        "Felix laughs too loudly\n" +
+                        "Heart against his ribs\n" +
+                        "As a careful\n" +
+                        "Steady hand\n" +
+                        "Finds a place on his\n\n" +
+                        "[Chorus]\n" +
+                        "Oh my Albanian bartender\n" +
+                        "You say my name like it belongs here\n" +
+                        "Every pour\n" +
+                        "Every small joke\n" +
+                        "Pulled me right over your side of the counter\n" +
+                        "Didn't know love spoke in your language\n" +
+                        "Till you answered me in a whisper\n" +
+                        "Felix walked out in the morning\n" +
+                        "But his heart stayed with the bartender"
+}
 
 
 // Hela queuesystemet från /lib men copypasteat in här eftersom websidan inte låter oss använda imports/exports
