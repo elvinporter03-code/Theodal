@@ -84,7 +84,7 @@ var lyrics = {
         "Uncle drives up from Tirana\n" +
         "Trunk full of bags and plans\n" +
         "Kisses both my cheeks\n" +
-        "He’s laughing\n" +
+        "He's laughing\n" +
         "Come here\n" +
         "Light me one\n" +
         "My man\n" +
@@ -93,7 +93,7 @@ var lyrics = {
         "Rakia in a coffee cup\n" +
         "Gold chain shining on his chest\n" +
         "Says for us\n" +
-        "It’s always up\n" +
+        "It's always up\n" +
         "\n" +
         "[Chorus]\n" +
         "For my Albanians (hey!)\n" +
@@ -108,9 +108,9 @@ var lyrics = {
         "[Verse 2]\n" +
         "Auntie says he drinks too early\n" +
         "He just winks\n" +
-        "it’s never late\n" +
+        "it's never late\n" +
         "Passes me the homemade bottle\n" +
-        "Says remember where you’re made\n" +
+        "Says remember where you're made\n" +
         "\n" +
         "Balcony full of blue-grey circles\n" +
         "Laughter floating in the air\n" +
@@ -139,8 +139,8 @@ var lyrics = {
         "Rakia burns\n" +
         "Heart burns brighter\n" +
         "Every sip\n" +
-        "We swear it’s true\n" +
-        "If there’s smoke and if there’s laughter\n" +
+        "We swear it's true\n" +
+        "If there's smoke and if there's laughter\n" +
         "Know an Albanian loves you\n" +
         "\n" +
         "[Chorus]\n" +
@@ -152,6 +152,525 @@ var lyrics = {
         "Stories loud as war\n" +
         "We got love for Albania\n" +
         "And we always want some more\n",
+    'Sun-Kissed in Albania': "[Verse 1]\n" +
+        "Sticky fingers from the baklava\n" +
+        "Crumbs on my shirt\n" +
+        "Can't shake them off\n" +
+        "Teta yelling that the coffee's cold\n" +
+        "Zoti im\n" +
+        "The day is gold\n\n" +
+        "Byrek cooling on the window rail\n" +
+        "Flaking in the lazy gale\n" +
+        "They all swear the storm will come\n" +
+        "But the sky just laughs at everyone\n\n" +
+        "[Chorus]\n" +
+        "It never rains in Albania\n" +
+        "Just heat in the sun and a table for twenty\n" +
+        "Uncles lined up like a stadium\n" +
+        "Talking way too loud\n" +
+        "But it all feels plenty\n" +
+        "Moped humming down the lane\n" +
+        "Olive trees and gasolene\n" +
+        "It never rains in Albania\n" +
+        "Just you\n" +
+        "Me\n" +
+        "And this summer sheen (hey!)\n\n" +
+        "[Verse 2]\n" +
+        "Kick the stand\n" +
+        "You jump on the back\n" +
+        "Plastic bag swinging\n" +
+        "Fresh bread stack\n" +
+        "We weave around goats in the dusty bend\n" +
+        "Every cousin waving like a best friend\n\n" +
+        "Uncle says he used to race this road\n" +
+        "Same old story\n" +
+        "Every year retold\n" +
+        "He points at the hills\n" +
+        "Says \"that's my land\"\n" +
+        "Maps in his eyes\n" +
+        "Coffee in his hand\n\n" +
+        "[Chorus]\n" +
+        "It never rains in Albania\n" +
+        "Just heat in the sun and a table for twenty\n" +
+        "Uncles lined up like a stadium\n" +
+        "Talking way too loud\n" +
+        "But it all feels plenty\n" +
+        "Moped humming down the lane\n" +
+        "Olive trees and gasolene\n" +
+        "It never rains in Albania\n" +
+        "Just you\n" +
+        "Me\n" +
+        "And this summer sheen\n\n" +
+        "[Bridge]\n" +
+        "Pass the byrek\n" +
+        "Pass the plate (oh yeah)\n" +
+        "Pass the hours 'til it's late\n" +
+        "If the clouds come\n" +
+        "Let them try\n" +
+        "We got shade in each other's eyes\n\n" +
+        "[Chorus]\n" +
+        "It never rains in Albania\n" +
+        "Just heat in the sun and a table for twenty\n" +
+        "Uncles lined up like a stadium\n" +
+        "Talking way too loud\n" +
+        "But it all feels plenty\n" +
+        "Moped humming down the lane\n" +
+        "Olive trees and gasolene\n" +
+        "It never rains in Albania\n" +
+        "Just you\n" +
+        "Me\n" +
+        "And this summer sheen",
+    'City Mail Special Delivery': "[Verse 1]\n" +
+        "Felix got his name tag crooked\n" +
+        "Coffee stain on his blue work tee\n" +
+        "Theodor rollin' up that mail cart\n" +
+        "Smirkin' like \"boy, you lookin' at me?\"\n" +
+        "Sorting all these bills and flyers\n" +
+        "Heat stuck in that break-room air\n" +
+        "Under all these fluorescent halos\n" +
+        "He's swearin' there's a halo on that boy right there\n\n" +
+        "[Chorus]\n" +
+        "City mail, special delivery\n" +
+        "He's my certified gay priority\n" +
+        "Stack those boxes, bend that back\n" +
+        "Lord, that view could make me catch a heart attack (oh!)\n" +
+        "We got letters, we got lube in the drawer\n" +
+        "Clock-in kissing by the loading door\n" +
+        "Who says love can't come with a barcode scan?\n" +
+        "Bottom's rights, baby, in a top man's van\n\n" +
+        "[Verse 2]\n" +
+        "He said \"Felix, can you help me, darlin'?\n" +
+        "These packages heavy as sin\"\n" +
+        "Felix said \"I'll handle your cargo\"\n" +
+        "Hand on his waist as he pulls him in\n" +
+        "Barcode beepin' like a heartbeat\n" +
+        "Clipboard hittin' the floor\n" +
+        "Boss man bangin' on the office window\n" +
+        "\"Y'all sort that passion on your own time, boys\"\n\n" +
+        "[Chorus]\n" +
+        "City mail, special delivery\n" +
+        "He's my certified gay priority\n" +
+        "Stack those boxes, bend that back\n" +
+        "Lord, that view could make me catch a heart attack (hey!)\n" +
+        "We got letters, we got lube in the drawer\n" +
+        "Clock-in kissing by the loading door\n" +
+        "Who says love can't come with a barcode scan?\n" +
+        "Bottom's rights, baby, in a top man's van\n\n" +
+        "[Bridge]\n" +
+        "They say \"son, that ain't how country goes\"\n" +
+        "He said \"watch these steel-toe boots on tiptoes\"\n" +
+        "Spurs on his accent, glitter in his grin\n" +
+        "Lickin' all the stamps and the boys like him\n" +
+        "From dirt road dreams to the downtown dock\n" +
+        "He's the reason that the drop box rock\n" +
+        "Two queer cowboys in a concrete barn\n" +
+        "Turnin' that mailroom into a honky-tonk charm (woo!)\n\n" +
+        "[Chorus]\n" +
+        "City mail, special delivery\n" +
+        "He's my certified gay priority\n" +
+        "Stack those boxes, bend that back\n" +
+        "Lord, that view could make me catch a heart attack\n" +
+        "We got letters, we got lube in the drawer\n" +
+        "Clock-in kissing by the loading door\n" +
+        "Who says love can't come with a barcode scan?\n" +
+        "Bottom's rights, baby, that's the house brand man\n\n" +
+        "[Outro]\n" +
+        "Stamp it, seal it, kiss it then send\n" +
+        "Felix found love in his work best friend\n" +
+        "City mail boy with a country drawl\n" +
+        "When he says \"special handling\"\n" +
+        "You know he means it all",
+    'Gustav Got a boyfriend': "No lyrics available for this one, sorry!",
+    'Filthy Halo': "[Verse 1]\n" +
+        "Gustav's got that crooked grin,\n" +
+        "Sin on his mouth, pulling me in.\n" +
+        "Loki laughs like he owns the night,\n" +
+        "Hands on my hips, grip too tight.\n\n" +
+        "You say my name like it's a dare,\n" +
+        "Drag me closer by the hair.\n" +
+        "Breath on my neck, low and slow,\n" +
+        "\"Be a good boy,\" don't say no.\n\n" +
+        "[Pre-Chorus]\n" +
+        "Teeth on skin, leave it red,\n" +
+        "Say you want me on your bed.\n" +
+        "Knees pressed hard between your thighs,\n" +
+        "You love the look behind my eyes.\n\n" +
+        "[Chorus]\n" +
+        "Loki, talk that dirty talk,\n" +
+        "Make me stumble when I walk.\n" +
+        "Gustav, push me past my pride,\n" +
+        "Keep your wicked hands inside.\n" +
+        "We don't blush — we make a scene,\n" +
+        "Sweat and laughter, sharp and mean.\n" +
+        "If heaven's clean, we'll never go —\n" +
+        "Now put the cock in deep bro.\n\n" +
+        "[Verse 2]\n" +
+        "Gustav's fingers digging deep,\n" +
+        "Promises he doesn't keep.\n" +
+        "Loki biting down my lip,\n" +
+        "Hands sliding lower on my hips.\n\n" +
+        "\"Say you want it,\" he commands,\n" +
+        "Tracing lines with greedy hands.\n" +
+        "Mocking tone, but heavy breath,\n" +
+        "Playing love like sudden death.\n\n" +
+        "[Pre-Chorus]\n" +
+        "You like control, I like the fight,\n" +
+        "Bodies tangled, black and white.\n" +
+        "Pull me back when I pretend,\n" +
+        "You know I'll fold in the end.\n\n" +
+        "[Chorus]\n" +
+        "Loki, make me beg your name,\n" +
+        "Make it sound obscene and vain.\n" +
+        "Gustav, drag me to the floor,\n" +
+        "Say you've never wanted more.\n" +
+        "Bury your cock, make me scream,\n" +
+        "You are my Egyptian dream,\n" +
+        "If this is wrong, don't let it stop —\n" +
+        "Let me ride you on top.\n\n" +
+        "[Bridge]\n" +
+        "Hands pinned tight,\n" +
+        "Breath getting rough,\n" +
+        "You say \"enough?\"\n" +
+        "It's never too rough\n\n" +
+        "You smirk like a saint gone wrong,\n" +
+        "Pull me closer, prove me wrong.\n" +
+        "We don't love — we take, we steal,\n" +
+        "Stroke it till you make it cream.",
+    'Russian Bathhouse': "[Verse 1]\n" +
+        "Loki's laughing\n" +
+        "Water in his hair\n" +
+        "Tile floor slick\n" +
+        "Leo at the door\n" +
+        "Cheeks gone red\n" +
+        "Eyes on the floor\n\n" +
+        "[Chorus]\n" +
+        "Steam between us\n" +
+        "But I see you clear\n" +
+        "Name the fog line\n" +
+        "Right next to mine\n" +
+        "Loki's heat i saviour\n" +
+        "I love you\n" +
+        "Do me a favour\n" +
+        "Slide that thing in\n\n" +
+        "[Verse 2]\n" +
+        "Birch leaves\n" +
+        "On bare skin\n" +
+        "Warm\n" +
+        "Leo's stare\n" +
+        "Keeps pulling him in\n" +
+        "Gold gleam\n" +
+        "Drip from his chin\n" +
+        "One small joke\n" +
+        "And they both give in\n\n" +
+        "[Chorus]\n" +
+        "Steam between us\n" +
+        "But I see you clear\n" +
+        "Name the fog line\n" +
+        "Right next to mine\n" +
+        "Loki's heat i saviour\n" +
+        "I love you\n" +
+        "Do me a favour\n" +
+        "Slide that thing in\n\n" +
+        "[Bridge]\n" +
+        "Quiet Russian voices\n" +
+        "Muffled through the wall\n" +
+        "Loki whispers\n" +
+        "\"stay\"\n" +
+        "Leo doesn't stall\n" +
+        "Hand on a heartbeat\n" +
+        "Salt on a tongue\n" +
+        "Winter outside\n" +
+        "Summer begun\n\n" +
+        "[Chorus]\n" +
+        "Steam between us\n" +
+        "But I see you clear\n" +
+        "Name the fog line\n" +
+        "Right next to mine\n" +
+        "He smiled at me\n" +
+        "I love you\n" +
+        "And he finally\n" +
+        "Slid it in",
+    'Bror Henke': "[Vers 1]\n" +
+        "Henke vaknar\n" +
+        "Samma tröja\n" +
+        "Kaffe\n" +
+        "Macka\n" +
+        "Mobilen på\n" +
+        "Hjärtat stort som halva stan\n" +
+        "Skrattar högt åt minsta skämt han får\n\n" +
+        "Han kramar alla i sin närhet\n" +
+        "Som om världen snart tar slut\n" +
+        "Säger \"bror\" till varje människa\n" +
+        "Som vågar möta hans minut\n\n" +
+        "[Chorus]\n" +
+        "Henke\n" +
+        "Han älskar\n" +
+        "Älskar själva ordet \"bror\"\n" +
+        "Han säger \"bror\" så ofta\n" +
+        "Det blir som ett eget språk han tror\n" +
+        "Henke\n" +
+        "Han delar\n" +
+        "Som om det växer mer i år\n" +
+        "Varje gång han viskar\n" +
+        "\"jag är här för dig\n" +
+        "Min bror\"\n\n" +
+        "[Vers 2]\n" +
+        "På krogen står han mitt i rummet\n" +
+        "Hälsar runt som en konferencier\n" +
+        "\"Bror\n" +
+        "Hur mår du? Bror\n" +
+        "Vad händer?\"\n" +
+        "Ingen går hem ensam mer\n\n" +
+        "Han skriver hjärtan i sina chattar\n" +
+        "Tre på rad när orden tar slut\n" +
+        "\"Bror\n" +
+        "Du vet jag backar alltid\"\n" +
+        "Det är hans löfte varje minut\n\n" +
+        "[Chorus]\n" +
+        "Henke\n" +
+        "Han älskar\n" +
+        "Älskar själva ordet \"bror\"\n" +
+        "Han säger \"bror\" så ofta\n" +
+        "Det blir som ett eget språk han tror\n" +
+        "Henke\n" +
+        "Han delar\n" +
+        "Som om det växer mer i år\n" +
+        "Varje gång han viskar\n" +
+        "\"jag är här för dig\n" +
+        "Min bror\"\n\n" +
+        "[Bridge]\n" +
+        "En dag blir han kanske trött\n" +
+        "Rösten hes\n" +
+        "Men känslan kvar\n" +
+        "Då hör man ändå hur han ler\n" +
+        "I varje \"bror\" han har\n\n" +
+        "[Chorus]\n" +
+        "Henke\n" +
+        "Han älskar\n" +
+        "Älskar själva ordet \"bror\"\n" +
+        "Han säger \"bror\" så ofta\n" +
+        "Det blir som ett eget språk han tror\n" +
+        "Henke\n" +
+        "Han delar\n" +
+        "Som om det växer mer i år\n" +
+        "Hela världen ekar\n" +
+        "\"vi är med dig\n" +
+        "Bror\n" +
+        "Vår bror\"",
+    'Red Flag Paradise': "[Verse 1]\n" +
+        "Daniel Parker\n" +
+        "Golden ticket in his hand\n" +
+        "\"Just a harmless little party\n" +
+        "On a private strip of sand\"\n" +
+        "Big plane\n" +
+        "Small runway\n" +
+        "Laughs pouring out the door\n" +
+        "Every smile just a little too shiny\n" +
+        "As they take his phone at the floor\n\n" +
+        "[Chorus]\n" +
+        "Welcome to Epstein's paradise\n" +
+        "Where the drinks taste sweet\n" +
+        "Everyone's saying \"lucky kid\"\n" +
+        "While they circle like they're picking meat\n" +
+        "Red flag paradise\n" +
+        "Where the grown men grin too wide\n" +
+        "Daniel\n" +
+        "You should be running\n" +
+        "Not enjoying the ride\n\n" +
+        "[Verse 2]\n" +
+        "\"My parents said he's famous\n" +
+        "He can help you chase your dream\"\n" +
+        "He just wanted sun and ocean\n" +
+        "Not the shadows in between\n" +
+        "Fancy rooms\n" +
+        "Locked hallways\n" +
+        "Names whispered like a spell\n" +
+        "Every yes feels like surrender\n" +
+        "Every \"it's fine\" feels like hell\n\n" +
+        "[Chorus]\n" +
+        "Welcome to Epstein's paradise\n" +
+        "Where the drinks taste sweet\n" +
+        "Every joke has broken edges\n" +
+        "Every compliment feels sold\n" +
+        "Red flag paradise\n" +
+        "Where the truth gets tied up tight\n" +
+        "Daniel\n" +
+        "This isn't heaven\n" +
+        "It's a secret built from fright\n\n" +
+        "[Bridge]\n" +
+        "He stares at the waterline\n" +
+        "Wonders\n" +
+        "\"Is this what rich means?\"\n" +
+        "If this is how the world works\n" +
+        "He wants nothing from these kings\n" +
+        "Throws his wristband in the ocean\n" +
+        "Heart pounding\n" +
+        "Throat gone dry\n" +
+        "Starts walking toward the runway\n" +
+        "But he gets stopped, watching the ocean spray\n\n" +
+        "[Chorus]\n" +
+        "Welcome to Epstein's paradise\n" +
+        "Where the drinks taste sweet\n" +
+        "He's basking in the sun\n" +
+        "Enjoying this forbidden fun\n" +
+        "The island is great\n" +
+        "Daniel can't see straight\n" +
+        "A fine estate\n" +
+        "Daniel loves big E's private island\n" +
+        "Will never leave this lovely diamond",
+    'Omen in The Lords church': "[Intro]\n" +
+        "It's gettin' late in Tokyo\n" +
+        "(Oh, oh-oh, oh, oh-oh, oh, oh-oh)\n" +
+        "I see you with a girl I know\n" +
+        "(Oh, oh-oh, oh, oh-oh, oh, oh-oh)\n" +
+        "\n" +
+        "Loki\n" +
+        "I met you in a church on a Sunday\n" +
+        "In a church\n" +
+        "And we were not there for the Lord's way, no\n" +
+        "We were there for the whore's way, yeah\n" +
+        "It was crazy\n" +
+        "\n" +
+        "[Verse]\n" +
+        "She lookin' at me like, \"What do you want?\"\n" +
+        "(Oh, oh-oh, oh, oh-oh, oh, oh-oh)\n" +
+        "Then you came over like, \"Come on\"\n" +
+        "(Oh, oh-oh, oh, oh-oh, oh, oh-oh)\n" +
+        "\n" +
+        "He said his name is Loki\n" +
+        "(Oh, oh-oh, oh, oh-oh, oh, oh-oh)\n" +
+        "He's from Korea but we met in Tokyo\n" +
+        "(Oh, oh-oh, oh, oh-oh, oh, oh-oh)\n" +
+        "He said, \"I'll teach you Korean if you want\"\n" +
+        "(Oh, oh-oh, oh, oh-oh, oh, oh-oh)\n" +
+        "I said, \"I don't care as long as you're the one\"\n" +
+        "(Oh, oh-oh, oh, oh-oh, oh, oh-oh)\n" +
+        "\n" +
+        "[Pre-Chorus]\n" +
+        "And now I'm thinkin' you might be my boyfriend\n" +
+        "'Cause you lookin' at me, lookin' like you own it\n" +
+        "Then you pull me closer like you got a moment\n" +
+        "Oh my God, you could be my omen\n" +
+        "\n" +
+        "Loki\n" +
+        "On the Lord's day\n" +
+        "Met you in a church on a Sunday\n" +
+        "We weren't there for the Lord's way\n" +
+        "On the Lord's day\n" +
+        "There for the whore's way\n" +
+        "Crazy\n" +
+        "\n" +
+        "[Chorus – Mash]\n" +
+        "Now I don't wanna go home, I don't wanna go home\n" +
+        "Baby, no, no, no, no\n" +
+        "Loki, on the Lord's day\n" +
+        "Met you in a church on a Sunday\n" +
+        "\n" +
+        "Now I don't wanna go home, I don't wanna go home\n" +
+        "Baby, no, no, no, no\n" +
+        "We weren't there for the Lord's way\n" +
+        "On the Lord's day, there for the whore's way\n" +
+        "Crazy\n" +
+        "\n" +
+        "[Post-Chorus]\n" +
+        "Ooh, ooh-ooh\n" +
+        "Loki, Felix in a truck on the Lord's day\n" +
+        "Ooh, ooh-ooh\n" +
+        "Lets just get down and fuck on the Lord's day\n" +
+        "\n" +
+        "[Bridge – Call & Response]\n" +
+        "And now I'm thinkin' you might be my boyfriend\n" +
+        "Loki, in a church on a Sunday\n" +
+        "'Cause you lookin' at me, lookin' like you own it\n" +
+        "We weren't there for the Lord's way, no\n" +
+        "Then you pull me closer like you got a moment\n" +
+        "There for the whore's way, it was crazy\n" +
+        "Oh my God, you could be my omen\n" +
+        "Oh my God, you could be my omen\n" +
+        "\n" +
+        "[Final Hook]\n" +
+        "Now I don't wanna go home, I don't wanna go home\n" +
+        "Baby, no, no, no, no\n" +
+        "Loki, on the Lord's day\n" +
+        "There for the whore's way\n" +
+        "\n" +
+        "Now I don't wanna go home, I don't wanna go home\n" +
+        "Baby, no, no, no, no\n" +
+        "Tokyo nights and a Sunday church day\n" +
+        "Loki in my mind and I don't wanna go\n" +
+        "\n" +
+        "Ooh, ooh-ooh\n" +
+        "It was crazy\n" +
+        "Ooh, ooh-ooh\n" +
+        "You could be my omen, Loki",
+    'Nackas Starkaste Krigare': "[Vers 1]\n" +
+        "Neo vid styret\n" +
+        "Kostym men kepsen sned\n" +
+        "Sitter på Pong-tronen\n" +
+        "Skrattar åt allt som sker\n" +
+        "Signar en deal på servetten\n" +
+        "Snabbare än du hinner blinka\n" +
+        "Nacka i toppen på kartan\n" +
+        "Annars kan dom andra dra och springa\n\n" +
+        "[Chorus]\n" +
+        "Vi är Nackas starkaste krigare (ey!)\n" +
+        "Från Forum upp till grå betong\n" +
+        "Vi är Nackas starkaste krigare (åh!)\n" +
+        "Vår gata\n" +
+        "Vår skrik-sång\n" +
+        "Neo\n" +
+        "Adam\n" +
+        "Lilla Louwe i ledet\n" +
+        "Nacka i blodet\n" +
+        "Du vet det\n" +
+        "Nackas starkaste krigare\n" +
+        "Tills sista tåget går hem\n\n" +
+        "[Vers 2]\n" +
+        "Adam blir skitfull\n" +
+        "Redan klockan kvart i fem\n" +
+        "Står på bordet och ropar\n" +
+        "\"alla ska med hem till Nacka igen!\"\n" +
+        "Säger för mycket\n" +
+        "För högt\n" +
+        "Alla ba \"bror\n" +
+        "Ta det lugnt\"\n" +
+        "Han bara \"lugn är för fega\n" +
+        "Vi har Nacka i vår pung!\"\n\n" +
+        "[Chorus]\n" +
+        "Vi är Nackas starkaste krigare (ey!)\n" +
+        "Från Forum upp till grå betong\n" +
+        "Vi är Nackas starkaste krigare (åh!)\n" +
+        "Vår gata\n" +
+        "Vår skrik-sång\n" +
+        "Neo\n" +
+        "Adam\n" +
+        "Lilla Louwe i ledet\n" +
+        "Nacka i blodet\n" +
+        "Du vet det\n" +
+        "Nackas starkaste krigare\n" +
+        "Tills sista tåget går hem\n\n" +
+        "[Bridge]\n" +
+        "Louwe är nollsexa\n" +
+        "Liten men han står som sten\n" +
+        "jag tar hela jävla Nacka\n" +
+        "Ge mig bara en scen! (ey!)\n" +
+        "Bär våra jackor hem\n" +
+        "Men snackar som en general\n" +
+        "en dag styr jag alltihopa\n" +
+        "Nacka blir mitt eget val\n\n" +
+        "[Chorus]\n" +
+        "Vi är Nackas starkaste krigare (ey!)\n" +
+        "Från Forum upp till grå betong\n" +
+        "Vi är Nackas starkaste krigare (åh!)\n" +
+        "Vår gata\n" +
+        "Vår skrik-sång\n" +
+        "Neo\n" +
+        "Adam\n" +
+        "Lilla Louwe i ledet\n" +
+        "Nacka i blodet\n" +
+        "Du vet det\n" +
+        "Nackas starkaste krigare\n" +
+        "Tills sista tåget går hem"
 };
 // Knappar
 var playbtn = document.getElementById("Play_Pause");

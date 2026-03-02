@@ -158,6 +158,13 @@ div{
     width: 100%;
     height: 150px;
 }
+#Parker_pic {
+    background-image: url("./pictures/parker_demarcus.png");
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 150px;
+}
 #Albanian_uncle {
     background-image: url("./pictures/redeagle.png");
     background-size: cover;
