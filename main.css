@@ -109,6 +109,7 @@ div{
     width: 100%;
     height: 150px;
 }
+
 #Albanian_uncle {
     background-image: url("./pictures/redeagle.png");
     background-size: cover;
@@ -145,7 +146,7 @@ div{
     height: 150px;
 }
 #Filthy_pic {
-    background-image: url("./pictures/filthyhalo.png");
+    background-image: url("./pictures/content.png");
     background-size: cover;
     background-position: center;
     width: 100%;
