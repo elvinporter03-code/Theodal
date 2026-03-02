@@ -5,6 +5,147 @@ let active_selection : string = " ";
 let queuearray : Array<string> = [];
 let canqueue : boolean = false;
 
+const lyrics : Record<string, string> = {
+    'Albanian Bartender' : "Verse 1 Felix missed his train again\n" +
+                        "Wet cuff\n" +
+                        "Cold hands\n" +
+                        "Stumbled through a red door glow\n" +
+                        "Half past ten\n\n" +
+                        "He ordered in a quiet voice\n" +
+                        "Didn't look up first\n" +
+                        "Till he heard a low laugh say\n" +
+                        "I'll fix the thirst\n\n" +
+                        "Dark hair tied back\n" +
+                        "Name tag slightly bent\n" +
+                        "Accent like a slow song\n" +
+                        "Soft and confident\n\n" +
+                        "[Chorus]\n" +
+                        "Oh my Albanian bartender\n" +
+                        "Say my name like you remember\n" +
+                        "Every pour, every grin\n" +
+                        "Makes me wanna taste your skin\n" +
+                        "Didn't plan to stay till dawn\n" +
+                        "But your touch keeps pulling me on\n" +
+                        "Felix laughing, saying one more round\n" +
+                        "While the whole damn room spins upside down\n\n" +
+                        "[Verse 2]\n" +
+                        "You're new here? he asked\n" +
+                        "Soap on his hands\n" +
+                        "Felix traced the pattern\n" +
+                        "Of a ringless tan\n\n" +
+                        "Shared a pack of stories\n" +
+                        "By the dish room light\n" +
+                        "How he crossed an ocean\n" +
+                        "Chasing something bright\n\n" +
+                        "Felix watched his mouth move\n" +
+                        "Forgot about the rain\n" +
+                        "How a stranger wiping counters\n" +
+                        "Could make him feel this way\n\n" +
+                        "[Chorus]\n" +
+                        "Oh my Albanian bartender\n" +
+                        "Say my name like you remember\n" +
+                        "Every pour, every grin\n" +
+                        "Makes me wanna taste your skin\n" +
+                        "Didn't plan to stay till dawn\n" +
+                        "But your touch keeps pulling me on\n" +
+                        "Felix laughing, saying one more round\n" +
+                        "While the whole damn room spins upside down\n\n" +
+                        "[Bridge]\n" +
+                        "Last call\n" +
+                        "Chairs on tables\n" +
+                        "Keys around his wrist (hey)\n" +
+                        "Stay a while\n" +
+                        "he murmurs\n" +
+                        "Place is ours like this\n\n" +
+                        "Felix laughs too loudly\n" +
+                        "Heart against his ribs\n" +
+                        "As a careful\n" +
+                        "Steady hand\n" +
+                        "Finds a place on his\n\n" +
+                        "[Chorus]\n" +
+                        "Oh my Albanian bartender\n" +
+                        "You say my name like it belongs here\n" +
+                        "Every pour\n" +
+                        "Every small joke\n" +
+                        "Pulled me right over your side of the counter\n" +
+                        "Didn't know love spoke in your language\n" +
+                        "Till you answered me in a whisper\n" +
+                        "Felix walked out in the morning\n" +
+                        "But his heart stayed with the bartender",
+            'Red Eagle, Gold Chain' : "[Verse 1]\n" +
+                        "Uncle drives up from Tirana\n" +
+                        "Trunk full of bags and plans\n" +
+                        "Kisses both my cheeks\n" +
+                        "He’s laughing\n" +
+                        "Come here\n" +
+                        "Light me one\n" +
+                        "My man\n" +
+                        "\n" +
+                        "Silver ash on kitchen tiles\n" +
+                        "Rakia in a coffee cup\n" +
+                        "Gold chain shining on his chest\n" +
+                        "Says for us\n" +
+                        "It’s always up\n" +
+                        "\n" +
+                        "[Chorus]\n" +
+                        "For my Albanians (hey!)\n" +
+                        "Raise that glass and sing\n" +
+                        "Gold chain on my neck\n" +
+                        "Red eagle in my skin\n" +
+                        "All my uncles at the table\n" +
+                        "Stories loud as war\n" +
+                        "We got love for Albania\n" +
+                        "And we always want some more\n" +
+                        "\n" +
+                        "[Verse 2]\n" +
+                        "Auntie says he drinks too early\n" +
+                        "He just winks\n" +
+                        "it’s never late\n" +
+                        "Passes me the homemade bottle\n" +
+                        "Says remember where you’re made\n" +
+                        "\n" +
+                        "Balcony full of blue-grey circles\n" +
+                        "Laughter floating in the air\n" +
+                        "Every cousin\n" +
+                        "Every neighbor\n" +
+                        "Feels like I got family everywhere\n" +
+                        "\n" +
+                        "[Chorus]\n" +
+                        "For my Albanians (hey!)\n" +
+                        "Raise that glass and sing\n" +
+                        "Gold chain on my neck\n" +
+                        "Red eagle in my skin\n" +
+                        "All my uncles at the table\n" +
+                        "Stories loud as war\n" +
+                        "We got love for Albania\n" +
+                        "And we always want some more\n" +
+                        "\n" +
+                        "[Bridge]\n" +
+                        "From the village to the city (ah!)\n" +
+                        "Same toast\n" +
+                        "Same flame\n" +
+                        "We argue\n" +
+                        "Hug\n" +
+                        "Get dizzy\n" +
+                        "Still proud of our name\n" +
+                        "Rakia burns\n" +
+                        "Heart burns brighter\n" +
+                        "Every sip\n" +
+                        "We swear it’s true\n" +
+                        "If there’s smoke and if there’s laughter\n" +
+                        "Know an Albanian loves you\n" +
+                        "\n" +
+                        "[Chorus]\n" +
+                        "For my Albanians (hey!)\n" +
+                        "Raise that glass and sing\n" +
+                        "Gold chain on my neck\n" +
+                        "Red eagle in my skin\n" +
+                        "All my uncles at the table\n" +
+                        "Stories loud as war\n" +
+                        "We got love for Albania\n" +
+                        "And we always want some more\n",
+}
+
 // Knappar
 const playbtn : HTMLElement | null = document.getElementById("Play_Pause");
 const previousbtn : HTMLElement | null = document.getElementById("Previous");
@@ -15,6 +156,7 @@ const queuebtn : HTMLElement | null = document.getElementById("Queue");
 const activeq : HTMLElement | null = document.getElementById("q");
 const shufflebtn : HTMLElement | null = document.getElementById("Shuffle");
 const playing : HTMLElement | null = document.getElementById("playing");
+const box : HTMLElement | null = document.getElementById("lyrics-box");
 
 // Artister och deras musikcontainers
 const albantheobtn : HTMLElement | null = document.getElementById("albantheo"); //knappen för att visa albantheos musik
@@ -53,8 +195,7 @@ function play_song(path: string, name : string): void {
         }
 
         current_song.play();
-        const lyricsId = name.replace(/\s+/g, "_");
-        showLyricsFor(lyricsId);
+        showLyricsFor(name);
 
 
         if(playbtn !== null){
@@ -73,8 +214,7 @@ function play_song(path: string, name : string): void {
         }
 
         current_song.play();
-        const lyricsId = name.replace(/\s+/g, "_");
-        showLyricsFor(lyricsId);
+        showLyricsFor(name);
 
         return;
     } else{
@@ -88,6 +228,7 @@ function play_song(path: string, name : string): void {
 function Play_Pause(): void{ // Pause/play funktionen
     if(current_song.paused) {
         current_song.play();
+
         
 
        playbtn ? playbtn.textContent="PAUSE" : undefined;
@@ -231,159 +372,18 @@ if(stockholmstheobtn !== null && stockholmsmusik !== null){
 shufflebtn?.addEventListener("click", () => { shuffle_queue();});
 
 play2 ? play2.addEventListener("click", () => {
-    play_song(active_selection, current ? current.textContent : "error");
+    play_song(active_selection, current ? current?.textContent!.trim() : "error");
     canqueue = true;
 }) : undefined;
 
 queuebtn ? queuebtn.addEventListener("click", () => {add_to_queue(active_selection, current_title)}): undefined;
 
 function showLyricsFor(songId: string) {
-    const box = document.getElementById("lyrics-box");
     if (!box) return;
-
-    box.textContent = lyrics[songId] || "No lyrics available.";
+    box.textContent = lyrics[songId];
 }
 
-const lyrics : Record<string, string> = {
-    Albanian_bartender : "Verse 1 Felix missed his train again\n" +
-                        "Wet cuff\n" +
-                        "Cold hands\n" +
-                        "Stumbled through a red door glow\n" +
-                        "Half past ten\n\n" +
-                        "He ordered in a quiet voice\n" +
-                        "Didn't look up first\n" +
-                        "Till he heard a low laugh say\n" +
-                        "I'll fix the thirst\n\n" +
-                        "Dark hair tied back\n" +
-                        "Name tag slightly bent\n" +
-                        "Accent like a slow song\n" +
-                        "Soft and confident\n\n" +
-                        "[Chorus]\n" +
-                        "Oh my Albanian bartender\n" +
-                        "Say my name like you remember\n" +
-                        "Every pour, every grin\n" +
-                        "Makes me wanna taste your skin\n" +
-                        "Didn't plan to stay till dawn\n" +
-                        "But your touch keeps pulling me on\n" +
-                        "Felix laughing, saying one more round\n" +
-                        "While the whole damn room spins upside down\n\n" +
-                        "[Verse 2]\n" +
-                        "You're new here? he asked\n" +
-                        "Soap on his hands\n" +
-                        "Felix traced the pattern\n" +
-                        "Of a ringless tan\n\n" +
-                        "Shared a pack of stories\n" +
-                        "By the dish room light\n" +
-                        "How he crossed an ocean\n" +
-                        "Chasing something bright\n\n" +
-                        "Felix watched his mouth move\n" +
-                        "Forgot about the rain\n" +
-                        "How a stranger wiping counters\n" +
-                        "Could make him feel this way\n\n" +
-                        "[Chorus]\n" +
-                        "Oh my Albanian bartender\n" +
-                        "Say my name like you remember\n" +
-                        "Every pour, every grin\n" +
-                        "Makes me wanna taste your skin\n" +
-                        "Didn't plan to stay till dawn\n" +
-                        "But your touch keeps pulling me on\n" +
-                        "Felix laughing, saying one more round\n" +
-                        "While the whole damn room spins upside down\n\n" +
-                        "[Bridge]\n" +
-                        "Last call\n" +
-                        "Chairs on tables\n" +
-                        "Keys around his wrist (hey)\n" +
-                        "Stay a while\n" +
-                        "he murmurs\n" +
-                        "Place is ours like this\n\n" +
-                        "Felix laughs too loudly\n" +
-                        "Heart against his ribs\n" +
-                        "As a careful\n" +
-                        "Steady hand\n" +
-                        "Finds a place on his\n\n" +
-                        "[Chorus]\n" +
-                        "Oh my Albanian bartender\n" +
-                        "You say my name like it belongs here\n" +
-                        "Every pour\n" +
-                        "Every small joke\n" +
-                        "Pulled me right over your side of the counter\n" +
-                        "Didn't know love spoke in your language\n" +
-                        "Till you answered me in a whisper\n" +
-                        "Felix walked out in the morning\n" +
-                        "But his heart stayed with the bartender",
-            RedEagle : "[Verse 1]\n" +
-                        "Uncle drives up from Tirana\n" +
-                        "Trunk full of bags and plans\n" +
-                        "Kisses both my cheeks\n" +
-                        "He’s laughing\n" +
-                        "Come here\n" +
-                        "Light me one\n" +
-                        "My man\n" +
-                        "\n" +
-                        "Silver ash on kitchen tiles\n" +
-                        "Rakia in a coffee cup\n" +
-                        "Gold chain shining on his chest\n" +
-                        "Says for us\n" +
-                        "It’s always up\n" +
-                        "\n" +
-                        "[Chorus]\n" +
-                        "For my Albanians (hey!)\n" +
-                        "Raise that glass and sing\n" +
-                        "Gold chain on my neck\n" +
-                        "Red eagle in my skin\n" +
-                        "All my uncles at the table\n" +
-                        "Stories loud as war\n" +
-                        "We got love for Albania\n" +
-                        "And we always want some more\n" +
-                        "\n" +
-                        "[Verse 2]\n" +
-                        "Auntie says he drinks too early\n" +
-                        "He just winks\n" +
-                        "it’s never late\n" +
-                        "Passes me the homemade bottle\n" +
-                        "Says remember where you’re made\n" +
-                        "\n" +
-                        "Balcony full of blue-grey circles\n" +
-                        "Laughter floating in the air\n" +
-                        "Every cousin\n" +
-                        "Every neighbor\n" +
-                        "Feels like I got family everywhere\n" +
-                        "\n" +
-                        "[Chorus]\n" +
-                        "For my Albanians (hey!)\n" +
-                        "Raise that glass and sing\n" +
-                        "Gold chain on my neck\n" +
-                        "Red eagle in my skin\n" +
-                        "All my uncles at the table\n" +
-                        "Stories loud as war\n" +
-                        "We got love for Albania\n" +
-                        "And we always want some more\n" +
-                        "\n" +
-                        "[Bridge]\n" +
-                        "From the village to the city (ah!)\n" +
-                        "Same toast\n" +
-                        "Same flame\n" +
-                        "We argue\n" +
-                        "Hug\n" +
-                        "Get dizzy\n" +
-                        "Still proud of our name\n" +
-                        "Rakia burns\n" +
-                        "Heart burns brighter\n" +
-                        "Every sip\n" +
-                        "We swear it’s true\n" +
-                        "If there’s smoke and if there’s laughter\n" +
-                        "Know an Albanian loves you\n" +
-                        "\n" +
-                        "[Chorus]\n" +
-                        "For my Albanians (hey!)\n" +
-                        "Raise that glass and sing\n" +
-                        "Gold chain on my neck\n" +
-                        "Red eagle in my skin\n" +
-                        "All my uncles at the table\n" +
-                        "Stories loud as war\n" +
-                        "We got love for Albania\n" +
-                        "And we always want some more\n",
-}
+
 
 
 // Hela queuesystemet från /lib men copypasteat in här eftersom websidan inte låter oss använda imports/exports
