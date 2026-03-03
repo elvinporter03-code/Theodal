@@ -1119,6 +1119,9 @@ function play_song(path, name) {
         if (playbtn !== null) {
             playbtn.textContent = "PAUSE";
         }
+        if (playbtn.textContent = "PAUSE") {
+            playbtn.textContent = "PLAY";
+        }
         return;
     }
     // Om det är en ny låt -> Byt
@@ -1138,13 +1141,15 @@ function play_song(path, name) {
     }
 }
 function Play_Pause() {
-    if (current_song.paused) {
-        current_song.play();
-        playbtn ? playbtn.textContent = "PAUSE" : undefined;
-    }
-    else {
-        current_song.pause();
-        playbtn ? playbtn.textContent = "PLAY" : undefined;
+    if (current_song) {
+        if (current_song.paused) {
+            current_song.play();
+            playbtn ? playbtn.textContent = "PAUSE" : undefined;
+        }
+        else {
+            current_song.pause();
+            playbtn ? playbtn.textContent = "PLAY" : undefined;
+        }
     }
 }
 function skip() {
@@ -1160,7 +1165,7 @@ function skip() {
     }
 }
 function previous() {
-    current_song.currentTime = 0;
+    current_song ? current_song.currentTime = 0 : undefined;
 }
 function toggle_hide(artist) {
     if (artist.style.visibility === "visible") {
@@ -1228,7 +1233,7 @@ document.querySelectorAll(".music").forEach(function (btn) {
 if (playbtn !== null) { // Playbuttons funktion
     playbtn.addEventListener("click", function () {
         Play_Pause();
-        if (current_song.paused) {
+        if (current_song ? current_song.paused : undefined) {
             playbtn.textContent = "PLAY";
         }
         else {

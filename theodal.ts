@@ -1,5 +1,5 @@
 type Song = HTMLAudioElement;
-let current_song : Song;
+let current_song : Song | undefined;
 let current_title : string;
 let active_selection : string = " ";
 let queuearray : Array<string> = [];
@@ -1110,15 +1110,12 @@ function play_song(path: string, name : string): void {
         current_song.onended = () => { // Eventhandler för att spela upp en ny låt när den gamla är slut
             skip();
         }
-
         current_song.play();
         showLyricsFor(name);
-
-
         if(playbtn !== null){
             playbtn.textContent="PAUSE";
         }
-
+        
         return;
     }
 
@@ -1143,22 +1140,25 @@ function play_song(path: string, name : string): void {
 }
 
 function Play_Pause(): void{ // Pause/play funktionen
-    if(current_song.paused) {
-        current_song.play();
+    if(current_song){
+        if(current_song.paused) {
+            current_song.play();
 
-        
+            
 
-       playbtn ? playbtn.textContent="PAUSE" : undefined;
-    } 
-    else {
-       current_song.pause();
-       playbtn ? playbtn.textContent="PLAY" : undefined;
+        playbtn ? playbtn.textContent="PAUSE" : undefined;
+        } 
+        else {
+        current_song.pause();
+        playbtn ? playbtn.textContent="PLAY" : undefined;
+        }
     }
 }
 
 function skip(): void{ // Avslutar nuvarande låt och spelar upp nästa ur kön
     if(is_empty(q)){
         playbtn ? playbtn.textContent="PLAY": undefined;
+
     }
     play_song(head(q), queuearray[0]); 
     dequeue(q);
@@ -1170,7 +1170,7 @@ function skip(): void{ // Avslutar nuvarande låt och spelar upp nästa ur kön
 }
 
 function previous() : void{ // Starta om låten, kopplat till tillbakaknappen
-    current_song.currentTime = 0;
+    current_song ? current_song.currentTime = 0: undefined;
 }
 
 function toggle_hide(artist : HTMLElement) : void{ // Gömmer/visar element, används för att dölja/visa artisters musik
@@ -1185,7 +1185,6 @@ function toggle_hide(artist : HTMLElement) : void{ // Gömmer/visar element, anv
 }
 
 function add_to_queue(song_path: string, title : string) { 
-
     if (!current_song) {    // Om ingen låt finns alls
         play_song(song_path, title);
     } else if (current) { //queuea om låten spelas
@@ -1195,7 +1194,7 @@ function add_to_queue(song_path: string, title : string) {
     } 
 }
 
-function display_queue(){
+function display_queue(){ //visar 
     let tmp : string = " ";
     for(let i = 0; i <= queuearray.length - 1; i++) {
         tmp = tmp + queuearray[i] + '\n' ;
@@ -1247,7 +1246,7 @@ document.querySelectorAll(".music").forEach(btn => {
 if(playbtn !== null) { // Playbuttons funktion
     playbtn.addEventListener("click", () => 
         { Play_Pause();
-        if(current_song.paused) {
+        if(current_song ? current_song.paused: undefined) {
             playbtn.textContent="PLAY";
         }
         else {
