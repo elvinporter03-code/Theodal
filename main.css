@@ -98,7 +98,6 @@ div{
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 1px;
 }
-
 #Shuffle{
     position: relative;
     height: auto;
@@ -109,6 +108,20 @@ div{
     background-color: white;
 }
 .artist {
+    background-color: black;
+    color: rgb(75,0,150);
+    position: relative;
+    width: 10%;
+    height: auto;
+    font-size: 25px;
+    font-family: 'Arial', sans-serif;
+    text-shadow: 2px 2px 4px #000000;
+    padding: 20px;
+    border: 5px solid rgb(0,0,0);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgb(75,0,150);
+}
+.lista {
     background-color: black;
     color: rgb(75,0,150);
     position: relative;
@@ -140,7 +153,40 @@ div{
     padding: 20px;
     color: white;
 }
+#form {
+    text-align: center;
+    padding: 10px;
+}
 
+#input {
+    background-color: black;
+    color: rgb(75, 0, 150);
+    border: 2px solid rgb(75, 0, 150);
+    border-radius: 5px;
+    padding: 8px;
+    font-size: 16px;
+    outline: none;
+}
+
+#input::placeholder {
+    color: rgb(75, 0, 100);
+}
+
+#confirm {
+    background-color: black;
+    color: rgb(75, 0, 150);
+    border: 2px solid rgb(75, 0, 150);
+    border-radius: 5px;
+    padding: 8px 14px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 6px;
+}
+
+#confirm:hover {
+    background-color: rgb(75, 0, 75);
+    color: white;
+}
 
 #Albanian_pic {
     background-image: url("./pictures/bartender.png");
@@ -207,6 +253,10 @@ div{
     position: relative;
     font-size: 25px;
 
+}
+#SaveToPlaylist{
+    position: relative;
+    font-size: 25px;
 }
 #Activequeue{
     position: relative;

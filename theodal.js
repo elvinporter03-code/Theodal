@@ -8,10 +8,6 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     }
     return to.concat(ar || Array.prototype.slice.call(from));
 };
-var current_song;
-var active_selection = " ";
-var queuearray = [];
-var canqueue = false;
 // Alla lyrics i ett record
 var lyrics = {
     'Albanian Bartender': "Verse 1 Felix missed his train again\n" +
@@ -1070,6 +1066,11 @@ var lyrics = {
         "När världen känns grå och dagen känns för lång\n" +
         "Vill jag tillbaka till vår sång"
 };
+var current_song;
+var active_selection = " ";
+var queuearray = [];
+var canqueue = false;
+var playlists = [];
 // Knappar
 var playbtn = document.getElementById("Play_Pause");
 var previousbtn = document.getElementById("Previous");
@@ -1081,6 +1082,10 @@ var activeq = document.getElementById("q");
 var shufflebtn = document.getElementById("Shuffle");
 var playing = document.getElementById("playing");
 var box = document.getElementById("lyrics-box");
+var savetoplaylist = document.getElementById("SaveToPlaylist");
+var form = document.getElementById("form");
+var input = document.querySelector("input");
+var co_firm = document.getElementById("confirm");
 // Artister och deras musikcontainers
 var albantheobtn = document.getElementById("albantheo"); // Knappen för att visa albantheos musik
 var albanmusik = document.getElementById("albanmusik"); // Containern för musiken som vi togglar synligheten på
@@ -1102,7 +1107,15 @@ var SONGS = {
     'Sun-Kissed in Albania': './music/albanian_music/Sun-Drunk in Albania.mp3',
     'Bror Henke': './music/stockholm/Bror Henke.mp3',
     'Filthy Halo': './music/Rock/Filthy Halo.mp3',
-    'Russian Bathhouse': './music/Rock/Russian Bathhouse.mp3'
+    'Russian Bathhouse': './music/Rock/Russian Bathhouse.mp3',
+    'Loki, in a church on a Sunday': './music/freaky_country/Loki In The Lords Church.mp3',
+    'Nackas Starkaste Krigare': './music/stockholm/Nackas Starkaste Krigare.mp3',
+    'Bubblor och Ballader': './music/stockholm/Bubblor Och Ballader.mp3',
+    'Gamla Uncs på G': './music/stockholm/Gamla Uncs På G.mp3',
+    'Mustaschen och Koden': './music/stockholm/Mustaschen Och Koden.mp3',
+    'Hetast i Spelet': './music/stockholm/Hetast I Spelet.mp3',
+    'Dalahästarna': './music/stockholm/Dalahästarna.mp3',
+    'Hyllning till Bridgens': './music/stockholm/Hyllning Till Bridgens.mp3'
 };
 // Samtliga funktioner som används i logiken
 //___________________________________________
@@ -1234,6 +1247,19 @@ function shuffle_queue() {
     q = tmp;
     display_queue();
 }
+// Sparar kön i localStorage, används varje gång kön ändras
+function save_playlist() {
+    localStorage.setItem("playlist", JSON.stringify(playlists));
+}
+// Hämtar kön från localStorage, används när sidan laddas
+function load_playlist() {
+    var stored = localStorage.getItem("playlist");
+    if (stored) {
+        playlists = JSON.parse(stored);
+    }
+}
+function render_playlists() {
+}
 // Eventlisteners för låtval, kopplade till alla låtknappar och global logik
 //__________________________________________________________________________
 // För varje låtknapp, sätt active_selection till låtens namn och ändra texten i "current" till låtens namn
@@ -1252,6 +1278,24 @@ if (playbtn !== null) {
         update_play();
     });
 }
+savetoplaylist ? savetoplaylist.addEventListener("click", function () {
+    if (form)
+        form.style.display = form.style.display === "none" ? "block" : "none";
+}) : undefined;
+co_firm ? co_firm.addEventListener("click", function () {
+    var name = input ? input.value.trim() : null;
+    if (name) {
+        playlists.push({ name: name, songs: queuearray });
+        save_playlist();
+        render_playlists();
+        if (input)
+            input.value = "";
+        if (form) {
+            form.style.display = "none";
+        }
+        ;
+    }
+}) : undefined;
 previousbtn ? previousbtn.addEventListener("click", function () { previous(); }) : undefined;
 skipbtn ? skipbtn.addEventListener("click", function () { skip(); }) : undefined;
 if (albantheobtn !== null && albanmusik !== null) {
@@ -1284,6 +1328,7 @@ function showLyricsFor(songId) {
         return;
     box.textContent = lyrics[songId];
 }
+load_playlist();
 /**
  * Constructs a queue without any elements.
  * @template T type of all queue elements

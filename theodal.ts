@@ -1,8 +1,3 @@
-type Song = HTMLAudioElement;
-let current_song : Song;
-let active_selection : string = " ";
-let queuearray : Array<string> = [];
-let canqueue: boolean = false;
 // Alla lyrics i ett record
 const lyrics : Record<string, string> = {
     'Albanian Bartender' : "Verse 1 Felix missed his train again\n" +
@@ -1062,6 +1057,14 @@ const lyrics : Record<string, string> = {
                         "Vill jag tillbaka till vår sång"
 };
 
+type Song = HTMLAudioElement;
+type PlaylistData = { name: string, songs: string[] };
+let current_song : Song;
+let active_selection : string = " ";
+let queuearray : Array<string> = [];
+let canqueue: boolean = false;
+let playlists: PlaylistData[] = [];
+
 // Knappar
 const playbtn : HTMLElement | null = document.getElementById("Play_Pause");
 const previousbtn : HTMLElement | null = document.getElementById("Previous");
@@ -1073,6 +1076,10 @@ const activeq : HTMLElement | null = document.getElementById("q");
 const shufflebtn : HTMLElement | null = document.getElementById("Shuffle");
 const playing : HTMLElement | null = document.getElementById("playing");
 const box : HTMLElement | null = document.getElementById("lyrics-box");
+const savetoplaylist : HTMLElement | null = document.getElementById("SaveToPlaylist");
+const form : HTMLElement | null = document.getElementById("form");
+const input : HTMLInputElement | null = document.querySelector("input");
+const co_firm : HTMLElement | null = document.getElementById("confirm");
 
 // Artister och deras musikcontainers
 const albantheobtn : HTMLElement | null = document.getElementById("albantheo"); // Knappen för att visa albantheos musik
@@ -1096,7 +1103,15 @@ const SONGS : Record<string, string> = {
     'Sun-Kissed in Albania': './music/albanian_music/Sun-Drunk in Albania.mp3',
     'Bror Henke' : './music/stockholm/Bror Henke.mp3', 
     'Filthy Halo' : './music/Rock/Filthy Halo.mp3',
-    'Russian Bathhouse' : './music/Rock/Russian Bathhouse.mp3'
+    'Russian Bathhouse' : './music/Rock/Russian Bathhouse.mp3',
+    'Loki, in a church on a Sunday' : './music/freaky_country/Loki In The Lords Church.mp3',
+    'Nackas Starkaste Krigare' : './music/stockholm/Nackas Starkaste Krigare.mp3',
+    'Bubblor och Ballader' : './music/stockholm/Bubblor Och Ballader.mp3',
+    'Gamla Uncs på G' : './music/stockholm/Gamla Uncs På G.mp3',
+    'Mustaschen och Koden' : './music/stockholm/Mustaschen Och Koden.mp3',
+    'Hetast i Spelet' : './music/stockholm/Hetast I Spelet.mp3',
+    'Dalahästarna' : './music/stockholm/Dalahästarna.mp3',
+    'Hyllning till Bridgens' : './music/stockholm/Hyllning Till Bridgens.mp3'
 };
 
 
@@ -1225,6 +1240,7 @@ function rebuild_array(origin: Array<string>) : Array<string> {
 
     return tmp;
 }
+
 // Fisher–Yates‑shuffle
 function shuffle_array<T>(arr: Array<T>): Array<T> {
     let a = [...arr];
@@ -1248,6 +1264,23 @@ function shuffle_queue() : void {
 
     q = tmp;
     display_queue();
+}
+
+// Sparar kön i localStorage, används varje gång kön ändras
+function save_playlist() : void {
+    localStorage.setItem("playlist", JSON.stringify(playlists));
+}
+
+// Hämtar kön från localStorage, används när sidan laddas
+function load_playlist() : void {
+    const stored = localStorage.getItem("playlist");
+    if (stored) {
+        playlists = JSON.parse(stored);
+    }
+}
+
+function render_playlists() : void {
+
 }
 
 
@@ -1274,6 +1307,21 @@ if(playbtn !== null) {
         }
     );
 }
+
+savetoplaylist ? savetoplaylist.addEventListener("click", () => {
+    if (form) form.style.display = form.style.display === "none" ? "block" : "none";
+}) : undefined;
+
+co_firm ? co_firm.addEventListener("click", () => {
+    const name = input ? input.value.trim() : null;
+    if (name) {
+        playlists.push({name: name, songs: queuearray});
+        save_playlist();
+        render_playlists();
+        if (input) input.value = "";
+        if (form) {form.style.display = "none"};
+    }
+}) : undefined;
 
 previousbtn ? previousbtn.addEventListener("click", () => {previous()}) : undefined;
 
@@ -1316,6 +1364,8 @@ function showLyricsFor(songId: string) {
     if (!box) return;
     box.textContent = lyrics[songId];
 }
+
+load_playlist();
 
 
 // Hela queuesystemet från /lib men copypasteat in här eftersom websidan inte låter oss använda imports/exports

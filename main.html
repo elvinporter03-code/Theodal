@@ -15,6 +15,10 @@
 </div>
 </div>
             <div id="musicfield">
+                <div id="form" style="display:none;">
+                    <input type="text" id="input" placeholder="Namn på spellista...">
+                    <button id="confirm">Create</button>
+                </div>
                 <div class = "artist" id="albantheo">Balkan</div>
                 <div id="albanmusik" class="music_container">
                     <div class="music" id="Albanian_Bartender" data-song="./music/albanian_music/Albanian Bartender.mp3">
@@ -97,18 +101,21 @@
                         <div class="pics" id="Bridgens_pic"></div>
                         <div>Hyllning till Bridgens</div>
                     </div>
-                
-        </div>
+                </div>
+                <div id="playlists-container"></div>
+            </div>
+        
     </div>
         <div class="ctrlblock">
             <div class="ctrl" id="Play_Pause" >PLAY</div>
-            <div class="ctrl" id="Skip">-▶</div>
-            <div class="ctrl" id="Previous">◀-</div>
+            <div class="ctrl" id="Skip">▶</div>
+            <div class="ctrl" id="Previous">◀</div>
         </div>
         <div class ="qblock">
             <div class="ctrl" id="current"></div>
             <div class="ctrl" id="Play">PLAY NOW</div>
             <div class="ctrl" id="Queue">ADD TO QUEUE</div>
+            <div class="ctrl" id="SaveToPlaylist">SAVE QUEUE TO PLAYLIST</div>
             <div class="ctrl" id="Activequeue">QUEUE
                 <div id="Shuffle" class="ctrl">Shuffle</div>
                 <div id="playing_txt">Playing now:
