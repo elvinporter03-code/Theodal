@@ -9,7 +9,6 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     return to.concat(ar || Array.prototype.slice.call(from));
 };
 var current_song;
-var current_title;
 var active_selection = " ";
 var queuearray = [];
 var canqueue = false;
@@ -1120,9 +1119,7 @@ function play_song(path, name) {
         };
         current_song.play();
         showLyricsFor(name);
-        if (playbtn !== null) {
-            playbtn.textContent = "PAUSE";
-        }
+        update_play();
         return;
     }
     // Om det är en ny låt -> byt
@@ -1132,12 +1129,14 @@ function play_song(path, name) {
         current_song.onended = function () {
             skip();
         };
+        update_play();
         current_song.play();
         showLyricsFor(name);
         return;
     }
     else {
         current_song.currentTime = 0; // Om det är samma låt -> starta om
+        update_play();
         return;
     }
 }
@@ -1145,25 +1144,31 @@ function play_song(path, name) {
 function Play_Pause() {
     if (current_song.paused) {
         current_song.play();
-        playbtn ? playbtn.textContent = "PAUSE" : undefined;
     }
     else {
         current_song.pause();
-        playbtn ? playbtn.textContent = "PLAY" : undefined;
+    }
+    update_play();
+}
+// Uppdaterar Paus/Play status
+function update_play() {
+    if (playbtn) {
+        if (current_song.paused) {
+            playbtn.textContent = "PLAY";
+        }
+        else {
+            playbtn.textContent = "PAUSE";
+        }
     }
 }
 // Avslutar nuvarande låt och spelar upp nästa ur kön, kopplad till skip-knappen
 function skip() {
-    if (is_empty(q)) {
-        playbtn ? playbtn.textContent = "PLAY" : undefined;
-    }
     play_song(head(q), queuearray[0]); // Spela nästa låt i kön
     dequeue(q); // Ta bort låten som precis började spela från kön
     queuearray = rebuild_array(queuearray); // Ta bort första elementet i arrayen som håller låtnamnen i kön
-    display_queue(); // Uppdatera kön som visas på sidan
-    if (is_empty(q)) {
-        canqueue = false;
-    }
+    display_queue();
+    update_play(); // Uppdatera kön som visas på sidan
+    canqueue = false;
 }
 // Starta om låten, kopplat till tillbakaknappen
 function previous() {
@@ -1182,14 +1187,16 @@ function toggle_hide(artist) {
 }
 // Lägger till låt i kön, kopplat till queue-knappen
 function add_to_queue(song_path, title) {
-    if (!current_song) { // Om ingen låt finns alls -> spela direkt
+    if (!current_song || !canqueue) { // Om ingen låt finns alls -> spela direkt
         play_song(song_path, title);
+        canqueue = true;
     }
     else if (current) { // Queuea om låten spelas 
         enqueue(song_path, q);
         queuearray.push(current === null || current === void 0 ? void 0 : current.textContent.trim());
         display_queue();
     }
+    update_play();
 }
 // Visar kön på sidan, används varje gång kön ändras
 function display_queue() {
@@ -1242,13 +1249,7 @@ document.querySelectorAll(".music").forEach(function (btn) {
 if (playbtn !== null) {
     playbtn.addEventListener("click", function () {
         Play_Pause();
-        if (current_song.paused) {
-            playbtn.textContent = "PLAY";
-        }
-        else {
-            playbtn.textContent = "PAUSE";
-        }
-        ;
+        update_play();
     });
 }
 previousbtn ? previousbtn.addEventListener("click", function () { previous(); }) : undefined;
@@ -1276,9 +1277,8 @@ if (stockholmstheobtn !== null && stockholmsmusik !== null) {
 shufflebtn === null || shufflebtn === void 0 ? void 0 : shufflebtn.addEventListener("click", function () { shuffle_queue(); });
 play2 ? play2.addEventListener("click", function () {
     play_song(active_selection, current ? current === null || current === void 0 ? void 0 : current.textContent.trim() : "error");
-    canqueue = true;
 }) : undefined;
-queuebtn ? queuebtn.addEventListener("click", function () { add_to_queue(active_selection, current_title); }) : undefined;
+queuebtn ? queuebtn.addEventListener("click", function () { add_to_queue(active_selection, current ? current === null || current === void 0 ? void 0 : current.textContent.trim() : 'error'); }) : undefined;
 function showLyricsFor(songId) {
     if (!box)
         return;

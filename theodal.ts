@@ -1,10 +1,8 @@
 type Song = HTMLAudioElement;
 let current_song : Song;
-let current_title : string;
 let active_selection : string = " ";
 let queuearray : Array<string> = [];
-let canqueue : boolean = false;
-
+let canqueue: boolean = false;
 // Alla lyrics i ett record
 const lyrics : Record<string, string> = {
     'Albanian Bartender' : "Verse 1 Felix missed his train again\n" +
@@ -1104,28 +1102,23 @@ const SONGS : Record<string, string> = {
 
 // Samtliga funktioner som används i logiken
 //___________________________________________
-
-
 let q : Queue<string> = empty();
 
 //Spela låt, kopplad till alla låtknappar och global logik
 function play_song(path: string, name : string): void {
     const absolutePath = new URL(path, location.href).href;
     playing ? playing.textContent = name : undefined;
-
+    
     // Om ingen låt spelas -> skapa och spela
     if (!current_song) {
         current_song = new Audio(absolutePath);
         current_song.onended = () => {          // Eventhandler för att spela upp en ny låt när den gamla är slut
             skip();
         }
+
         current_song.play();
         showLyricsFor(name);
-
-        if(playbtn !== null) {
-            playbtn.textContent="PAUSE";
-        }
-        
+        update_play();
         return;
     }
 
@@ -1137,12 +1130,14 @@ function play_song(path: string, name : string): void {
             skip();
         }
 
+        update_play();
         current_song.play();
         showLyricsFor(name);
         return;
 
     } else {
         current_song.currentTime = 0;           // Om det är samma låt -> starta om
+        update_play();
         return;
     }
 }
@@ -1151,29 +1146,35 @@ function play_song(path: string, name : string): void {
 function Play_Pause(): void {
     if(current_song.paused) {
         current_song.play();
-       playbtn ? playbtn.textContent="PAUSE" : undefined;
     } 
     else {
        current_song.pause();
-       playbtn ? playbtn.textContent="PLAY" : undefined;
+    }
+    update_play();
+}
+
+// Uppdaterar Paus/Play status
+function update_play() {
+    if(playbtn) {
+        if(current_song.paused) {
+            playbtn.textContent = "PLAY";
+        } 
+        else {
+            playbtn.textContent = "PAUSE";
+        }
     }
 }
 
 // Avslutar nuvarande låt och spelar upp nästa ur kön, kopplad till skip-knappen
 function skip(): void {
-    if(is_empty(q)) {
-        playbtn ? playbtn.textContent="PLAY" : undefined;
-    }
-
     play_song(head(q), queuearray[0]);          // Spela nästa låt i kön
     dequeue(q);                                 // Ta bort låten som precis började spela från kön
     queuearray = rebuild_array(queuearray);     // Ta bort första elementet i arrayen som håller låtnamnen i kön
-    display_queue();                            // Uppdatera kön som visas på sidan
-    
-    if(is_empty(q)) {
-        canqueue = false;
-    }
+    display_queue();   
+    update_play();                         // Uppdatera kön som visas på sidan
+    canqueue = false;
 }
+
 // Starta om låten, kopplat till tillbakaknappen
 function previous() : void { 
     current_song.currentTime = 0;
@@ -1191,14 +1192,16 @@ function toggle_hide(artist : HTMLElement) : void {
 }
 // Lägger till låt i kön, kopplat till queue-knappen
 function add_to_queue(song_path: string, title : string) { 
-    if (!current_song) {                        // Om ingen låt finns alls -> spela direkt
+    if (!current_song || !canqueue) {                   // Om ingen låt finns alls -> spela direkt
         play_song(song_path, title);
+        canqueue = true;
     } 
     else if (current) {                         // Queuea om låten spelas 
         enqueue(song_path, q);
         queuearray.push(current?.textContent!.trim());
         display_queue();
     } 
+    update_play();
 }
 
 // Visar kön på sidan, används varje gång kön ändras
@@ -1267,13 +1270,7 @@ document.querySelectorAll(".music").forEach(btn => {
 if(playbtn !== null) { 
     playbtn.addEventListener("click", () => { 
         Play_Pause();
-
-        if(current_song.paused) {
-            playbtn.textContent="PLAY";
-        }
-        else {
-            playbtn.textContent="PAUSE";
-        };
+        update_play();
         }
     );
 }
@@ -1311,10 +1308,9 @@ shufflebtn?.addEventListener("click", () => { shuffle_queue();});
 
 play2 ? play2.addEventListener("click", () => {
     play_song(active_selection, current ? current?.textContent!.trim() : "error");
-    canqueue = true;
 }) : undefined;
 
-queuebtn ? queuebtn.addEventListener("click", () => {add_to_queue(active_selection, current_title)}): undefined;
+queuebtn ? queuebtn.addEventListener("click", () => {add_to_queue(active_selection, current ? current?.textContent!.trim() : 'error');}): undefined;
 
 function showLyricsFor(songId: string) {
     if (!box) return;
