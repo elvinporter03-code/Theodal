@@ -1123,9 +1123,6 @@ function play_song(path, name) {
         if (playbtn !== null) {
             playbtn.textContent = "PAUSE";
         }
-        if (playbtn.textContent = "PAUSE") {
-            playbtn.textContent = "PLAY";
-        }
         return;
     }
     // Om det är en ny låt -> byt
@@ -1146,15 +1143,13 @@ function play_song(path, name) {
 }
 // Pausa/play funktion, kopplad till play/pause-knappen
 function Play_Pause() {
-    if (current_song) {
-        if (current_song.paused) {
-            current_song.play();
-            playbtn ? playbtn.textContent = "PAUSE" : undefined;
-        }
-        else {
-            current_song.pause();
-            playbtn ? playbtn.textContent = "PLAY" : undefined;
-        }
+    if (current_song.paused) {
+        current_song.play();
+        playbtn ? playbtn.textContent = "PAUSE" : undefined;
+    }
+    else {
+        current_song.pause();
+        playbtn ? playbtn.textContent = "PLAY" : undefined;
     }
 }
 // Avslutar nuvarande låt och spelar upp nästa ur kön, kopplad till skip-knappen
@@ -1172,7 +1167,7 @@ function skip() {
 }
 // Starta om låten, kopplat till tillbakaknappen
 function previous() {
-    current_song ? current_song.currentTime = 0 : undefined;
+    current_song.currentTime = 0;
 }
 // Gömmer/visar element, används för att dölja/visa artisters musik
 function toggle_hide(artist) {
@@ -1247,7 +1242,7 @@ document.querySelectorAll(".music").forEach(function (btn) {
 if (playbtn !== null) {
     playbtn.addEventListener("click", function () {
         Play_Pause();
-        if (current_song ? current_song.paused : undefined) {
+        if (current_song.paused) {
             playbtn.textContent = "PLAY";
         }
         else {
