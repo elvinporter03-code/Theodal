@@ -243,11 +243,15 @@ div{
 /* KÖ */
 
 .qblock{
-    position: fixed;
+    position: absolute;
     right: 0%;
     top: 0%;
-    height: 100%;
+    height: auto;
+    min-height: 500px;
     width: 15%;
+    background-color: black;
+    box-shadow: 0 0 10px rgb(75,0,150);
+    border: 5px solid rgb(0,0,0);
 }
 
 #current{
@@ -284,7 +288,8 @@ div{
     position: relative;
     border-radius: 0px;
     width: 100%;
-    height: 100%;
+    height: auto;
+    min-height: 500px;
 }
 
 #q{
