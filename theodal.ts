@@ -266,7 +266,90 @@ const lyrics : Record<string, string> = {
                         "City mail boy with a country drawl\n" +
                         "When he says \"special handling\"\n" +
                         "You know he means it all",
-    'Gustav Got a boyfriend' : "No lyrics available for this one, sorry!",
+    'Gustav Got a boyfriend' : "[Verse 1]\n" +
+                        "Gustav in his Sunday shirt\n" +
+                        "Buttoned up tight to the throat\n" +
+                        "Smiling at the mirror like\n" +
+                        "\"Boy\n" +
+                        "You better rock this coat\"\n" +
+                        "Mama pouring coffee says\n" +
+                        "\"Baby\n" +
+                        "Something on your mind?\"\n" +
+                        "He says \"Yeah\n" +
+                        "I like my whiskey\n" +
+                        "But I like him more this time\" (woo)\n\n" +
+                        "[Chorus]\n" +
+                        "Gustav got a boyfriend\n" +
+                        "Hallelujah\n" +
+                        "Amen\n" +
+                        "Riding in his truck with his new best friend\n" +
+                        "Hand on his knee at the red light grinning\n" +
+                        "Two dudes kissing and the whole world spinning\n" +
+                        "Gustav got a boyfriend\n" +
+                        "Loud and proud tonight\n" +
+                        "Boots on the dash and his shirt skin-tight\n" +
+                        "If you wanna talk about love\n" +
+                        "That's him all right\n" +
+                        "Gustav got a boyfriend\n" +
+                        "Gustav got a boyfriend\n\n" +
+                        "[Verse 2]\n" +
+                        "Daddy at the barbecue\n" +
+                        "Flippin' burgers\n" +
+                        "Sayin' grace\n" +
+                        "Gustav pulls up\n" +
+                        "Windows down\n" +
+                        "Rainbow hanging off the plate\n" +
+                        "Out steps trouble in a crop top\n" +
+                        "Cutoff jeans\n" +
+                        "Crooked smile\n" +
+                        "Says \"Sir\n" +
+                        "I'm the reason\n" +
+                        "Your son been glowing for a while\" (oh yeah)\n\n" +
+                        "[Chorus]\n" +
+                        "Gustav got a boyfriend\n" +
+                        "Hallelujah\n" +
+                        "Amen\n" +
+                        "Riding in his truck with his new best friend\n" +
+                        "Hand on his thigh in the driveway laughing\n" +
+                        "Two dudes dancing and the neighbors gasping\n" +
+                        "Gustav got a boyfriend\n" +
+                        "Loud and proud tonight\n" +
+                        "Boots on the dash and his shirt skin-tight\n" +
+                        "If you wanna talk about love\n" +
+                        "That's him all right\n" +
+                        "Gustav got a boyfriend\n" +
+                        "Gustav got a boyfriend\n\n" +
+                        "[Bridge]\n" +
+                        "He used to hide his heart\n" +
+                        "Like a flask under the seat\n" +
+                        "Now he's pouring it out\n" +
+                        "Right there in the street\n" +
+                        "Boyfriend on his lap\n" +
+                        "In the cab\n" +
+                        "In the yard\n" +
+                        "Every kiss like\n" +
+                        "\"Damn\n" +
+                        "Who knew I could love this hard?\" (hey!)\n\n" +
+                        "[Chorus]\n" +
+                        "Gustav got a boyfriend\n" +
+                        "Hallelujah\n" +
+                        "Amen\n" +
+                        "Riding in his truck with his brand-new man\n" +
+                        "Hand in his hand in the bright church parking\n" +
+                        "Two dudes laughing while the whole town's talking\n" +
+                        "Gustav got a boyfriend\n" +
+                        "Loud and proud tonight\n" +
+                        "Boots on the dash and his shirt skin-tight\n" +
+                        "If you wanna talk about love\n" +
+                        "That's him all right\n" +
+                        "Gustav got a boyfriend\n" +
+                        "Gustav got a boyfriend\n\n" +
+                        "[Outro]\n" +
+                        "Yeah\n" +
+                        "Raise that glass up high\n" +
+                        "To the boy at his side\n" +
+                        "Gustav got a boyfriend\n" +
+                        "For the rest of the ride (woo)\n",
     'Filthy Halo' : "[Verse 1]\n" +
                         "Gustav's got that crooked grin,\n" +
                         "Sin on his mouth, pulling me in.\n" +
@@ -1065,6 +1148,7 @@ let queuearray : Array<string> = [];
 let canqueue: boolean = false;
 let playlists: PlaylistData[] = [];
 let rep = false;
+let repqueue = false;
 
 // Knappar
 const playbtn : HTMLElement | null = document.getElementById("Play_Pause");
@@ -1082,6 +1166,7 @@ const form : HTMLElement | null = document.getElementById("form");
 const input : HTMLInputElement | null = document.querySelector("input");
 const co_firm : HTMLElement | null = document.getElementById("confirm");
 const repBtn : HTMLElement | null = document.getElementById("repBtn");
+const repQBTN : HTMLElement | null = document.getElementById("repQBTN");
 
 // Artister och deras musikcontainers
 const albantheobtn : HTMLElement | null = document.getElementById("albantheo"); // Knappen för att visa albantheos musik
@@ -1094,6 +1179,8 @@ const poptheobtn : HTMLElement | null = document.getElementById("poptheo"); // K
 const popmusik : HTMLElement | null = document.getElementById("popmusik"); // Containern för musiken som vi togglar synligheten på
 const stockholmstheobtn : HTMLElement | null = document.getElementById("stockholmstheo"); // Knappen för att visa stockholms musik
 const stockholmsmusik : HTMLElement | null = document.getElementById("stockholmsmusik"); // Containern för musiken som vi togglar synligheten på
+const ittheobtn : HTMLElement | null = document.getElementById("ittheo"); // Knappen för att visa ittheos musik
+const itmusik : HTMLElement | null = document.getElementById("itmusik"); // Containern för musiken som vi togglar synligheten på
 
 // Låtar i musikbiblioteket, används för att hitta rätt sökväg för shuffle och queue
 const SONGS: Record<string, string> = {
@@ -1114,6 +1201,7 @@ const SONGS: Record<string, string> = {
     'Bror Henke':                   './music/stockholm/Bror Henke.mp3',
     'Nackas Starkaste Krigare':     './music/stockholm/Nackas Starkaste Krigare.mp3',
     'Hyllning till Bridgens':       './music/stockholm/Bridgens Hus.mp3',
+    'Rest In Kir':                  './music/IT/Rest In Kir.mp3',  
 };
 
 
@@ -1132,7 +1220,7 @@ function play_song(path: string, name : string): void {
     if (!current_song) {
         current_song = new Audio(absolutePath);
         current_song.onended = () => {          // Eventhandler för att spela upp en ny låt när den gamla är slut
-            skip();
+            skip(name);
         }
 
         current_song.play();
@@ -1146,7 +1234,7 @@ function play_song(path: string, name : string): void {
         current_song.pause();
         current_song = new Audio(absolutePath);
         current_song.onended = () => {          // Eventhandler för att spela upp en ny låt när den gamla är slut
-            skip();
+            skip(name);
         }
 
         update_play();
@@ -1187,14 +1275,21 @@ function update_play() {
 }
 
 // Avslutar nuvarande låt och spelar upp nästa ur kön, kopplad till skip-knappen
-function skip(): void {
+function skip(last: string): void {
     if (rep) {
         current_song.currentTime = 0;
         current_song.play();
     }
-    else {  
+    else {
+        if (repqueue) {
+            enqueue(SONGS[last], q);                       // Om repeat queue är på, lägg till låten som precis spelade i slutet av kön igen
+            queuearray.push(last);
+            display_queue();
+        }
+
         if (is_empty(q)) {
             canqueue = false;                      // Om kön är tom > ingen låt att köa, så kan inte queuea
+            playing ? playing.textContent = " " : undefined;
             return;
         }
 
@@ -1203,9 +1298,6 @@ function skip(): void {
         queuearray = rebuild_array(queuearray);     // Ta bort första elementet i arrayen som håller låtnamnen i kön
         display_queue();   
         update_play();                         // Uppdatera kön som visas på sidan
-    }
-    current_song.onended = () => {
-        playing ? playing.textContent = " " : undefined;    
     }
 }
 
@@ -1234,7 +1326,7 @@ function add_to_queue(song_path: string, title : string) {
     } 
     else if (current) {                         // Queuea om låten spelas 
         enqueue(song_path, q);
-        queuearray.push(current?.textContent!.trim());
+        queuearray.push(title);
         display_queue();
     } 
 
@@ -1398,8 +1490,12 @@ savetoplaylist ? savetoplaylist.addEventListener("click", () => {
 // Form för att spara playlist, kopplat till "confirm"-knappen i formet
 co_firm ? co_firm.addEventListener("click", () => {
     const name = input ? input.value.trim() : null;
-    if (name) {
-        playlists.push({name: name, songs: queuearray});
+    const currentsongname = playing ? playing?.textContent : null;
+    const quecopy = [...queuearray];
+    
+    if (name && currentsongname) {
+        quecopy.unshift(currentsongname);
+        playlists.push({name: name, songs: quecopy});
         save_playlist();
         render_playlists();
         if (input) input.value = "";
@@ -1418,9 +1514,20 @@ repBtn ? repBtn.addEventListener("click", () => {
     }
 }) : undefined;
 
+repQBTN ? repQBTN.addEventListener("click", () => {
+    if (repqueue) {
+        repqueue = false;
+        repQBTN.textContent = "REPEAT QUEUE OFF";
+    } 
+    else {
+        repqueue = true;
+        repQBTN.textContent = "REPEAT QUEUE ON";
+    }
+}) : undefined;
+
 previousbtn ? previousbtn.addEventListener("click", () => {previous()}) : undefined;
 
-skipbtn ? skipbtn.addEventListener("click", () => {skip()}) : undefined;
+skipbtn ? skipbtn.addEventListener("click", () => {skip(playing ? playing.textContent : "error")}) : undefined;
 
 if(albantheobtn !== null && albanmusik !== null) {
     albantheobtn.addEventListener("click", () => {toggle_hide(albanmusik)});
@@ -1445,6 +1552,11 @@ if(poptheobtn !== null && popmusik !== null) {
 if(stockholmstheobtn !== null && stockholmsmusik !== null) {
     stockholmstheobtn.addEventListener("click", () => {toggle_hide(stockholmsmusik)});
     toggle_hide(stockholmsmusik);
+}
+
+if(ittheobtn !== null && itmusik !== null) {
+    ittheobtn.addEventListener("click", () => {toggle_hide(itmusik)});
+    toggle_hide(itmusik);
 }
 
 shufflebtn?.addEventListener("click", () => { shuffle_queue();});
@@ -1528,5 +1640,3 @@ render_playlists();
     const head_index = q[0];
     q[0] = head_index + 1;
 }
-
-

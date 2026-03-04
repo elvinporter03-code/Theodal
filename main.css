@@ -81,6 +81,11 @@ div{
     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
     gap: 1px;
 }
+#itmusik {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1px;
+}
 
 .musiccontainer{
     display: grid;
@@ -171,6 +176,9 @@ div{
 }
 #Bridgens_pic{
     background-image: url("./pictures/bridgens.webp");
+}
+#IT1PIC{
+    background-image: url("./pictures/IT1.png");
 }
 
 /* KNAPPAR */
@@ -264,7 +272,15 @@ div{
     font-size: 25px;
 }
 
+#repQBTN {
+    margin-top: 2%;
+    margin-bottom: 2%;
+    position: relative;
+    font-size: 25px;
+}
+
 #Activequeue{
+    margin-top: 10%;
     position: relative;
     border-radius: 0px;
     width: 100%;
