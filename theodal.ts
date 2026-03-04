@@ -1137,7 +1137,100 @@ const lyrics : Record<string, string> = {
                         "Åh Bridgens Hus, där skrattet aldrig tog slut\n" +
                         "Vi lovade vi skulle komma hit igen nån minut\n" +
                         "När världen känns grå och dagen känns för lång\n" +
-                        "Vill jag tillbaka till vår sång"
+                        "Vill jag tillbaka till vår sång",
+        'Rest In Kir':  "[Vers 1]\n" +
+                        "Vinröda ben genom slasket,\n" +
+                        "Men allt är kanon\n" +
+                        "Vinröd åvve på \n" +
+                        "Luktar fest och nation\n" +
+                        "Men vi är klara i knoppen\n" +
+                        "Tio fingrar på tangent\n" +
+                        "Vi spränger alltid stocken\n" +
+                        "Vi får det att lukta bränt\n" +
+                        "\n" +
+                        "Kirfläckar på mitt programblock\n" +
+                        "Skrattar\n" +
+                        "Någon snubblar uppför trappan\n" +
+                        "Ingen fattar\n" +
+                        "\"pushar du till Git eller baren först?\"\n" +
+                        "Vi har staden i vår hand\n" +
+                        "Med kir vi släcker vår törst\n" +
+                        "\n" +
+                        "[Chorus]\n" +
+                        "Vad vill vi ha? \n" +
+                        "Honung!\n" +
+                        "Vart vill vi ha det? \n" +
+                        "IT!\n" +
+                        "IT!\n" +
+                        "IT!\n" +
+                        "Söta små buggar i burkar\n" +
+                        "Vi jagar dem tills de flyr\n" +
+                        "Vad vill vi ha? \n" +
+                        "Honung!\n" +
+                        "Vart vill vi ha det? \n" +
+                        "IT!\n" +
+                        "IT!\n" +
+                        "IT!\n" +
+                        "Vi bygger vår värld i backend\n" +
+                        "Och stannar tills morgonen gryr (hey!)\n" +
+                        "\n" +
+                        "[Vers 2]\n" +
+                        "Föreläsarsal blir dansgolv efter ett\n" +
+                        "Whiteboard full av skämt\n" +
+                        "Inget är rätt\n" +
+                        "Kod och python blandas med skrål och sång\n" +
+                        "Vi deklarerar vår frihet hela natten lång\n" +
+                        "\n" +
+                        "Kalla burkar i en tygpåse\n" +
+                        "Klirrar\n" +
+                        "Någon ropar \"mer volym\"\n" +
+                        "Hela korridoren vibrar\n" +
+                        "Deadline måndag men det löser sig tro\n" +
+                        "Av kir och öl vi kan aldrig få nog\n" +
+                        "\n" +
+                        "[Chorus]\n" +
+                        "Vad vill vi ha? \n" +
+                        "Honung!\n" +
+                        "Vart vill vi ha det? \n" +
+                        "IT!\n" +
+                        "IT!\n" +
+                        "IT!\n" +
+                        "Söta små buggar i burkar\n" +
+                        "Vi jagar dem tills de flyr\n" +
+                        "Vad vill vi ha? \n" +
+                        "Honung!\n" +
+                        "Vart vill vi ha det? \n" +
+                        "IT!\n" +
+                        "IT!\n" +
+                        "IT!\n" +
+                        "Vi bygger vår värld i backend\n" +
+                        "Och stannar tills morgonen gryr (hey!)\n" +
+                        "\n" +
+                        "[Bridge]\n" +
+                        "Vem behöver sömn när servern lyser? (ey!)\n" +
+                        "Vem håller i takten när schemat fryser?\n" +
+                        "Vi är dom som kan den\n" +
+                        "Vi som alltid hittar ett sätt\n" +
+                        "Uppsala i handen\n" +
+                        "Vi släpper den inte så lätt\n" +
+                        "\n" +
+                        "[Chorus]\n" +
+                        "Vad vill vi ha? \n" +
+                        "Honung!\n" +
+                        "Vart vill vi ha det? \n" +
+                        "IT!\n" +
+                        "IT!\n" +
+                        "IT!\n" +
+                        "Söta små buggar i burkar\n" +
+                        "Vi jagar dem tills de flyr\n" +
+                        "Vad vill vi ha? \n" +
+                        "Honung!\n" +
+                        "Vart vill vi ha det? \n" +
+                        "IT!\n" +
+                        "IT!\n" +
+                        "IT!\n" +
+                        "Vi bygger vår värld i backend\n" +
+                        "Och stannar tills morgonen gryr (hey!)\n",
 };
 
 type Song = HTMLAudioElement;
