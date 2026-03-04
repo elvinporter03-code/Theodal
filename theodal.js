@@ -1194,6 +1194,9 @@ function skip() {
         display_queue();
         update_play(); // Uppdatera kön som visas på sidan
     }
+    current_song.onended = function () {
+        playing ? playing.textContent = " " : undefined;
+    };
 }
 // Starta om låten, kopplat till tillbakaknappen
 function previous() {
@@ -1227,7 +1230,7 @@ function add_to_queue(song_path, title) {
 function display_queue() {
     var tmp = " ";
     for (var i = 0; i <= queuearray.length - 1; i++) {
-        tmp = tmp + queuearray[i] + '\n'; // Bygger en sträng av låtarna i kön, separerade med rad
+        tmp = tmp + (i + 1) + ". " + queuearray[i] + '\n'; // Bygger en sträng av låtarna i kön, separerade med rad
     }
     activeq ? activeq.textContent = tmp : undefined;
 }
@@ -1285,17 +1288,17 @@ function render_playlists() {
         // Bygger en sträng av låtarna i spellistan, separerade med rad
         var tmp = " ";
         for (var i_1 = 0; i_1 <= playlist.songs.length - 1; i_1++) {
-            tmp = tmp + playlist.songs[i_1] + '\n';
+            tmp = tmp + (i_1 + 1) + ". " + playlist.songs[i_1] + '\n';
         }
         list.textContent = tmp;
         //Event listener för att ladda listan
         var loadBtn = document.createElement("div");
-        loadBtn.className = "ctrl";
+        loadBtn.className = "load-btn";
         loadBtn.textContent = "LOAD TO QUEUE";
         loadBtn ? loadBtn.addEventListener("click", function () { load_playlist_to_queue(playlist); }) : undefined;
         //Event listener för att radera listan
         var deleteBtn = document.createElement("div");
-        deleteBtn.className = "ctrl";
+        deleteBtn.className = "delete-btn";
         deleteBtn.textContent = "DELETE";
         deleteBtn ? deleteBtn.addEventListener("click", function () {
             playlists.splice(i, 1);
@@ -1340,7 +1343,7 @@ document.querySelectorAll(".music").forEach(function (btn) {
     });
 });
 // Eventlisteners för knapparna
-// Plat/pause funktion
+// Play/pause funktion
 if (playbtn !== null) {
     playbtn.addEventListener("click", function () {
         Play_Pause();

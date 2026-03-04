@@ -1170,6 +1170,7 @@ function Play_Pause(): void {
     else {
        current_song.pause();
     }
+    
     update_play();
 }
 
@@ -1202,6 +1203,9 @@ function skip(): void {
         queuearray = rebuild_array(queuearray);     // Ta bort första elementet i arrayen som håller låtnamnen i kön
         display_queue();   
         update_play();                         // Uppdatera kön som visas på sidan
+    }
+    current_song.onended = () => {
+        playing ? playing.textContent = " " : undefined;    
     }
 }
 
@@ -1242,7 +1246,7 @@ function display_queue() {
     let tmp : string = " ";
 
     for(let i = 0; i <= queuearray.length - 1; i++) {
-        tmp = tmp + queuearray[i] + '\n' ;       // Bygger en sträng av låtarna i kön, separerade med rad
+        tmp = tmp + (i + 1) + ". " + queuearray[i] + '\n' ;       // Bygger en sträng av låtarna i kön, separerade med rad
     }
 
     activeq ? activeq.textContent = tmp : undefined;
@@ -1317,19 +1321,19 @@ function render_playlists() : void {
         // Bygger en sträng av låtarna i spellistan, separerade med rad
         let tmp : string = " ";
         for(let i = 0; i <= playlist.songs.length - 1; i++) {
-            tmp = tmp + playlist.songs[i] + '\n' ; 
+            tmp = tmp + (i + 1) + ". " + playlist.songs[i] + '\n' ; 
         }
         list.textContent = tmp;
         
         //Event listener för att ladda listan
         const loadBtn = document.createElement("div");
-        loadBtn.className = "ctrl";
+        loadBtn.className = "load-btn";
         loadBtn.textContent = "LOAD TO QUEUE";
         loadBtn ? loadBtn.addEventListener("click", () => {load_playlist_to_queue(playlist)}) : undefined;
 
          //Event listener för att radera listan
         const deleteBtn = document.createElement("div");
-        deleteBtn.className = "ctrl";
+        deleteBtn.className = "delete-btn";
         deleteBtn.textContent = "DELETE";
         deleteBtn ? deleteBtn.addEventListener("click", () => {
             playlists.splice(i, 1);
@@ -1377,7 +1381,7 @@ document.querySelectorAll(".music").forEach(btn => {
 
 // Eventlisteners för knapparna
 
-// Plat/pause funktion
+// Play/pause funktion
 if(playbtn !== null) { 
     playbtn.addEventListener("click", () => { 
         Play_Pause();
