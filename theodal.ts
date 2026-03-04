@@ -1233,6 +1233,11 @@ const lyrics : Record<string, string> = {
                         "Och stannar tills morgonen gryr (hey!)\n",
 };
 
+
+
+
+
+// Globala variabler
 type Song = HTMLAudioElement;
 type PlaylistData = { name: string, songs: string[] };
 let current_song : Song;
@@ -1242,6 +1247,12 @@ let canqueue: boolean = false;
 let playlists: PlaylistData[] = [];
 let rep = false;
 let repqueue = false;
+let q : Queue<string> = empty();
+
+
+
+
+
 
 // Knappar
 const playbtn : HTMLElement | null = document.getElementById("Play_Pause");
@@ -1261,6 +1272,11 @@ const co_firm : HTMLElement | null = document.getElementById("confirm");
 const repBtn : HTMLElement | null = document.getElementById("repBtn");
 const repQBTN : HTMLElement | null = document.getElementById("repQBTN");
 
+
+
+
+
+
 // Artister och deras musikcontainers
 const albantheobtn : HTMLElement | null = document.getElementById("albantheo"); // Knappen för att visa albantheos musik
 const albanmusik :  HTMLElement | null = document.getElementById("albanmusik"); // Containern för musiken som vi togglar synligheten på
@@ -1274,6 +1290,11 @@ const stockholmstheobtn : HTMLElement | null = document.getElementById("stockhol
 const stockholmsmusik : HTMLElement | null = document.getElementById("stockholmsmusik"); // Containern för musiken som vi togglar synligheten på
 const ittheobtn : HTMLElement | null = document.getElementById("ittheo"); // Knappen för att visa ittheos musik
 const itmusik : HTMLElement | null = document.getElementById("itmusik"); // Containern för musiken som vi togglar synligheten på
+
+
+
+
+
 
 // Låtar i musikbiblioteket, används för att hitta rätt sökväg för shuffle och queue
 const SONGS: Record<string, string> = {
@@ -1298,11 +1319,15 @@ const SONGS: Record<string, string> = {
 };
 
 
+
+
+
 // Samtliga funktioner som används i logiken
 //___________________________________________
 
 
-let q : Queue<string> = empty();
+
+
 
 //Spela låt, kopplad till alla låtknappar och global logik
 function play_song(path: string, name : string): void {
@@ -1313,7 +1338,7 @@ function play_song(path: string, name : string): void {
     if (!current_song) {
         current_song = new Audio(absolutePath);
         current_song.onended = () => {          // Eventhandler för att spela upp en ny låt när den gamla är slut
-            skip(name);
+            skip(name, true);
         }
 
         current_song.play();
@@ -1327,7 +1352,7 @@ function play_song(path: string, name : string): void {
         current_song.pause();
         current_song = new Audio(absolutePath);
         current_song.onended = () => {          // Eventhandler för att spela upp en ny låt när den gamla är slut
-            skip(name);
+            skip(name, true);
         }
 
         update_play();
@@ -1347,8 +1372,7 @@ function play_song(path: string, name : string): void {
 function Play_Pause(): void {
     if(current_song.paused) {
         current_song.play();
-    } 
-    else {
+    } else {
        current_song.pause();
     }
     
@@ -1360,20 +1384,18 @@ function update_play() {
     if(playbtn) {
         if(current_song.paused) {
             playbtn.textContent = "PLAY";
-        } 
-        else {
+        } else {
             playbtn.textContent = "PAUSE";
         }
     }
 }
 
 // Avslutar nuvarande låt och spelar upp nästa ur kön, kopplad till skip-knappen
-function skip(last: string): void {
+function skip(last: string, auto: boolean = false): void {
     if (rep) {
         current_song.currentTime = 0;
         current_song.play();
-    }
-    else {
+    } else {
         if (repqueue) {
             enqueue(SONGS[last], q);                       // Om repeat queue är på, lägg till låten som precis spelade i slutet av kön igen
             queuearray.push(last);
@@ -1382,7 +1404,9 @@ function skip(last: string): void {
 
         if (is_empty(q)) {
             canqueue = false;                      // Om kön är tom > ingen låt att köa, så kan inte queuea
-            playing ? playing.textContent = " " : undefined;
+            if (auto) {
+                playing ? playing.textContent = " " : undefined;  // Rensa endast om låten tog slut naturligt
+            }
             return;
         }
 
@@ -1404,8 +1428,7 @@ function toggle_hide(artist : HTMLElement) : void {
     if(artist.style.visibility === "visible") {
         artist.style.visibility = "hidden";
         artist.style.height = "1px";
-    }
-    else {
+    } else {
         artist.style.height = "auto";
         artist.style.visibility = "visible";
     }
@@ -1416,8 +1439,7 @@ function add_to_queue(song_path: string, title : string) {
     if (!current_song || !canqueue) {                   // Om ingen låt finns alls > spela direkt
         play_song(song_path, title);
         canqueue = true;
-    } 
-    else if (current) {                         // Queuea om låten spelas 
+    } else if (current) {                         // Queuea om låten spelas 
         enqueue(song_path, q);
         queuearray.push(title);
         display_queue();
@@ -1449,7 +1471,7 @@ function rebuild_array(origin: Array<string>) : Array<string> {
 }
 
 // Fisher–Yates‑shuffle
-function shuffle_array<T>(arr: Array<T>): Array<T> {
+function shuffle_array<T>(arr: Array<T>) : Array<T> {
     let a = [...arr];
 
     for (let i = a.length - 1; i > 0; i--) {       
@@ -1473,6 +1495,12 @@ function shuffle_queue() : void {
     display_queue();
 }
 
+//Visar låttexter, kopplat till att spela låtar
+function showLyricsFor(songId: string) {
+    if (!box) return;
+    box.textContent = lyrics[songId];
+}
+
 // Sparar kön i localStorage, används varje gång kön ändras
 function save_playlist() : void {
     localStorage.setItem("playlist", JSON.stringify(playlists));
@@ -1486,11 +1514,12 @@ function load_playlist() : void {
     }
 }
 
+// Renderar spellistorna på sidan
 function render_playlists() : void {
     const container = document.getElementById("playlists-container");
     container ? container.innerHTML = "" : undefined;
 
-    //För varje spellista
+    // För varje spellista
     for (let i = 0; i < playlists.length; i++) {
         let playlist = playlists[i];
 
@@ -1505,9 +1534,11 @@ function render_playlists() : void {
 
         // Bygger en sträng av låtarna i spellistan, separerade med rad
         let tmp : string = " ";
+
         for(let i = 0; i <= playlist.songs.length - 1; i++) {
             tmp = tmp + (i + 1) + ". " + playlist.songs[i] + '\n' ; 
         }
+
         list.textContent = tmp;
         
         //Event listener för att ladda listan
@@ -1537,22 +1568,26 @@ function render_playlists() : void {
     };
 }
 
+// Laddar en spellista till kön
 function load_playlist_to_queue(playlist: PlaylistData) : void {
     playlist.songs.forEach(name => {
         const path = SONGS[name];
+        
         if (path) {
             add_to_queue(path, name)
         }
     });
 }
 
-function showLyricsFor(songId: string) {
-    if (!box) return;
-    box.textContent = lyrics[songId];
-}
+
+
+
 
 // Eventlisteners för låtval, kopplade till alla låtknappar och global logik
 //__________________________________________________________________________
+
+
+
 
 
 // För varje låtknapp, sätt active_selection till låtens namn och ändra texten i "current" till låtens namn
@@ -1564,15 +1599,12 @@ document.querySelectorAll(".music").forEach(btn => {
     });
 });
 
-// Eventlisteners för knapparna
-
 // Play/pause funktion
 if(playbtn !== null) { 
     playbtn.addEventListener("click", () => { 
         Play_Pause();
         update_play();
-        }
-    );
+    });
 }
 
 // Visa/dölj form för att spara playlist, kopplat till "spara till playlist"-knappen
@@ -1591,7 +1623,7 @@ co_firm ? co_firm.addEventListener("click", () => {
         playlists.push({name: name, songs: quecopy});
         save_playlist();
         render_playlists();
-        if (input) input.value = "";
+        if (input) {input.value = ""};
         if (form) {form.style.display = "none"};
     }
 }) : undefined;
@@ -1600,8 +1632,7 @@ repBtn ? repBtn.addEventListener("click", () => {
     if (rep) {
         rep = false;
         repBtn.textContent = "REPEAT OFF";
-    } 
-    else {
+    } else {
         rep = true;
         repBtn.textContent = "REPEAT ON";
     }
@@ -1611,8 +1642,7 @@ repQBTN ? repQBTN.addEventListener("click", () => {
     if (repqueue) {
         repqueue = false;
         repQBTN.textContent = "REPEAT QUEUE OFF";
-    } 
-    else {
+    } else {
         repqueue = true;
         repQBTN.textContent = "REPEAT QUEUE ON";
     }
@@ -1652,7 +1682,7 @@ if(ittheobtn !== null && itmusik !== null) {
     toggle_hide(itmusik);
 }
 
-shufflebtn?.addEventListener("click", () => { shuffle_queue();});
+shufflebtn?.addEventListener("click", () => {shuffle_queue()});
 
 play2 ? play2.addEventListener("click", () => {
     play_song(active_selection, current ? current?.textContent!.trim() : "error");
@@ -1665,8 +1695,14 @@ load_playlist();
 render_playlists();
 
 
+
+
+
 // Hela queuesystemet från /lib men copypasteat in här eftersom websidan inte låter oss använda imports/exports
 //_____________________________________________________________________________________________________________
+
+
+
 
 
 /**
