@@ -1064,6 +1064,7 @@ let active_selection : string = " ";
 let queuearray : Array<string> = [];
 let canqueue: boolean = false;
 let playlists: PlaylistData[] = [];
+let rep = false;
 
 // Knappar
 const playbtn : HTMLElement | null = document.getElementById("Play_Pause");
@@ -1080,6 +1081,7 @@ const savetoplaylist : HTMLElement | null = document.getElementById("SaveToPlayl
 const form : HTMLElement | null = document.getElementById("form");
 const input : HTMLInputElement | null = document.querySelector("input");
 const co_firm : HTMLElement | null = document.getElementById("confirm");
+const repBtn : HTMLElement | null = document.getElementById("repBtn");
 
 // Artister och deras musikcontainers
 const albantheobtn : HTMLElement | null = document.getElementById("albantheo"); // Knappen för att visa albantheos musik
@@ -1093,30 +1095,32 @@ const popmusik : HTMLElement | null = document.getElementById("popmusik"); // Co
 const stockholmstheobtn : HTMLElement | null = document.getElementById("stockholmstheo"); // Knappen för att visa stockholms musik
 const stockholmsmusik : HTMLElement | null = document.getElementById("stockholmsmusik"); // Containern för musiken som vi togglar synligheten på
 
-// Låtar i musikbiblioteket, används för att hitta rätt sökväg
-const SONGS : Record<string, string> = {
-    'Albanian Bartender': './music/albanian_music/Albanian Bartender.mp3',
-    'Omen in The Lords church': './music/freaky_country/Omen In The Lords Church.mp3',
-    'City Mail Special Delivery': './music/country/City Mail Special Delivery.mp3',
-    'Gustav Got a boyfriend': './music/country/Gustav Got a Boyfriend.mp3',
-    'Red Eagle, Gold Chain': './music/albanian_music/Gold Chain, Red Eagle.mp3',
-    'Sun-Kissed in Albania': './music/albanian_music/Sun-Drunk in Albania.mp3',
-    'Bror Henke' : './music/stockholm/Bror Henke.mp3', 
-    'Filthy Halo' : './music/Rock/Filthy Halo.mp3',
-    'Russian Bathhouse' : './music/Rock/Russian Bathhouse.mp3',
-    'Loki, in a church on a Sunday' : './music/freaky_country/Loki In The Lords Church.mp3',
-    'Nackas Starkaste Krigare' : './music/stockholm/Nackas Starkaste Krigare.mp3',
-    'Bubblor och Ballader' : './music/stockholm/Bubblor Och Ballader.mp3',
-    'Gamla Uncs på G' : './music/stockholm/Gamla Uncs På G.mp3',
-    'Mustaschen och Koden' : './music/stockholm/Mustaschen Och Koden.mp3',
-    'Hetast i Spelet' : './music/stockholm/Hetast I Spelet.mp3',
-    'Dalahästarna' : './music/stockholm/Dalahästarna.mp3',
-    'Hyllning till Bridgens' : './music/stockholm/Hyllning Till Bridgens.mp3'
+// Låtar i musikbiblioteket, används för att hitta rätt sökväg för shuffle och queue
+const SONGS: Record<string, string> = {
+    'Albanian Bartender':           './music/albanian_music/Albanian Bartender.mp3',
+    'Red Eagle, Gold Chain':        './music/albanian_music/Gold Chain, Red Eagle.mp3',
+    'Sun-Kissed in Albania':        './music/albanian_music/Sun-Drunk in Albania.mp3',
+    'City Mail Special Delivery':   './music/country/City Mail Special Delivery.mp3',
+    'Gustav Got a boyfriend':       './music/country/Gustav Got a Boyfriend.mp3',
+    'Red Flag Paradise':            './music/country/Red Flag Paradise.mp3',
+    'Omen in The Lords church':     './music/freaky_country/Omen In The Lords Church.mp3',
+    'Bubblor och Ballader':         './music/freaky_country/Alfred, Bubblor och Ballader.mp3',
+    'Mustaschen och Koden':         './music/freaky_country/Mustaschen och Koden.mp3',
+    'Hetast i Spelet':              './music/freaky_country/Max är Hetast i Spelet.mp3',
+    'Dalahästarna':                 './music/freaky_country/Edvin Och Dalahästarna.mp3',
+    'Filthy Halo':                  './music/Rock/Filthy Halo.mp3',
+    'Gamla Uncs på G':              './music/Rock/Gamla Uncs på G.mp3',
+    'Russian Bathhouse':            './music/Rock/Russian Bathhouse.mp3',
+    'Bror Henke':                   './music/stockholm/Bror Henke.mp3',
+    'Nackas Starkaste Krigare':     './music/stockholm/Nackas Starkaste Krigare.mp3',
+    'Hyllning till Bridgens':       './music/stockholm/Bridgens Hus.mp3',
 };
 
 
 // Samtliga funktioner som används i logiken
 //___________________________________________
+
+
 let q : Queue<string> = empty();
 
 //Spela låt, kopplad till alla låtknappar och global logik
@@ -1152,6 +1156,7 @@ function play_song(path: string, name : string): void {
 
     } else {
         current_song.currentTime = 0;           // Om det är samma låt -> starta om
+        current_song.play();
         update_play();
         return;
     }
@@ -1182,18 +1187,29 @@ function update_play() {
 
 // Avslutar nuvarande låt och spelar upp nästa ur kön, kopplad till skip-knappen
 function skip(): void {
-    play_song(head(q), queuearray[0]);          // Spela nästa låt i kön
-    dequeue(q);                                 // Ta bort låten som precis började spela från kön
-    queuearray = rebuild_array(queuearray);     // Ta bort första elementet i arrayen som håller låtnamnen i kön
-    display_queue();   
-    update_play();                         // Uppdatera kön som visas på sidan
-    canqueue = false;
+    if (rep) {
+        current_song.currentTime = 0;
+        current_song.play();
+    }
+    else {  
+        if (is_empty(q)) {
+            canqueue = false;                      // Om kön är tom > ingen låt att köa, så kan inte queuea
+            return;
+        }
+
+        play_song(head(q), queuearray[0]);          // Spela nästa låt i kön
+        dequeue(q);                                 // Ta bort låten som precis började spela från kön
+        queuearray = rebuild_array(queuearray);     // Ta bort första elementet i arrayen som håller låtnamnen i kön
+        display_queue();   
+        update_play();                         // Uppdatera kön som visas på sidan
+    }
 }
 
 // Starta om låten, kopplat till tillbakaknappen
 function previous() : void { 
     current_song.currentTime = 0;
 }
+
 // Gömmer/visar element, används för att dölja/visa artisters musik
 function toggle_hide(artist : HTMLElement) : void {
     if(artist.style.visibility === "visible") {
@@ -1205,9 +1221,10 @@ function toggle_hide(artist : HTMLElement) : void {
         artist.style.visibility = "visible";
     }
 }
+
 // Lägger till låt i kön, kopplat till queue-knappen
 function add_to_queue(song_path: string, title : string) { 
-    if (!current_song || !canqueue) {                   // Om ingen låt finns alls -> spela direkt
+    if (!current_song || !canqueue) {                   // Om ingen låt finns alls > spela direkt
         play_song(song_path, title);
         canqueue = true;
     } 
@@ -1216,6 +1233,7 @@ function add_to_queue(song_path: string, title : string) {
         queuearray.push(current?.textContent!.trim());
         display_queue();
     } 
+
     update_play();
 }
 
@@ -1280,9 +1298,69 @@ function load_playlist() : void {
 }
 
 function render_playlists() : void {
+    const container = document.getElementById("playlists-container");
+    container ? container.innerHTML = "" : undefined;
 
+    //För varje spellista
+    for (let i = 0; i < playlists.length; i++) {
+        let playlist = playlists[i];
+
+        // Skapa element för spellistan
+        const header = document.createElement("div");
+        header.className = "artist";
+        header.textContent = playlist.name;
+
+        //Skapa element för låtarna i spellistan
+        const list = document.createElement("div");
+        list.className = "lista";
+
+        // Bygger en sträng av låtarna i spellistan, separerade med rad
+        let tmp : string = " ";
+        for(let i = 0; i <= playlist.songs.length - 1; i++) {
+            tmp = tmp + playlist.songs[i] + '\n' ; 
+        }
+        list.textContent = tmp;
+        
+        //Event listener för att ladda listan
+        const loadBtn = document.createElement("div");
+        loadBtn.className = "ctrl";
+        loadBtn.textContent = "LOAD TO QUEUE";
+        loadBtn ? loadBtn.addEventListener("click", () => {load_playlist_to_queue(playlist)}) : undefined;
+
+         //Event listener för att radera listan
+        const deleteBtn = document.createElement("div");
+        deleteBtn.className = "ctrl";
+        deleteBtn.textContent = "DELETE";
+        deleteBtn ? deleteBtn.addEventListener("click", () => {
+            playlists.splice(i, 1);
+            save_playlist();
+            render_playlists();
+        }) : undefined;
+
+        header.addEventListener("click", () => {toggle_hide(list)});
+
+        header.appendChild(list);
+        list.appendChild(loadBtn);
+        list.appendChild(deleteBtn);
+        toggle_hide(list);
+        container ? container.appendChild(header) : undefined;
+        container ? container.appendChild(list) : undefined;
+    };
 }
 
+function load_playlist_to_queue(playlist: PlaylistData) : void {
+    playlist.songs.forEach(name => {
+        const path = SONGS[name];
+        if (path) {
+            add_to_queue(path, name)
+        }
+    });
+}
+
+function showLyricsFor(songId: string) {
+    if (!box) return;
+    box.textContent = lyrics[songId];
+}
 
 // Eventlisteners för låtval, kopplade till alla låtknappar och global logik
 //__________________________________________________________________________
@@ -1308,10 +1386,12 @@ if(playbtn !== null) {
     );
 }
 
+// Visa/dölj form för att spara playlist, kopplat till "spara till playlist"-knappen
 savetoplaylist ? savetoplaylist.addEventListener("click", () => {
     if (form) form.style.display = form.style.display === "none" ? "block" : "none";
 }) : undefined;
 
+// Form för att spara playlist, kopplat till "confirm"-knappen i formet
 co_firm ? co_firm.addEventListener("click", () => {
     const name = input ? input.value.trim() : null;
     if (name) {
@@ -1320,6 +1400,17 @@ co_firm ? co_firm.addEventListener("click", () => {
         render_playlists();
         if (input) input.value = "";
         if (form) {form.style.display = "none"};
+    }
+}) : undefined;
+
+repBtn ? repBtn.addEventListener("click", () => {
+    if (rep) {
+        rep = false;
+        repBtn.textContent = "REPEAT OFF";
+    } 
+    else {
+        rep = true;
+        repBtn.textContent = "REPEAT ON";
     }
 }) : undefined;
 
@@ -1356,16 +1447,13 @@ shufflebtn?.addEventListener("click", () => { shuffle_queue();});
 
 play2 ? play2.addEventListener("click", () => {
     play_song(active_selection, current ? current?.textContent!.trim() : "error");
+    canqueue = true;
 }) : undefined;
 
 queuebtn ? queuebtn.addEventListener("click", () => {add_to_queue(active_selection, current ? current?.textContent!.trim() : 'error');}): undefined;
 
-function showLyricsFor(songId: string) {
-    if (!box) return;
-    box.textContent = lyrics[songId];
-}
-
 load_playlist();
+render_playlists();
 
 
 // Hela queuesystemet från /lib men copypasteat in här eftersom websidan inte låter oss använda imports/exports
