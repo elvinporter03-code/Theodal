@@ -1328,7 +1328,15 @@ const SONGS: Record<string, string> = {
 
 
 
-
+/**
+* Plays the song that matches the path from @param path and displays the lyrics and name of the song
+* play_song('./music/Rock/Gamla Uncs på G.mp3', 'Gamla Uncs på G');
+* // plays the song Gamla Uncs på G and changes everything about the interface to match it
+* @param {string} path - relative path to the song
+* @param {string} name - name of the song to show currently playing and to match from the lyrics record
+* @precondition both inputs have to be valid song names/paths
+* @returns nothing, only updates variables and GUI
+*/
 //Spela låt, kopplad till alla låtknappar och global logik
 function play_song(path: string, name : string): void {
     const absolutePath = new URL(path, location.href).href;
@@ -1390,6 +1398,15 @@ function update_play() {
     }
 }
 
+/**
+* repeats the current song, plays the next one and possibly puts the previous song at the back of the queue depending on the inputs
+* skip('Gamla Uncs på G', false); with rep and repqueue set to false. Would play the next song in the queue 
+* // plays the next song after Gamla Uncs på G
+* @param {string} last - name of the song last played / currently playing
+* @param {boolean} auto - indicates wether or not the song ended naturally instead of getting skipped
+* @precondition last has to to match a song in the library
+* @returns nothing, only updates variables and GUI
+*/
 // Avslutar nuvarande låt och spelar upp nästa ur kön, kopplad till skip-knappen
 function skip(last: string, auto: boolean = false): void {
     if (rep) {
@@ -1423,7 +1440,7 @@ function previous() : void {
     current_song.currentTime = 0;
 }
 
-// Gömmer/visar element, används för att dölja/visa artisters musik
+// Gömmer/visar element, används för att dölja/visa artisters musik och kollapsar fältet för att ge plats för andra
 function toggle_hide(artist : HTMLElement) : void {
     if(artist.style.visibility === "visible") {
         artist.style.visibility = "hidden";
@@ -1434,6 +1451,15 @@ function toggle_hide(artist : HTMLElement) : void {
     }
 }
 
+/**
+* adds a song to queue or plays the song instantly if no song is playing
+* add_to_queue('./music/Rock/Gamla Uncs på G.mp3', 'Gamla Uncs på G'); with a song currently playing
+* // adds the song Gamla Uncs på G to the queue 
+* @param {string} song_path - relative path to the song
+* @param {string} title - name of the song to show currently playing 
+* @precondition both inputs have to be valid song names/paths
+* @returns nothing, only updates variables and GUI
+*/
 // Lägger till låt i kön, kopplat till queue-knappen
 function add_to_queue(song_path: string, title : string) { 
     if (!current_song || !canqueue) {                   // Om ingen låt finns alls > spela direkt
@@ -1482,6 +1508,13 @@ function shuffle_array<T>(arr: Array<T>) : Array<T> {
     return a;
 }
 
+/**
+* Shuffles the queue at random using the Fisher-Yates-shuffle. Shuffles the visual queue that is actually an array
+* Then updates the actual queue with the corresponding paths
+* shuffle_queue();
+* // updates the current queue with a shuffled version of it
+* @returns nothing, only updates variables and GUI
+*/
 // Shufflar kön, kopplat till shuffle-knappen
 function shuffle_queue() : void {    
     queuearray = shuffle_array(queuearray);             // Shufflar arrayen som håller låtnamnen i kön
