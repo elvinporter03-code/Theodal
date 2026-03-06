@@ -1,4 +1,4 @@
-import { rebuild_array, shuffle_array } from "./tester_func";
+import { rebuild_array, shuffle_array, format_numbered_list } from "./tester_func";
 
 // Rebuild array som tar bort första elementet ur en array, full array
 test("rebuild_array", () => {
@@ -43,4 +43,25 @@ test("shuffle_array", () => {
     const shuffled = shuffle_array(arr);
     expect(shuffled).toHaveLength(arr.length);
     expect(shuffled).toEqual(arr);
+});
+
+// Format_numbered_list, full array
+test("format_numbered_list", () => {
+    const arr = ["Bror Henke", "Rest In Kir"];
+    const result = format_numbered_list(arr);
+    expect(result).toBe(" 1. Bror Henke\n2. Rest In Kir\n");
+});
+
+// Format_numbered_list, one element
+test("format_numbered_list", () => {
+    const arr = ["Albanian Bartender"];
+    const result = format_numbered_list(arr);
+    expect(result).toBe(" 1. Albanian Bartender\n");
+});
+
+// Format_numbered_list, empty array
+test("format_numbered_list", () => {
+    const arr : Array<string> = [];
+    const result = format_numbered_list(arr);
+    expect(result).toBe(" ");
 });
