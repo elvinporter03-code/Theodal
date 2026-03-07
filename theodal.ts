@@ -1385,9 +1385,11 @@ function play_song(path: string, name : string): void {
 function Play_Pause(): void {
     if (!current_song || current_song.src === "") {
         if (active_selection !== " ") {
-            play_song(active_selection, current?.textContent?.trim() ?? "");
+            play_song(active_selection, current ? current?.textContent!.trim() : "error");
+            update_play();
             return;
         } else {
+            update_play();
             return;
         }
     }
@@ -1490,10 +1492,7 @@ function add_to_queue(song_path: string, title : string) {
 
 // Visar kön på sidan, används varje gång kön ändras
 function display_queue() : void {
-    let tmp : string = " ";
-
-    format_numbered_list(queuearray);
-
+    const tmp = format_numbered_list(queuearray);
     activeq ? activeq.textContent = tmp : undefined;
 }
 
@@ -1544,7 +1543,7 @@ function shuffle_array<T>(arr: Array<T>) : Array<T> {
 * @precondition arr must be a non-null array
 * @returns A new formatted string with the songs listed numerically
 */
-export function format_numbered_list(arr: Array<string>): string {
+function format_numbered_list(arr: Array<string>): string {
     let tmp = " ";
     for (let i = 0; i < arr.length; i++) {
         tmp += (i + 1) + ". " + arr[i] + '\n';
@@ -1613,11 +1612,8 @@ function render_playlists() : void {
         const list = document.createElement("div");
         list.className = "lista";
 
-        // Bygger en sträng av låtarna i spellistan, separerade med radbrytning
-        let tmp : string = " ";
-
-        tmp = format_numbered_list(playlist.songs);
-
+        // Bygger en sträng av låtarna i spellistan, separerade med radbrytningar, och numrerade
+        let tmp = format_numbered_list(playlist.songs);
         list.textContent = tmp;
         
         //Event listener för att ladda listan

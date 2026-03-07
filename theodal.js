@@ -1249,6 +1249,7 @@ var canqueue = false;
 var playlists = [];
 var rep = false;
 var repqueue = false;
+var q = empty();
 // Knappar
 var playbtn = document.getElementById("Play_Pause");
 var previousbtn = document.getElementById("Previous");
@@ -1297,13 +1298,20 @@ var SONGS = {
     'Russian Bathhouse': './music/Rock/Russian Bathhouse.mp3',
     'Bror Henke': './music/stockholm/Bror Henke.mp3',
     'Nackas Starkaste Krigare': './music/stockholm/Nackas Starkaste Krigare.mp3',
-    'Hyllning till Bridgens': './music/stockholm/Bridgens Hus.mp3',
+    'Hyllning till Bridgens': './music/IT/Bridgens Hus.mp3',
     'Rest In Kir': './music/IT/Rest In Kir.mp3',
 };
 // Samtliga funktioner som används i logiken
 //___________________________________________
-var q = empty();
-//Spela låt, kopplad till alla låtknappar och global logik
+/**
+* Plays the song that matches the path from @param path and displays the lyrics and name of the song
+* play_song('./music/Rock/Gamla Uncs på G.mp3', 'Gamla Uncs på G');
+* // plays the song Gamla Uncs på G and changes everything about the interface to match it
+* @param {string} path - Relative path to the song
+* @param {string} name - Name of the song to show currently playing and to match from the lyrics record
+* @precondition Both inputs have to be valid song names/paths
+* @returns Nothing, only updates variables and GUI
+*/
 function play_song(path, name) {
     var absolutePath = new URL(path, location.href).href;
     playing ? playing.textContent = name : undefined;
@@ -1311,10 +1319,10 @@ function play_song(path, name) {
     if (!current_song) {
         current_song = new Audio(absolutePath);
         current_song.onended = function () {
-            skip(name);
+            skip(name, true);
         };
         current_song.play();
-        showLyricsFor(name);
+        show_lyrics_for(name);
         update_play();
         return;
     }
@@ -1323,11 +1331,11 @@ function play_song(path, name) {
         current_song.pause();
         current_song = new Audio(absolutePath);
         current_song.onended = function () {
-            skip(name);
+            skip(name, true);
         };
-        update_play();
         current_song.play();
-        showLyricsFor(name);
+        update_play();
+        show_lyrics_for(name);
         return;
     }
     else {
@@ -1337,8 +1345,25 @@ function play_song(path, name) {
         return;
     }
 }
-// Pausa/play funktion, kopplad till play/pause-knappen
+/**
+* Toggles between play and pause for the current song, or plays the selected song if nothing is playing
+* Play_Pause(); with a song currently playing
+* // pauses the current song and updates the play/pause button
+* @precondition If no song is playing, active_selection must be a valid song path
+* @returns Nothing, only updates variables and GUI
+*/
 function Play_Pause() {
+    if (!current_song || current_song.src === "") {
+        if (active_selection !== " ") {
+            play_song(active_selection, current ? current === null || current === void 0 ? void 0 : current.textContent.trim() : "error");
+            update_play();
+            return;
+        }
+        else {
+            update_play();
+            return;
+        }
+    }
     if (current_song.paused) {
         current_song.play();
     }
@@ -1358,8 +1383,17 @@ function update_play() {
         }
     }
 }
-// Avslutar nuvarande låt och spelar upp nästa ur kön, kopplad till skip-knappen
-function skip(last) {
+/**
+* Repeats the current song, plays the next one and possibly puts the previous song at the back of the queue depending on the inputs
+* Skip('Gamla Uncs på G', false); with rep and repqueue set to false. Would play the next song in the queue
+* // plays the next song after Gamla Uncs på G
+* @param {string} last - name of the song last played / currently playing
+* @param {boolean} auto - indicates wether or not the song ended naturally instead of getting skipped
+* @precondition last has to to match a song in the library
+* @returns nothing, only updates variables and GUI
+*/
+function skip(last, auto) {
+    if (auto === void 0) { auto = false; }
     if (rep) {
         current_song.currentTime = 0;
         current_song.play();
@@ -1372,7 +1406,9 @@ function skip(last) {
         }
         if (is_empty(q)) {
             canqueue = false; // Om kön är tom > ingen låt att köa, så kan inte queuea
-            playing ? playing.textContent = " " : undefined;
+            if (auto) {
+                playing ? playing.textContent = " " : undefined; // Rensa endast om låten tog slut naturligt
+            }
             return;
         }
         play_song(head(q), queuearray[0]); // Spela nästa låt i kön
@@ -1384,9 +1420,11 @@ function skip(last) {
 }
 // Starta om låten, kopplat till tillbakaknappen
 function previous() {
-    current_song.currentTime = 0;
+    if (current_song) {
+        current_song.currentTime = 0;
+    }
 }
-// Gömmer/visar element, används för att dölja/visa artisters musik
+// Gömmer/visar element, används för att dölja/visa artisters musik och kollapsar fältet för att ge plats för andra
 function toggle_hide(artist) {
     if (artist.style.visibility === "visible") {
         artist.style.visibility = "hidden";
@@ -1397,7 +1435,15 @@ function toggle_hide(artist) {
         artist.style.visibility = "visible";
     }
 }
-// Lägger till låt i kön, kopplat till queue-knappen
+/**
+* Adds a song to queue or plays the song instantly if no song is playing
+* add_to_queue('./music/Rock/Gamla Uncs på G.mp3', 'Gamla Uncs på G'); with a song currently playing
+* // adds the song Gamla Uncs på G to the queue
+* @param {string} song_path - Relative path to the song
+* @param {string} title - Name of the song to show currently playing
+* @precondition Both inputs have to be valid song names/paths
+* @returns Nothing, only updates variables and GUI
+*/
 function add_to_queue(song_path, title) {
     if (!current_song || !canqueue) { // Om ingen låt finns alls > spela direkt
         play_song(song_path, title);
@@ -1412,13 +1458,17 @@ function add_to_queue(song_path, title) {
 }
 // Visar kön på sidan, används varje gång kön ändras
 function display_queue() {
-    var tmp = " ";
-    for (var i = 0; i <= queuearray.length - 1; i++) {
-        tmp = tmp + (i + 1) + ". " + queuearray[i] + '\n'; // Bygger en sträng av låtarna i kön, separerade med rad
-    }
+    var tmp = format_numbered_list(queuearray);
     activeq ? activeq.textContent = tmp : undefined;
 }
-// Hjälpfunktion för att ta bort första elementet i en array
+/**
+* Removes the first element of an array and returns the remaining elements
+* rebuild_array(['a', 'b', 'c']);
+* // returns ['b', 'c']
+* @param {Array<string>} origin - The array to remove the first element from
+* @precondition origin must be an array of strings
+* @returns A new array with the first element removed
+*/
 function rebuild_array(origin) {
     var tmp = [];
     for (var i = 1; i < origin.length; i++) {
@@ -1426,7 +1476,16 @@ function rebuild_array(origin) {
     }
     return tmp;
 }
-// Fisher–Yates‑shuffle
+/**
+* Shuffles an array at random using the Fisher-Yates algorithm and returns the shuffled copy
+* shuffle_array([1, 2, 3, 4, 5]);
+* // returns e.g. [3, 1, 5, 2, 4]
+* @param {Array<T>} arr - The array to shuffle
+* @precondition arr must be a non-null array
+* @returns A new shuffled copy of the input array, original is not modified
+*
+* OBS this function is not written by us, it is a common shuffle implementation that we borrowed.
+*/
 function shuffle_array(arr) {
     var _a;
     var a = __spreadArray([], arr, true);
@@ -1436,7 +1495,28 @@ function shuffle_array(arr) {
     }
     return a;
 }
-// Shufflar kön, kopplat till shuffle-knappen
+/**
+* Formats an array of strings into a numbered list as a single string, used for showing playlists on the page
+* format_numbered_list(["Song 1", "Song 2", "Song 3"]);
+* // returns "1. Song 1\n2. Song 2\n3. Song 3\n"
+* @param {Array<string>} arr - The array to format
+* @precondition arr must be a non-null array
+* @returns A new formatted string with the songs listed numerically
+*/
+function format_numbered_list(arr) {
+    var tmp = " ";
+    for (var i = 0; i < arr.length; i++) {
+        tmp += (i + 1) + ". " + arr[i] + '\n';
+    }
+    return tmp;
+}
+/**
+* Shuffles the queue at random using the Fisher-Yates-shuffle. Shuffles the visual queue that is actually an array
+* Then updates the actual queue with the corresponding paths
+* Shuffle_queue();
+* // updates the current queue with a shuffled version of it
+* @returns nothing, only updates variables and GUI
+*/
 function shuffle_queue() {
     queuearray = shuffle_array(queuearray); // Shufflar arrayen som håller låtnamnen i kön
     var tmp = empty();
@@ -1445,6 +1525,12 @@ function shuffle_queue() {
     }
     q = tmp;
     display_queue();
+}
+//Visar låttexter, kopplat till att spela låtar
+function show_lyrics_for(songId) {
+    if (!box)
+        return;
+    box.textContent = lyrics[songId];
 }
 // Sparar kön i localStorage, används varje gång kön ändras
 function save_playlist() {
@@ -1457,6 +1543,12 @@ function load_playlist() {
         playlists = JSON.parse(stored);
     }
 }
+/**
+* Renders the playlists on the page, with event listeners for loading and deleting each playlist. Called every time a playlist is added or removed to update the page
+* render_playlists();
+* // updates the playlists shown on the page to match the playlists variable, with buttons for loading and deleting each playlist
+* @returns Nothing, only updates the page
+*/
 function render_playlists() {
     var container = document.getElementById("playlists-container");
     container ? container.innerHTML = "" : undefined;
@@ -1469,11 +1561,8 @@ function render_playlists() {
         //Skapa element för låtarna i spellistan
         var list = document.createElement("div");
         list.className = "lista";
-        // Bygger en sträng av låtarna i spellistan, separerade med rad
-        var tmp = " ";
-        for (var i_1 = 0; i_1 <= playlist.songs.length - 1; i_1++) {
-            tmp = tmp + (i_1 + 1) + ". " + playlist.songs[i_1] + '\n';
-        }
+        // Bygger en sträng av låtarna i spellistan, separerade med radbrytningar, och numrerade
+        var tmp = format_numbered_list(playlist.songs);
         list.textContent = tmp;
         //Event listener för att ladda listan
         var loadBtn = document.createElement("div");
@@ -1497,12 +1586,20 @@ function render_playlists() {
         container ? container.appendChild(header) : undefined;
         container ? container.appendChild(list) : undefined;
     };
-    //För varje spellista
+    // För varje spellista
     for (var i = 0; i < playlists.length; i++) {
         _loop_1(i);
     }
     ;
 }
+/**
+* Loads the songs from the playlist to the queue in the order they are in the playlist
+* // load_playlist_to_queue({name: "my playlist", songs: ["Gamla Uncs på G", "Bror Henke"]});
+* // adds the songs Gamla Uncs på G and Bror Henke to the queue in that order
+* @param {PlaylistData} playlist - The playlist to load, with a name and an array of song names
+* @precondition The songs in the playlist must be valid song names that exist in the library
+* @returns Nothing, only updates the page
+*/
 function load_playlist_to_queue(playlist) {
     playlist.songs.forEach(function (name) {
         var path = SONGS[name];
@@ -1510,11 +1607,6 @@ function load_playlist_to_queue(playlist) {
             add_to_queue(path, name);
         }
     });
-}
-function showLyricsFor(songId) {
-    if (!box)
-        return;
-    box.textContent = lyrics[songId];
 }
 // Eventlisteners för låtval, kopplade till alla låtknappar och global logik
 //__________________________________________________________________________
@@ -1526,7 +1618,6 @@ document.querySelectorAll(".music").forEach(function (btn) {
         current ? current.textContent = btn.textContent : undefined;
     });
 });
-// Eventlisteners för knapparna
 // Play/pause funktion
 if (playbtn !== null) {
     playbtn.addEventListener("click", function () {
@@ -1549,8 +1640,10 @@ co_firm ? co_firm.addEventListener("click", function () {
         playlists.push({ name: name, songs: quecopy });
         save_playlist();
         render_playlists();
-        if (input)
+        if (input) {
             input.value = "";
+        }
+        ;
         if (form) {
             form.style.display = "none";
         }
