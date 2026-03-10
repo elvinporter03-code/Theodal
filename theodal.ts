@@ -1341,7 +1341,7 @@ function play_song(path: string, name : string): void {
     const absolutePath = new URL(path, location.href).href;
     playing ? playing.textContent = name : undefined;
     
-    // Om ingen låt spelas -> skapa och spela
+    // Om ingen låt spelas > skapa och spela
     if (!current_song) {
         current_song = new Audio(absolutePath);
         current_song.onended = () => {          // Eventhandler för att spela upp en ny låt när den gamla är slut
@@ -1354,7 +1354,7 @@ function play_song(path: string, name : string): void {
         return;
     }
 
-    // Om det är en ny låt -> byt
+    // Om det är en ny låt > byt
     if (current_song.src !== absolutePath) {
         current_song.pause();
         current_song = new Audio(absolutePath);
@@ -1368,7 +1368,7 @@ function play_song(path: string, name : string): void {
         return;
 
     } else {
-        current_song.currentTime = 0;           // Om det är samma låt -> starta om
+        current_song.currentTime = 0;           // Om det är samma låt > starta om
         current_song.play();
         update_play();
         return;
