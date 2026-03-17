@@ -1679,7 +1679,20 @@ document.querySelectorAll(".music").forEach(btn => {
         active_selection = songName;
         current ? current.textContent = btn.textContent : undefined;
     });
+    btn.addEventListener("dblclick", () => {
+        const songName = btn.getAttribute("data-song")!;
+        active_selection = songName;
+        current ? current.textContent = btn.textContent : undefined;
+        play_song(active_selection, current ? current?.textContent!.trim() : "error");
+        canqueue = true;
+    });
+    btn.addEventListener("contextmenu", () => {
+        const songName = btn.getAttribute("data-song")!;
+        active_selection = songName;
+        current ? current.textContent = btn.textContent : undefined;
+        add_to_queue(active_selection, current ? current?.textContent!.trim() : 'error');});
 });
+
 
 // Play/pause funktion
 if(playbtn !== null) { 
