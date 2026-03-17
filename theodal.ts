@@ -1231,6 +1231,7 @@ const lyrics : Record<string, string> = {
                         "IT!\n" +
                         "Vi bygger vår värld i backend\n" +
                         "Och stannar tills morgonen gryr (hey!)\n",
+'Insert låtnamn här' :  "Skriv in låttext här"
 };
 
 
@@ -1316,6 +1317,7 @@ const SONGS: Record<string, string> = {
     'Nackas Starkaste Krigare':     './music/stockholm/Nackas Starkaste Krigare.mp3',
     'Hyllning till Bridgens':       './music/IT/Bridgens Hus.mp3',
     'Rest In Kir':                  './music/IT/Rest In Kir.mp3',  
+    'Insert låtnamn här':           './music/freaky_country/Insert song name here.mp3'
 };
 
 

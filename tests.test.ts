@@ -34,7 +34,7 @@ test("shuffle_array", () => {
     const arr : Array<number> = [];
     const shuffled = shuffle_array(arr);
     expect(shuffled).toHaveLength(arr.length);
-    expect(shuffled).toEqual(expect.arrayContaining(arr));
+    expect(shuffled).toEqual(arr);
 });
 
 // Shuffle array, one element

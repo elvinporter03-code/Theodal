@@ -180,6 +180,9 @@ div{
 #IT1PIC{
     background-image: url("./pictures/IT1.png");
 }
+#Nybro_pic{
+    background-image: url("./pictures/Nybro.png");
+}
 
 /* KNAPPAR */
 .ctrl{
