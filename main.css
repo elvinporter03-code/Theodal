@@ -183,6 +183,9 @@ div{
 #IT1PIC{
     background-image: url("./pictures/IT1.png");
 }
+#Nybro_pic{
+    background-image: url("./pictures/Nybro_pic.png");
+}
 
 /* KNAPPAR */
 .ctrl{
@@ -328,11 +331,16 @@ div{
 
 #playing_txt{
     font-size: 20px;
+    width: auto;
+    height: auto;
 }
 
 #playing{
-    font-size: 40px;
+    font-size: auto;
     color: white;
+    text-indent: auto;
+    width: auto;
+    height: auto;
 }
 
 /* SPELLISTOR */
