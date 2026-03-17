@@ -1231,7 +1231,117 @@ const lyrics : Record<string, string> = {
                         "IT!\n" +
                         "Vi bygger vår värld i backend\n" +
                         "Och stannar tills morgonen gryr (hey!)\n",
-'Insert låtnamn här' :  "Skriv in låttext här"
+'Nybrogrillens finest' : "[Intro]\n" +
+                        "Ey\n" +
+                        "Vi är tre\n" +
+                        "Theodor\n" +
+                        "Noa\n" +
+                        "Elvin\n" +
+                        "Okej?\n" +
+                        "(aha, aha)\n" +
+                        "Nybrogrillen baby\n\n" +
+                        "[Verse 1]\n" +
+                        "Theodor och Elvin\n" +
+                        "Kopior på rad\n" +
+                        "Samma skratt\n" +
+                        "Samma tröja\n" +
+                        "Samma sena jävla vanor varje dag\n" +
+                        "Båda lutar sig mot luckan\n" +
+                        "Beställning på rutin\n" +
+                        "\"En ferrarirulle\n" +
+                        "Extra allt\" – deras livsdisciplin\n\n" +
+                        "Noa knyter skorna\n" +
+                        "\"Ska bara ta ett varv\"\n" +
+                        "Springer upp i skogen\n" +
+                        "Försvinner bort bland gran och bark\n" +
+                        "Hjärtat dunkar hårt\n" +
+                        "Han ler där bland träden\n" +
+                        "Ovvemärken sitter snett\n" +
+                        "Springer ner till nations vägen\n\n" +
+                        "[Chorus]\n" +
+                        "Vi är Nybrogrillens finest (ey)\n" +
+                        "Öl och kir och skratt (skål!)\n" +
+                        "Ferrarirulle droppar sås på våra ovvar\n" +
+                        "Men vi bryr oss inte ett dugg i natt\n\n" +
+                        "Noa\n" +
+                        "Noa\n" +
+                        "Elvin\n" +
+                        "Noa\n" +
+                        "Ah\n" +
+                        "Tre idioter på en rad\n" +
+                        "Nybrogrillens finest\n" +
+                        "Hela gatan vet vad vi tar\n" +
+                        "Nybrogrillens finest\n" +
+                        "Hela gatan vet vad vi tar\n\n" +
+                        "[Verse 2]\n" +
+                        "Theodor spiller sås på skorna\n" +
+                        "Svär men skrattar bort\n" +
+                        "Elvin gör exakt detsamma\n" +
+                        "Som en spegel utan stopp\n" +
+                        "Dom två lutar panna mot panna\n" +
+                        "Bröder utan plan\n" +
+                        "\"Vi är lika, lika vilsna\" – men det känns så jävla bra\n\n" +
+                        "Noa kommer ner från skogen\n" +
+                        "Kinder röda, blicken klar\n" +
+                        "Häller upp sin billiga kir\n" +
+                        "Som om det var nåt exklusivt i bar\n" +
+                        "\"Jag springer tills jag hittar mig\"\n" +
+                        "Säger han och ler\n" +
+                        "Folk runt omkring oss fattar inte\n" +
+                        "Hur vi står så still här\n\n" +
+                        "[Chorus]\n" +
+                        "Vi är Nybrogrillens finest (ey)\n" +
+                        "Öl och kir och skratt (skål!)\n" +
+                        "Ferrarirulle droppar sås på våra ovvar\n" +
+                        "Men vi bryr oss inte ett dugg i natt\n\n" +
+                        "Noa\n" +
+                        "Noa\n" +
+                        "Elvin\n" +
+                        "Ah\n" +
+                        "Tre idioter på en rad\n" +
+                        "Nybrogrillens finest\n" +
+                        "Hela gatan vet vad vi tar\n" +
+                        "Nybrogrillens finest\n" +
+                        "Hela gatan vet vad vi tar\n\n" +
+                        "[Bridge]\n" +
+                        "Handen upp om du e hungrig (hey!)\n" +
+                        "Handen upp om du e full (åh)\n" +
+                        "Handen upp om du har spring i benen\n" +
+                        "Som Noa genom skog och grus\n\n" +
+                        "Theodor, Elvin\n" +
+                        "Speglar varje liv\n" +
+                        "Två versioner av samma sneda perspektiv\n" +
+                        "Noa runt elljusspåret\n" +
+                        "Vi vid grillen chill\n" +
+                        "Men i slutet möts vi alltid – Elvin tung baktill\n\n" +
+                        "[Chorus]\n" +
+                        "Vi är Nybrogrillens finest (ey)\n" +
+                        "Öl och kir och skratt (skål!)\n" +
+                        "Ferrarirulle droppar sås på våra åvvar\n" +
+                        "Men vi bryr oss inte ett dugg i natt\n" +
+                        "Theo\n" +
+                        "Noa\n" +
+                        "Elvin\n" +
+                        "Ah\n" +
+                        "Noa\n" +
+                        "Elvin\n" +
+                        "Tre idioter på en rad\n" +
+                        "Nybrogrillens finest\n" +
+                        "Hela gatan vet vad vi tar (ey, ey)\n" +
+                        "Nybrogrillens finest\n" +
+                        "Hela gatan vet vad vi tar\n\n" +
+                        "[Outro]\n" +
+                        "(Åh, Nybrogrillen)\n" +
+                        "Sista tuggan, sista klunk\n" +
+                        "Sista skrattattack\n" +
+                        "Tills imorrn\n" +
+                        "Samma tid\n" +
+                        "Samma plats\n" +
+                        "Samma knack\n" +
+                        "Nybrogrillens finest\n" +
+                        "Hela gatan vet vad vi tar\n" +
+                        "Nybrogrillens finest\n" +
+                        "Hela gatan vet vad vi tar"
 };
 
 
@@ -1317,7 +1427,7 @@ const SONGS: Record<string, string> = {
     'Nackas Starkaste Krigare':     './music/stockholm/Nackas Starkaste Krigare.mp3',
     'Hyllning till Bridgens':       './music/IT/Bridgens Hus.mp3',
     'Rest In Kir':                  './music/IT/Rest In Kir.mp3',  
-    'Insert låtnamn här':           './music/freaky_country/Insert song name here.mp3'
+    'Nybrogrillens finest':         './music/freaky_country/Nybrogrillens finest.mp3'
 };
 
 
