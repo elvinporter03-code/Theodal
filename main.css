@@ -1,9 +1,9 @@
 /* GLOBAL */
-body{
-    background-color: rgb(20,0,20);
+body {
+    background-color: rgb(20, 0, 20);
 }
 
-div{
+div {
     text-align: center;
     margin: 25px auto;
 }
@@ -12,7 +12,7 @@ div{
 #layout {
     display: flex;
     height: 100px;
-    
+
 }
 
 #content {
@@ -24,7 +24,7 @@ div{
     align-items: center;
 }
 
-#musicfield{
+#musicfield {
     left: 0%;
     position: absolute;
     width: 100%;
@@ -37,7 +37,7 @@ div{
 /* MUSIKBIBLIOTEK */
 .artist {
     background-color: black;
-    color: rgb(75,0,150);
+    color: rgb(75, 0, 150);
     position: relative;
     width: 10%;
     height: auto;
@@ -45,14 +45,14 @@ div{
     font-family: 'Arial', sans-serif;
     text-shadow: 2px 2px 4px #000000;
     padding: 20px;
-    border: 5px solid rgb(0,0,0);
+    border: 5px solid rgb(0, 0, 0);
     border-radius: 10px;
-    box-shadow: 0 0 10px rgb(75,0,150);
+    box-shadow: 0 0 10px rgb(75, 0, 150);
 }
 
-.music_container{
+.music_container {
     width: 50%;
-    
+
 }
 
 #albanmusik {
@@ -84,13 +84,20 @@ div{
     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
     gap: 1px;
 }
+
 #itmusik {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
     gap: 1px;
 }
 
-.musiccontainer{
+#ololmusik {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1px;
+}
+
+.musiccontainer {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 1px;
@@ -98,7 +105,7 @@ div{
 
 .music {
     background-color: black;
-    color: rgb(75,0,150);
+    color: rgb(75, 0, 150);
     position: relative;
     width: auto;
     height: auto;
@@ -106,23 +113,23 @@ div{
     font-family: 'Arial', sans-serif;
     text-shadow: 2px 2px 4px #000000;
     padding: 10px;
-    border: 5px solid rgb(0,0,0);
+    border: 5px solid rgb(0, 0, 0);
     border-radius: 10px;
-    box-shadow: 0 0 10px rgb(75,0,150);
+    box-shadow: 0 0 10px rgb(75, 0, 150);
     margin: 0;
 }
 
-.music:hover{
+.music:hover {
     animation: 5s songhover;
 }
 
-.alban_select{
+.alban_select {
     visibility: hidden;
 }
 
 /* BILDER */
 
-.pics{
+.pics {
     background-size: cover;
     background-position: center;
     width: 100%;
@@ -132,71 +139,97 @@ div{
 #Albanian_pic {
     background-image: url("./pictures/bartender.png");
 }
+
 #Omen_pic {
     background-image: url("./pictures/omen.png");
 }
+
 #Emil_pic {
     background-image: url("./pictures/johanoemil.webp");
 }
+
 #Alfred_pic {
     background-image: url("./pictures/alfred.webp");
 }
+
 #Parker_pic {
     background-image: url("./pictures/parker_demarcus.png");
 }
+
 #Uncs_pic {
     background-image: url("./pictures/uncs.png");
 }
+
 #Nacka_pic {
     background-image: url("./pictures/nackas_krigare.jpg");
 }
+
 #Albanian_uncle {
     background-image: url("./pictures/redeagle.png");
 }
+
 #Albanian_beach {
     background-image: url("./pictures/balkanbeach.png");
 }
+
 #Citymail_pic {
     background-image: url("./pictures/image.png");
 }
+
 #Boyfriend_pic {
     background-image: url("./pictures/boyfriend.png");
 }
+
 #Bathhouse_pic {
     background-image: url("./pictures/Bathhouse.png");
 }
+
 #Filthy_pic {
     background-image: url("./pictures/content.png");
 }
+
 #Henke_pic {
     background-image: url("./pictures/henke.jpg");
 }
-#Edvin_pic{
+
+#Edvin_pic {
     background-image: url("./pictures/edvin.webp");
 }
-#Max_pic{
+
+#Max_pic {
     background-image: url("./pictures/max.webp");
 }
-#Bridgens_pic{
+
+#Bridgens_pic {
     background-image: url("./pictures/bridgens.webp");
 }
-#IT1PIC{
+
+#IT1PIC {
     background-image: url("./pictures/IT1.png");
 }
-#Nybro_pic{
+
+#Nybro_pic {
     background-image: url("./pictures/Nybro_pic.png");
 }
 
+#Hype_pic {
+    background-image: url("./pictures/Vibe_pic.png");
+}
+
+#Vibe_pic {
+    background-image: url("./pictures/Hype_pic.png");
+}
+
 /* KNAPPAR */
-.ctrl{
+.ctrl {
     position: absolute;
     width: auto;
     height: auto;
     font-size: 200%;
     font-family: 'Times New Roman', Times, serif;
-    color: rgb(75,0,150);
+    color: rgb(75, 0, 150);
     border-color: black;
-    box-shadow: 0 0 10px rgb(75,0,150);
+    box-shadow: 0 0 10px rgb(75, 0, 150);
     border-radius: 200px;
     background-color: black;
 }
@@ -250,25 +283,25 @@ div{
 
 /* KÖ */
 
-.qblock{
+.qblock {
     position: fixed;
     top: 0;
     height: 5%;
     width: 50%;
     left: 25%;
-    margin:  0;
+    margin: 0;
     padding-top: 0;
     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
     display: flex;
-}   
+}
 
-#current{
+#current {
     position: relative;
     font-size: 100%;
 
 }
 
-#Play{
+#Play {
     position: absolute;
     font-size: 100%;
     width: 50%;
@@ -282,7 +315,7 @@ div{
     border-radius: 0px;
 }
 
-#Queue{
+#Queue {
     position: absolute;
     font-size: 100%;
     width: 50%;
@@ -311,7 +344,7 @@ div{
 
 }
 
-#Activequeue{
+#Activequeue {
     margin-top: 0;
     position: absolute;
     border-radius: 0px;
@@ -320,22 +353,22 @@ div{
     min-height: 500px;
     right: 0%;
     top: 0%;
-    
+
 }
 
 
-#q{
+#q {
     font-size: 20px;
     white-space: pre-line;
 }
 
-#playing_txt{
+#playing_txt {
     font-size: 20px;
     width: auto;
     height: auto;
 }
 
-#playing{
+#playing {
     font-size: auto;
     color: white;
     text-indent: auto;
@@ -345,7 +378,7 @@ div{
 
 /* SPELLISTOR */
 
-.plblock{
+.plblock {
     position: fixed;
     right: 0%;
     top: 0%;
@@ -360,9 +393,9 @@ div{
     padding: 8px 14px;
     border-radius: 5px;
     cursor: pointer;
-    color: rgb(75,0,150);
+    color: rgb(75, 0, 150);
     border-color: black;
-    box-shadow: 0 0 10px rgb(75,0,150);
+    box-shadow: 0 0 10px rgb(75, 0, 150);
     border-radius: 200px;
     background-color: black;
     font-family: 'Times New Roman', Times, serif;
@@ -375,9 +408,9 @@ div{
     padding: 8px 14px;
     border-radius: 5px;
     cursor: pointer;
-    color: rgb(75,0,150);
+    color: rgb(75, 0, 150);
     border-color: black;
-    box-shadow: 0 0 10px rgb(75,0,150);
+    box-shadow: 0 0 10px rgb(75, 0, 150);
     border-radius: 200px;
     background-color: black;
     font-family: 'Times New Roman', Times, serif;
@@ -393,7 +426,7 @@ div{
 
 .lista {
     background-color: black;
-    color: rgb(75,0,150);
+    color: rgb(75, 0, 150);
     position: relative;
     width: 40%;
     height: auto;
@@ -401,15 +434,16 @@ div{
     font-family: 'Arial', sans-serif;
     text-shadow: 2px 2px 4px #000000;
     padding: 20px;
-    border: 5px solid rgb(0,0,0);
+    border: 5px solid rgb(0, 0, 0);
     border-radius: 10px;
-    box-shadow: 0 0 10px rgb(75,0,150);
+    box-shadow: 0 0 10px rgb(75, 0, 150);
     white-space: pre-line;
 }
 
 .playlist-songs {
     font-size: 20px;
-    white-space: pre-line;   /* samma som #q */
+    white-space: pre-line;
+    /* samma som #q */
     color: rgb(75, 0, 150);
     text-align: left;
     padding: 10px;
@@ -454,7 +488,7 @@ div{
     color: white;
 }
 
-#SaveToPlaylist{
+#SaveToPlaylist {
     position: relative;
     font-size: 100%;
     border-radius: 0;
@@ -478,7 +512,7 @@ div{
     border-color: black;
 }
 
-#lyrics{
+#lyrics {
     position: absolute;
     left: 0%;
     width: 25%;
@@ -490,33 +524,34 @@ div{
 /* ANIMATIONER */
 
 @keyframes ctrlbtns {
-    0%   {
-        color: rgb(150,0,150);
-        border-color: rgb(0,0,0);
-        background-color: rgb(0,0,0);
-        }
+    0% {
+        color: rgb(150, 0, 150);
+        border-color: rgb(0, 0, 0);
+        background-color: rgb(0, 0, 0);
+    }
 
     50% {
-        color: rgb(0,0,255); 
-        border-color: rgb(100,0,255);
-        background-color: rgb(0,0,0);
+        color: rgb(0, 0, 255);
+        border-color: rgb(100, 0, 255);
+        background-color: rgb(0, 0, 0);
         box-shadow: 0 0 500px;
     }
 
     100% {
-        color: rgb(150,0,150);
-        border-color: rgb(0,0,0);
-        background-color: rgb(0,0,0);
-        }
+        color: rgb(150, 0, 150);
+        border-color: rgb(0, 0, 0);
+        background-color: rgb(0, 0, 0);
+    }
 }
 
 @keyframes songhover {
-    0%{
+    0% {
         background-color: black;
-        color: rgb(75,0,150);
+        color: rgb(75, 0, 150);
     }
-    100%{
-        background-color: rgb(75,0,75);
-        color: rgb(255,255,255);
+
+    100% {
+        background-color: rgb(75, 0, 75);
+        color: rgb(255, 255, 255);
     }
 }
