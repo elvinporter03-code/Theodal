@@ -302,9 +302,13 @@ div {
 }
 
 #current {
-    position: relative;
+    position: fixed;
     font-size: 100%;
-
+    top:    0;
+    color: white;
+    z-index: 1;
+    width: 100%;
+    left: 0;
 }
 
 #Play {
@@ -333,6 +337,7 @@ div {
     height: 100%;
     left: 50%;
     border-radius: 0px;
+    margin-left: 10px;
 }
 
 #Shuffle {
@@ -351,17 +356,25 @@ div {
 }
 
 #Activequeue {
-    margin-top: 0;
-    position: absolute;
+    position: fixed;
     border-radius: 0px;
     width: 15%;
-    height: auto;
-    min-height: 500px;
+    height: 25%;
     right: 0%;
     top: 0%;
-
+    z-index: 2;
 }
 
+#q3{
+    position: fixed;
+    right: 0;
+    top: 25%;
+}
+#q2{
+    position: sticky;
+    color: white;
+    font-size: 25px;
+}
 
 #q {
     font-size: 20px;
@@ -558,5 +571,34 @@ div {
     100% {
         background-color: rgb(75, 0, 75);
         color: rgb(255, 255, 255);
+    }
+}
+
+@media (max-width: 800px){
+    #Play{
+        height: 75px;
+    }
+    #Queue{
+        height: 75px;
+    }
+    #Activequeue{
+        font-size: 100%;
+    }
+    #q3{
+        top: 40%;
+        font-size: 75%;
+    }
+    #q2{
+        top: 40%;
+        font-size: 100%;
+    }
+    #playing{
+        font-size: 50%;
+    }
+    #q{
+        font-size: 75%;
+    }
+    #lyrics-wrapper{
+        display: none;
     }
 }
