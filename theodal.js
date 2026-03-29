@@ -1351,7 +1351,187 @@ var lyrics = {
         "Nybrogrillens finest\n" +
         "Hela gatan vet vad vi tar\n" +
         "Nybrogrillens finest\n" +
-        "Hela gatan vet vad vi tar"
+        "Hela gatan vet vad vi tar",
+    'ÖL-OL Hype': "[Vers 1]\n" +
+        "Startskott\n" +
+        "Karta i min hand\n" +
+        "Första ölen\n" +
+        "Pulsen i brand\n" +
+        "Kartan skakar\n" +
+        "Benen knakar\n" +
+        "Kompassen snurrar\n" +
+        "Myggen surrar\n" +
+        "Kontroll ett\n" +
+        "Jag skriker \"hitta!\"\n" +
+        "Stämplar fel\n" +
+        "Hoppas ingen titta\n" +
+        "Huvet yrar\n" +
+        "Svett och grus\n" +
+        "Ögon som fyrar\n" +
+        "Hjärtat i rus\n\n" +
+        "[Refräng]\n" +
+        "Vilken jävla fest\n" +
+        "Vi springer som vi stulit natten\n" +
+        "Öl i varje bröst\n" +
+        "Vi ramlar men hör ni skratten\n" +
+        "Blöta skor i lera\n" +
+        "Ingen tänker på imorgon\n" +
+        "Vilken jävla fest\n" +
+        "Hela skogen sjunger våran sång (hey!)\n\n" +
+        "[Vers 2]\n" +
+        "Andra ölen\n" +
+        "Sveper den\n" +
+        "Vinglar uti skogen igen\n" +
+        "Snubblar fram i snårig skog\n" +
+        "Skrattar åt allt\n" +
+        "Jag får aldrig nog\n" +
+        "Kontroll två\n" +
+        "Kramar en gran\n" +
+        "\"är det du som är trean?\" frågar jag han\n" +
+        "Polarn skriker \"fel håll\n" +
+        "Hem!\"\n" +
+        "Vi lyckas bomma\n" +
+        "Igen och igen\n\n" +
+        "[Refräng]\n" +
+        "Vilken jävla fest\n" +
+        "Vi springer som vi stulit natten\n" +
+        "Öl i varje bröst\n" +
+        "Vi ramlar men hör ni skratten\n" +
+        "Blöta skor i lera\n" +
+        "Ingen tänker på imorgon\n" +
+        "Vilken jävla fest\n" +
+        "Hela skogen sjunger våran sång (woah)\n\n" +
+        "[Vers 3]\n" +
+        "Tredje\n" +
+        "Fjärde\n" +
+        "Tiden försvinner\n" +
+        "Nånstans där inne vet jag att jag vinner\n" +
+        "Kartan vänd upp och ner\n" +
+        "Nu känns varje felsteg mer och mer\n" +
+        "Kontroll sex\n" +
+        "Publiken vrålar\n" +
+        "Jag och mina polers skålar\n" +
+        "Ser en tös\n" +
+        "Hon var ursnygg\n" +
+        "Trycker på\n" +
+        "Och tar hennes rygg\n\n" +
+        "[Bridge]\n" +
+        "Sista ölen\n" +
+        "Världen gungar (gungar)\n" +
+        "Sista varvet\n" +
+        "Hela gropen sjunger (sjunger)\n" +
+        "Vem som vinner? skitsamma\n" +
+        "Bror\n" +
+        "Vi har redan vunnit här och nu på våran jord\n\n" +
+        "[Refräng]\n" +
+        "Vilken jävla fest\n" +
+        "Vi springer som vi stulit natten\n" +
+        "Öl i varje bröst\n" +
+        "Vi ramlar men hör ni skratten\n" +
+        "Blöta skor i lera\n" +
+        "Ingen tänker på imorgon\n" +
+        "Vilken jävla fest\n" +
+        "Hela skogen sjunger våran sång\n\n" +
+        "[Refräng]\n" +
+        "Vilken jävla fest\n" +
+        "Vi springer som vi stulit natten\n" +
+        "Öl i varje bröst\n" +
+        "Vi ramlar men hör ni skratten\n" +
+        "Får en femte öl\n" +
+        "Nu mår jag som allra bäst\n" +
+        "Svett och glädjrus\n" +
+        "Öl-O-L vilken jävla fest\n" +
+        "(hey!)",
+    'Vilken jävla fest': "[Vers 1]\n" +
+        "Startskott\n" +
+        "Karta i min hand\n" +
+        "Första ölen\n" +
+        "Pulsen i brand\n" +
+        "Kartan skakar\n" +
+        "Benen knakar\n" +
+        "Kompassen snurrar\n" +
+        "Myggen surrar\n" +
+        "Kontroll ett\n" +
+        "Jag skriker \"hitta!\"\n" +
+        "Stämplar fel\n" +
+        "Hoppas ingen titta\n" +
+        "Huvet yrar\n" +
+        "Svett och grus\n" +
+        "Ögon som fyrar\n" +
+        "Hjärtat i rus\n\n" +
+        "[Refräng]\n" +
+        "Vilken jävla fest\n" +
+        "Vi springer som vi stulit natten\n" +
+        "Öl i varje bröst\n" +
+        "Vi ramlar men hör ni skratten\n" +
+        "Blöta skor i lera\n" +
+        "Ingen tänker på imorgon\n" +
+        "Vilken jävla fest\n" +
+        "Hela skogen sjunger våran sång (hey!)\n\n" +
+        "[Vers 2]\n" +
+        "Andra ölen\n" +
+        "Sveper den\n" +
+        "Vinglar uti skogen igen\n" +
+        "Snubblar fram i snårig skog\n" +
+        "Skrattar åt allt\n" +
+        "Jag får aldrig nog\n" +
+        "Kontroll två\n" +
+        "Kramar en gran\n" +
+        "\"är det du som är trean?\" frågar jag han\n" +
+        "Polarn skriker \"fel håll\n" +
+        "Hem!\"\n" +
+        "Vi lyckas bomma\n" +
+        "Igen och igen\n\n" +
+        "[Refräng]\n" +
+        "Vilken jävla fest\n" +
+        "Vi springer som vi stulit natten\n" +
+        "Öl i varje bröst\n" +
+        "Vi ramlar men hör ni skratten\n" +
+        "Blöta skor i lera\n" +
+        "Ingen tänker på imorgon\n" +
+        "Vilken jävla fest\n" +
+        "Hela skogen sjunger våran sång (woah)\n\n" +
+        "[Vers 3]\n" +
+        "Tredje\n" +
+        "Fjärde\n" +
+        "Tiden försvinner\n" +
+        "Nånstans där inne vet jag att jag vinner\n" +
+        "Kartan vänd upp och ner\n" +
+        "Nu känns varje felsteg mer och mer\n" +
+        "Kontroll sex\n" +
+        "Publiken vrålar\n" +
+        "Jag och mina polers skålar\n" +
+        "Ser en tös\n" +
+        "Hon var ursnygg\n" +
+        "Trycker på\n" +
+        "Och tar hennes rygg\n\n" +
+        "[Bridge]\n" +
+        "Sista ölen\n" +
+        "Världen gungar (gungar)\n" +
+        "Sista varvet\n" +
+        "Hela gropen sjunger (sjunger)\n" +
+        "Vem som vinner? skitsamma\n" +
+        "Bror\n" +
+        "Vi har redan vunnit här och nu på våran jord\n\n" +
+        "[Refräng]\n" +
+        "Vilken jävla fest\n" +
+        "Vi springer som vi stulit natten\n" +
+        "Öl i varje bröst\n" +
+        "Vi ramlar men hör ni skratten\n" +
+        "Blöta skor i lera\n" +
+        "Ingen tänker på imorgon\n" +
+        "Vilken jävla fest\n" +
+        "Hela skogen sjunger våran sång\n\n" +
+        "[Refräng]\n" +
+        "Vilken jävla fest\n" +
+        "Vi springer som vi stulit natten\n" +
+        "Öl i varje bröst\n" +
+        "Vi ramlar men hör ni skratten\n" +
+        "Får en femte öl\n" +
+        "Nu mår jag som allra bäst\n" +
+        "Svett och glädjrus\n" +
+        "Öl-O-L vilken jävla fest\n" +
+        "(hey!)"
 };
 var current_song;
 var active_selection = " ";
@@ -1391,6 +1571,8 @@ var stockholmstheobtn = document.getElementById("stockholmstheo"); // Knappen f�
 var stockholmsmusik = document.getElementById("stockholmsmusik"); // Containern för musiken som vi togglar synligheten på
 var ittheobtn = document.getElementById("ittheo"); // Knappen för att visa ittheos musik
 var itmusik = document.getElementById("itmusik"); // Containern för musiken som vi togglar synligheten på
+var ololtheobtn = document.getElementById("ololtheo"); // Knappen för att visa ittheos musik
+var ololmusik = document.getElementById("ololmusik"); // Containern för musiken som vi togglar synlig
 // Låtar i musikbiblioteket, används för att hitta rätt sökväg för shuffle och queue
 var SONGS = {
     'Albanian Bartender': './music/albanian_music/Albanian Bartender.mp3',
@@ -1411,7 +1593,9 @@ var SONGS = {
     'Nackas Starkaste Krigare': './music/stockholm/Nackas Starkaste Krigare.mp3',
     'Hyllning till Bridgens': './music/IT/Bridgens Hus.mp3',
     'Rest In Kir': './music/IT/Rest In Kir.mp3',
-    'Nybrogrillens finest': './music/freaky_country/Nybrogrillens finest.mp3'
+    'Nybrogrillens finest': './music/freaky_country/Nybrogrillens finest.mp3',
+    'ÖL-OL Hype': './music/olol/ÖLOLVibe.mp3',
+    'Vilken jävla fest': './music/olol/ÖLOLHype.mp3'
 };
 // Samtliga funktioner som används i logiken
 //___________________________________________
@@ -1820,6 +2004,10 @@ if (stockholmstheobtn !== null && stockholmsmusik !== null) {
 if (ittheobtn !== null && itmusik !== null) {
     ittheobtn.addEventListener("click", function () { toggle_hide(itmusik); });
     toggle_hide(itmusik);
+}
+if (ololtheobtn !== null && ololmusik !== null) {
+    ololtheobtn.addEventListener("click", function () { toggle_hide(ololmusik); });
+    toggle_hide(ololmusik);
 }
 shufflebtn === null || shufflebtn === void 0 ? void 0 : shufflebtn.addEventListener("click", function () { shuffle_queue(); });
 play2 ? play2.addEventListener("click", function () {

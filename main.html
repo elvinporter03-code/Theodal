@@ -1,261 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>  
+
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Theodal</title>
     <link rel="stylesheet" href="main.css">
 
 </head>
+
 <body>
     <div id="laptopview">
     <div id="lyrics-wrapper">
         <div id="lyrics-wrapper">
-    <pre id="lyrics-box">
-    </pre> 
-</div>
-</div>
-            <div id="musicfield">
-                <div id="form" style="display:none;">
-                    <input type="text" id="input" placeholder="Namn på spellista...">
-                    <button id="confirm">Create</button>
-                </div>
-                <div class = "artist" id="albantheo">Balkan</div>
-                <div id="albanmusik" class="music_container">
-                    <div class="music" id="Albanian_Bartender" data-song="./music/albanian_music/Albanian Bartender.mp3">
-                        <div class="pics" id="Albanian_pic"></div>
-                        <div >Albanian Bartender</div>
-                    </div>
-                    <div class="music" id="RedEagle" data-song="./music/albanian_music/Gold Chain, Red Eagle.mp3">
-                        <div class="pics" id="Albanian_uncle"></div>
-                        <div >Red Eagle, Gold Chain</div>    
-                    </div>
-                     <div class="music" id="SunnyAlbania" data-song="./music/albanian_music/Sun-Drunk in Albania.mp3">
-                        <div class="pics" id="Albanian_beach"></div>
-                        <div >Sun-Kissed in Albania</div>
-                    </div>
-                </div>
-                <div class="artist" id="countrytheo">Country</div>
-                <div id="countrymusik" class="music_container">
-                    <div class="music" id="Citymail" data-song="./music/country/City Mail Special Delivery.mp3">
-                        <div class="pics" id="Citymail_pic"></div>
-                        <div >City Mail Special Delivery</div>
-                    </div>
-                    <div class="music" id="Gustav" data-song="./music/country/Gustav Got a Boyfriend.mp3">
-                        <div class="pics" id="Boyfriend_pic"></div>
-                        <div>Gustav Got a boyfriend</div>
-                    </div>
-                    <div class="music" id="Paradise" data-song="./music/country/Red Flag Paradise.mp3">
-                        <div class="pics" id="Parker_pic"></div>
-                        <div>Red Flag Paradise</div>
-                    </div>
-                </div>
-                <div class="artist" id="rocktheo">Rock</div>
-                <div id="rockmusik" class="music_container">
-                    <div class="music" id="Bathhouse" data-song="./music/Rock/Russian Bathhouse.mp3">
-                        <div class="pics" id="Bathhouse_pic"></div>
-                        <div >Russian Bathhouse</div>
-                    </div>
-                    <div class="music" id="Halo" data-song="./music/Rock/Filthy Halo.mp3">
-                        <div class="pics" id="Filthy_pic"></div>
-                        <div >Filthy Halo</div>
-                    </div>
-                    <div class="music" id="Uncs" data-song="./music/Rock/Gamla Uncs på G.mp3">
-                        <div class="pics" id="Uncs_pic"></div>
-                        <div >Gamla Uncs på G</div>
-                    </div>
-                </div>
-                <div class="artist" id="poptheo">Pop</div>
-                <div id="popmusik" class="music_container">
-                    <div class="music" id="Omen" data-song="./music/freaky_country/Omen In The Lords Church.mp3">
-                        <div class="pics" id="Omen_pic"></div>
-                        <div>Omen in The Lords church</div>
-                    </div>
-                    <div class="music" id="Alfred" data-song="./music/freaky_country/Alfred, Bubblor och Ballader.mp3">
-                        <div class="pics" id="Alfred_pic"></div>
-                        <div >Bubblor och Ballader</div>
-                    </div>
-                    <div class="music" id="Koden" data-song="./music/freaky_country/Mustaschen och Koden.mp3">
-                        <div  class="pics" id="Emil_pic"></div>
-                        <div>Mustaschen och Koden</div>
-                    </div>
-                    <div class="music" id="Max" data-song="./music/freaky_country/Max är Hetast i Spelet.mp3">
-                        <div class="pics" id="Max_pic"></div>
-                        <div>Hetast i Spelet</div>
-                    </div>
-                    <div class="music" id="Edvin" data-song="./music/freaky_country/Edvin Och Dalahästarna.mp3">
-                        <div class="pics" id="Edvin_pic"></div>
-                        <div>Dalahästarna</div>
-                    </div>
-                    <div class="music" id="Nybrogrillens finest" data-song="./music/freaky_country/Nybrogrillens finest.mp3">
-                        <div class="pics" id="Nybro_pic"></div>
-                        <div>Nybrogrillens finest</div>
-                    </div>
-                </div>
-                <div class="artist" id="stockholmstheo"> Grisch</div>
-                <div id="stockholmsmusik" class="music_container">
-                    <div class="music" id="Henke" data-song="./music/stockholm/Bror Henke.mp3">
-                        <div class="pics" id="Henke_pic"></div>
-                        <div>Bror Henke</div>
-                    </div>
-                    <div class="music" id="Nacka" data-song="./music/stockholm/Nackas Starkaste Krigare.mp3">
-                        <div class="pics" id="Nacka_pic"></div>
-                        <div>Nackas Starkaste Krigare</div>
-                    </div>
-                </div>
-                <div class="artist" id="ittheo">IT</div>
-                <div id="itmusik" class="music_container">
-                    <div class="music" id="Kir" data-song="./music/IT/Rest In Kir.mp3">
-                        <div class="pics" id="IT1PIC"></div>
-                        <div>Rest In Kir</div>
-                    </div>
-                    <div class="music" id="Bridgens" data-song="./music/IT/Bridgens Hus.mp3">
-                        <div class="pics" id="Bridgens_pic"></div>
-                        <div>Hyllning till Bridgens</div>
-                    </div>
-                </div>
-                <div id="playlists-container"></div>
-            </div>
-        
-    </div>
-        <div class="ctrlblock">
-            <div class="ctrl" id="Previous">◀ </div>
-            <div class="ctrl" id="Play_Pause" >PLAY</div>
-            <div class="ctrl" id="Skip"> ▶</div>
-        </div>
-        <div class="repblock">
-             <div class="ctrl" id="repBtn">REPEAT OFF</div>
-        </div>
-        <div class ="qblock">
-            <div class="ctrl" id="current"></div>
-            <div class="ctrl" id="Play">PLAY NOW</div>
-            <div class="ctrl" id="Queue">ADD TO QUEUE</div>
-        </div>
-        <div class="ctrl" id="Activequeue">QUEUE
-            <div class="ctrl" id="SaveToPlaylist">SAVE QUEUE TO PLAYLIST</div>
-            <div id="Shuffle" class="ctrl">SHUFFLE</div>
-            <div id="repQBTN" class="ctrl">REPEAT QUEUE OFF</div>
-            <div id="playing_txt">Playing now:
-                <div id="playing"></div>
-            </div>
-            <div id="q"></div>
+            <pre id="lyrics-box">
+    </pre>
         </div>
     </div>
-
-    <div id="mobileview">
-        <div id="mobile_playing_txt">Playing now:
-            <div id="playing"></div>
-        </div>
-    <div id="mobilemusicfield">
-
-        <div id="form" style="display: none;">
+    <div id="musicfield">
+        <div id="form" style="display:none;">
             <input type="text" id="input" placeholder="Namn på spellista...">
             <button id="confirm">Create</button>
         </div>
-    
-        <div id="all-songs">
-    
+        <div class="artist" id="albantheo">Balkan</div>
+        <div id="albanmusik" class="music_container">
             <div class="music" id="Albanian_Bartender" data-song="./music/albanian_music/Albanian Bartender.mp3">
                 <div class="pics" id="Albanian_pic"></div>
                 <div>Albanian Bartender</div>
             </div>
-    
             <div class="music" id="RedEagle" data-song="./music/albanian_music/Gold Chain, Red Eagle.mp3">
                 <div class="pics" id="Albanian_uncle"></div>
                 <div>Red Eagle, Gold Chain</div>
             </div>
-    
             <div class="music" id="SunnyAlbania" data-song="./music/albanian_music/Sun-Drunk in Albania.mp3">
                 <div class="pics" id="Albanian_beach"></div>
                 <div>Sun-Kissed in Albania</div>
             </div>
-    
+        </div>
+        <div class="artist" id="countrytheo">Country</div>
+        <div id="countrymusik" class="music_container">
             <div class="music" id="Citymail" data-song="./music/country/City Mail Special Delivery.mp3">
                 <div class="pics" id="Citymail_pic"></div>
                 <div>City Mail Special Delivery</div>
             </div>
-    
             <div class="music" id="Gustav" data-song="./music/country/Gustav Got a Boyfriend.mp3">
                 <div class="pics" id="Boyfriend_pic"></div>
-                <div>Gustav Got a Boyfriend</div>
+                <div>Gustav Got a boyfriend</div>
             </div>
-    
             <div class="music" id="Paradise" data-song="./music/country/Red Flag Paradise.mp3">
                 <div class="pics" id="Parker_pic"></div>
                 <div>Red Flag Paradise</div>
             </div>
-    
+        </div>
+        <div class="artist" id="rocktheo">Rock</div>
+        <div id="rockmusik" class="music_container">
             <div class="music" id="Bathhouse" data-song="./music/Rock/Russian Bathhouse.mp3">
                 <div class="pics" id="Bathhouse_pic"></div>
                 <div>Russian Bathhouse</div>
             </div>
-    
             <div class="music" id="Halo" data-song="./music/Rock/Filthy Halo.mp3">
                 <div class="pics" id="Filthy_pic"></div>
                 <div>Filthy Halo</div>
             </div>
-    
             <div class="music" id="Uncs" data-song="./music/Rock/Gamla Uncs på G.mp3">
                 <div class="pics" id="Uncs_pic"></div>
                 <div>Gamla Uncs på G</div>
             </div>
-    
+        </div>
+        <div class="artist" id="poptheo">Pop</div>
+        <div id="popmusik" class="music_container">
             <div class="music" id="Omen" data-song="./music/freaky_country/Omen In The Lords Church.mp3">
                 <div class="pics" id="Omen_pic"></div>
-                <div>Omen in The Lords Church</div>
+                <div>Omen in The Lords church</div>
             </div>
-    
             <div class="music" id="Alfred" data-song="./music/freaky_country/Alfred, Bubblor och Ballader.mp3">
                 <div class="pics" id="Alfred_pic"></div>
                 <div>Bubblor och Ballader</div>
             </div>
-    
             <div class="music" id="Koden" data-song="./music/freaky_country/Mustaschen och Koden.mp3">
                 <div class="pics" id="Emil_pic"></div>
                 <div>Mustaschen och Koden</div>
             </div>
-    
             <div class="music" id="Max" data-song="./music/freaky_country/Max är Hetast i Spelet.mp3">
                 <div class="pics" id="Max_pic"></div>
                 <div>Hetast i Spelet</div>
             </div>
-    
             <div class="music" id="Edvin" data-song="./music/freaky_country/Edvin Och Dalahästarna.mp3">
                 <div class="pics" id="Edvin_pic"></div>
                 <div>Dalahästarna</div>
             </div>
-    
-            <div class="music" id="Nybrogrillens_finest" data-song="./music/freaky_country/Nybrogrillens finest.mp3">
+            <div class="music" id="Nybrogrillens finest" data-song="./music/freaky_country/Nybrogrillens finest.mp3">
                 <div class="pics" id="Nybro_pic"></div>
-                <div>Nybrogrillens Finest</div>
+                <div>Nybrogrillens finest</div>
             </div>
-    
+        </div>
+        <div class="artist" id="stockholmstheo"> Grisch</div>
+        <div id="stockholmsmusik" class="music_container">
             <div class="music" id="Henke" data-song="./music/stockholm/Bror Henke.mp3">
                 <div class="pics" id="Henke_pic"></div>
                 <div>Bror Henke</div>
             </div>
-    
             <div class="music" id="Nacka" data-song="./music/stockholm/Nackas Starkaste Krigare.mp3">
                 <div class="pics" id="Nacka_pic"></div>
                 <div>Nackas Starkaste Krigare</div>
             </div>
-    
+        </div>
+        <div class="artist" id="ittheo">IT</div>
+        <div id="itmusik" class="music_container">
             <div class="music" id="Kir" data-song="./music/IT/Rest In Kir.mp3">
                 <div class="pics" id="IT1PIC"></div>
                 <div>Rest In Kir</div>
             </div>
-    
             <div class="music" id="Bridgens" data-song="./music/IT/Bridgens Hus.mp3">
                 <div class="pics" id="Bridgens_pic"></div>
                 <div>Hyllning till Bridgens</div>
             </div>
-    
         </div>
-    
+        <div class="artist" id="ololtheo">ÖL-OL</div>
+        <div id="ololmusik" class="music_container">
+            <div class="music" id="Hype" data-song="./music/olol/ÖLOLVibe.mp3">
+                <div class="pics" id="Hype_pic"></div>
+                <div>ÖL-OL Hype</div>
+            </div>
+            <div class="music" id="Vibe" data-song="./music/olol/ÖLOLHype.mp3">
+                <div class="pics" id="Vibe_pic"></div>
+                <div>Vilken jävla fest</div>
+            </div>
+        </div>
         <div id="playlists-container"></div>
-    
     </div>
-</div>
-    <script src="./theodal.js" ></script>
+
+    </div>
+    <div class="ctrlblock">
+        <div class="ctrl" id="Previous">◀ </div>
+        <div class="ctrl" id="Play_Pause">PLAY</div>
+        <div class="ctrl" id="Skip"> ▶</div>
+    </div>
+    <div class="repblock">
+        <div class="ctrl" id="repBtn">REPEAT OFF</div>
+    </div>
+    <div class="qblock">
+        <div class="ctrl" id="current"></div>
+        <div class="ctrl" id="Play">PLAY NOW</div>
+        <div class="ctrl" id="Queue">ADD TO QUEUE</div>
+    </div>
+    <div class="ctrl" id="Activequeue">QUEUE
+        <div class="ctrl" id="SaveToPlaylist">SAVE QUEUE TO PLAYLIST</div>
+        <div id="Shuffle" class="ctrl">SHUFFLE</div>
+        <div id="repQBTN" class="ctrl">REPEAT QUEUE OFF</div>
+        <div id="playing_txt">Playing now:
+            <div id="playing"></div>
+        </div>
+        <div id="q"></div>
+    </div>
+
+
+    <script src="./theodal.js"></script>
 </body>
+
 </html>
