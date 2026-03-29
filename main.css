@@ -2,7 +2,14 @@
 body{
     background-color: rgb(20,0,20);
 }
-
+@media (min-width: 800px) { 
+    #laptopview{
+        display: block;
+    }
+    #mobileview{
+        display: none;
+    }
+}
 div{
     text-align: center;
     margin: 25px auto;
@@ -14,7 +21,13 @@ div{
     height: 100px;
     
 }
-
+#mobilectrl{
+    display: none;
+}
+#mobilemusicfield{
+    display: none;
+    height: 0;
+}
 #content {
     flex: 1;
     overflow-y: auto;
@@ -31,7 +44,7 @@ div{
     padding-bottom: 150px;
     top: 10%;
     margin: 0 auto;
-
+    display: revert;
 }
 
 /* MUSIKBIBLIOTEK */
@@ -52,7 +65,6 @@ div{
 
 .music_container{
     width: 50%;
-    
 }
 
 #albanmusik {
@@ -90,7 +102,7 @@ div{
     gap: 1px;
 }
 
-.musiccontainer{
+.music_container{
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 1px;
@@ -117,7 +129,7 @@ div{
 }
 
 .alban_select{
-    visibility: hidden;
+    display: none;
 }
 
 /* BILDER */
@@ -486,7 +498,6 @@ div{
     z-index: 10;
     height: auto;
 }
-
 /* ANIMATIONER */
 
 @keyframes ctrlbtns {
@@ -520,3 +531,54 @@ div{
         color: rgb(255,255,255);
     }
 }
+
+@media (max-width: 800px) { 
+    #mobileview{
+        display: block;
+    }
+    #laptopview{
+        display: none;
+    }
+    .div{
+        position: relative;
+    }
+    #lyrics-wrapper{
+        display: none;
+    }
+    .music_container{
+        width: 100%;
+    }
+    #Activequeue{
+       display: none;
+       position: absolute;
+       left: 0;
+    }
+    .qblock{
+        display: none;
+    }
+    .ctrlblock{
+        display: none;
+    }
+    .repblock{
+        display: none;
+    }
+    #mobilemusicfield{
+        display: revert;
+        position: absolute;
+        z-index: -1;
+        width: 100%;
+        left: 0;
+        top: 0;
+    }
+    #musicfield{
+        display: none;
+        height: 0;
+    }
+    #mobilectrl{
+        width: 100%;
+        position: absolute;
+        height: 100%;
+        background-color: white;
+    }
+}
+  
